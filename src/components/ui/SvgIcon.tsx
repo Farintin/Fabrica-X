@@ -17,6 +17,8 @@ import Gift from "@/assets/icons/Gift.svg";
 import GiftPrize from "@/assets/icons/GiftPrize.svg";
 import Crown from "@/assets/icons/Crown.svg";
 import Ranking from "@/assets/icons/Ranking.svg";
+import Menu from "@/assets/icons/Menu.svg";
+import Setting from "@/assets/icons/Setting.svg";
 
 // Map component names to the imported SVG modules
 const IconMap = {
@@ -34,6 +36,8 @@ const IconMap = {
   "gift-prize": GiftPrize,
   crown: Crown,
   ranking: Ranking,
+  menu: Menu,
+  setting: Setting,
 };
 
 type IconName = keyof typeof IconMap;

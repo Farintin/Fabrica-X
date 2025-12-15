@@ -1,3 +1,4 @@
+import { LeaderboardUser, UserPoints } from "@/src/api/leaderboardApi";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -13,14 +14,24 @@ const rankOneImage = require("@/assets/images/rank-one-image.png");
 const rankTwoImage = require("@/assets/images/rank-two-image.png");
 const rankThreeImage = require("@/assets/images/rank-three-image.png");
 
-type RankTypeProps = TouchableOpacityProps & {
-  rank: number;
-  name: string;
-  points: number;
-};
+export type RankTypeProps = Omit<TouchableOpacityProps, "id"> & // Remove the string 'id'
+  Omit<LeaderboardUser, "id"> & {
+    // Remove the numeric 'id'
+    userId: number; // Define the unambiguous numeric ID
+    // The rest of the fields (name, points, rank, etc.) are implicitly included
+    // from LeaderboardUser and TouchableOpacityProps
+  };
 
-export const RankTypeCard = ({ rank, name, points, style }: RankTypeProps) => {
+export const RankTypeCard = ({
+  userId,
+  name,
+  points,
+  rank,
+  style,
+  ...touchableProps
+}: RankTypeProps) => {
   const theme = useTheme();
+
   const rankStyles = {
     1: { surfaceColor: "#C2F9B7" },
     2: { surfaceColor: "#DFFCDA" },
@@ -49,6 +60,7 @@ export const RankTypeCard = ({ rank, name, points, style }: RankTypeProps) => {
         },
         style,
       ]}
+      {...touchableProps}
     >
       <View
         style={[
@@ -135,7 +147,7 @@ export const RankTypeCard = ({ rank, name, points, style }: RankTypeProps) => {
             },
           ]}
         >
-          {points}
+          {points.allTime}
         </Text>
         <Text
           style={[
@@ -151,15 +163,18 @@ export const RankTypeCard = ({ rank, name, points, style }: RankTypeProps) => {
 };
 
 export const LastRankTypeCard = ({
-  rank,
+  userId,
   name,
   points,
+  rank,
   style,
 }: RankTypeProps) => {
   const theme = useTheme();
   return (
     <LinearGradient
       colors={["#97FF48", "#C2F9B7"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
       style={[
         styles.card,
         {
@@ -239,7 +254,7 @@ export const LastRankTypeCard = ({
             },
           ]}
         >
-          {points}
+          {points.allTime}
         </Text>
         <Text style={[theme.typography.desc, { color: "#808080" }]}>pts</Text>
       </View>

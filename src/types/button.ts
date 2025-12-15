@@ -1,4 +1,5 @@
 import { StyleProp, TextStyle, TouchableOpacityProps } from "react-native";
+import { IconNameType } from ".";
 
 export type ButtonProps = TouchableOpacityProps & {
   label?: string;
@@ -8,17 +9,7 @@ export type ButtonProps = TouchableOpacityProps & {
 };
 
 export type IconButtonProps = ButtonProps & {
-  iconName:
-    | "arrow-left"
-    | "bell"
-    | "link"
-    | "live"
-    | "user-octagon"
-    | "location"
-    | "duration"
-    | "leaderboard"
-    | "voucher"
-    | "gift";
+  iconName: IconNameType;
   iconSize?: number;
   iconColor?: string;
 };

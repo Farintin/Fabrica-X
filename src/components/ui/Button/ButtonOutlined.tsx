@@ -4,12 +4,15 @@ import { ButtonProps } from "@/src/types/button";
 
 export default function ButtonOutlined({
   label,
+  contentLeft,
+  contentRight,
   labelColor,
   color,
   borderColor,
   size = "large",
   onPress,
   style,
+  ...restProps
 }: ButtonProps & {
   color?: string;
   borderColor?: string;
@@ -42,6 +45,7 @@ export default function ButtonOutlined({
         style,
       ]}
     >
+      {contentLeft}
       <Text
         style={[
           size === "small" && theme.typography.buttonSmall,
@@ -53,6 +57,7 @@ export default function ButtonOutlined({
       >
         {label}
       </Text>
+      {contentRight}
     </TouchableOpacity>
   );
 }
@@ -60,5 +65,7 @@ export default function ButtonOutlined({
 const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

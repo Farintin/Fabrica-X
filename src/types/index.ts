@@ -10,4 +10,6 @@ export type IconNameType =
   | "leaderboard-prize"
   | "voucher"
   | "gift"
-  | "gift-prize";
+  | "gift-prize"
+  | "menu"
+  | "setting";

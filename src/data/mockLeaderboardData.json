@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1,
+    "name": "Alex Johnson",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/1.jpg",
+    "points": {
+      "week": 420,
+      "month": 6100,
+      "allTime": 28500
+    }
+  },
+  {
+    "id": 2,
+    "name": "Maria Lopez",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+    "points": {
+      "week": 460,
+      "month": 5900,
+      "allTime": 27800
+    }
+  },
+  {
+    "id": 3,
+    "name": "James K.",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+    "points": {
+      "week": 390,
+      "month": 5600,
+      "allTime": 26500
+    }
+  },
+  {
+    "id": 4,
+    "name": "Loxxie",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/4.jpg",
+    "points": {
+      "week": 480,
+      "month": 5400,
+      "allTime": 25200
+    }
+  },
+  {
+    "id": 5,
+    "name": "Haylie",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/5.jpg",
+    "points": {
+      "week": 310,
+      "month": 5200,
+      "allTime": 24000
+    }
+  },
+  {
+    "id": 6,
+    "name": "Ethan Hunt",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/6.jpg",
+    "points": {
+      "week": 350,
+      "month": 5000,
+      "allTime": 22800
+    }
+  },
+  {
+    "id": 7,
+    "name": "Sophia Lee",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/7.jpg",
+    "points": {
+      "week": 410,
+      "month": 4800,
+      "allTime": 21500
+    }
+  },
+  {
+    "id": 8,
+    "name": "William Chen",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/8.jpg",
+    "points": {
+      "week": 260,
+      "month": 4600,
+      "allTime": 20500
+    }
+  },
+  {
+    "id": 9,
+    "name": "Olivia Miller",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/9.jpg",
+    "points": {
+      "week": 300,
+      "month": 4400,
+      "allTime": 19500
+    }
+  },
+  {
+    "id": 10,
+    "name": "Noel Smith",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/10.jpg",
+    "points": {
+      "week": 230,
+      "month": 4200,
+      "allTime": 18500
+    }
+  },
+  {
+    "id": 11,
+    "name": "Charlotte Brown",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/11.jpg",
+    "points": {
+      "week": 270,
+      "month": 3900,
+      "allTime": 17500
+    }
+  },
+  {
+    "id": 12,
+    "name": "George Wilson",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/12.jpg",
+    "points": {
+      "week": 200,
+      "month": 3600,
+      "allTime": 16500
+    }
+  },
+  {
+    "id": 13,
+    "name": "Barry_56",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/13.jpg",
+    "points": {
+      "week": 650,
+      "month": 2800,
+      "allTime": 10500
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-11-05T10:00:00Z"
+  },
+  {
+    "id": 14,
+    "name": "Amelia King",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/14.jpg",
+    "points": {
+      "week": 550,
+      "month": 2500,
+      "allTime": 9800
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-10-25T10:00:00Z"
+  },
+  {
+    "id": 15,
+    "name": "Leo Davis",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/15.jpg",
+    "points": {
+      "week": 500,
+      "month": 2200,
+      "allTime": 9500
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-08-10T10:00:00Z"
+  },
+  {
+    "id": 16,
+    "name": "Mia Taylor",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/16.jpg",
+    "points": {
+      "week": 450,
+      "month": 1900,
+      "allTime": 8800
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-07-01T10:00:00Z"
+  },
+  {
+    "id": 17,
+    "name": "Noah Clark",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/17.jpg",
+    "points": {
+      "week": 400,
+      "month": 1600,
+      "allTime": 8200
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-12-10T10:00:00Z"
+  },
+  {
+    "id": 18,
+    "name": "Isla Green",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/18.jpg",
+    "points": {
+      "week": 350,
+      "month": 1300,
+      "allTime": 7500
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-09-05T10:00:00Z"
+  },
+  {
+    "id": 19,
+    "name": "Henry Adams",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/19.jpg",
+    "points": {
+      "week": 300,
+      "month": 1000,
+      "allTime": 6800
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-11-18T10:00:00Z"
+  },
+  {
+    "id": 20,
+    "name": "Grace Baker",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/20.jpg",
+    "points": {
+      "week": 250,
+      "month": 800,
+      "allTime": 6000
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-10-10T10:00:00Z"
+  },
+  {
+    "id": 21,
+    "name": "Finn Carter",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/21.jpg",
+    "points": {
+      "week": 200,
+      "month": 600,
+      "allTime": 5200
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-07-15T10:00:00Z"
+  },
+  {
+    "id": 22,
+    "name": "Chloe Evans",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/22.jpg",
+    "points": {
+      "week": 180,
+      "month": 550,
+      "allTime": 4800
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-12-08T10:00:00Z"
+  },
+  {
+    "id": 23,
+    "name": "Ben Foster",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/23.jpg",
+    "points": {
+      "week": 160,
+      "month": 500,
+      "allTime": 4500
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-06-01T10:00:00Z"
+  },
+  {
+    "id": 24,
+    "name": "Ava Hill",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/24.jpg",
+    "points": {
+      "week": 140,
+      "month": 450,
+      "allTime": 4100
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-11-25T10:00:00Z"
+  },
+  {
+    "id": 25,
+    "name": "Jack Morris",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/25.jpg",
+    "points": {
+      "week": 120,
+      "month": 400,
+      "allTime": 3800
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-09-20T10:00:00Z"
+  },
+  {
+    "id": 26,
+    "name": "Ruby Ward",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/26.jpg",
+    "points": {
+      "week": 100,
+      "month": 350,
+      "allTime": 3400
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-12-12T10:00:00Z"
+  },
+  {
+    "id": 27,
+    "name": "Sam Young",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/27.jpg",
+    "points": {
+      "week": 80,
+      "month": 300,
+      "allTime": 3000
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-08-28T10:00:00Z"
+  },
+  {
+    "id": 28,
+    "name": "Tess Hall",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/28.jpg",
+    "points": {
+      "week": 60,
+      "month": 250,
+      "allTime": 2600
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-10-05T10:00:00Z"
+  },
+  {
+    "id": 29,
+    "name": "Victor Diaz",
+    "avatarUrl": "https://randomuser.me/api/portraits/men/29.jpg",
+    "points": {
+      "week": 40,
+      "month": 200,
+      "allTime": 2200
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-11-10T10:00:00Z"
+  },
+  {
+    "id": 30,
+    "name": "Zoe Chen",
+    "avatarUrl": "https://randomuser.me/api/portraits/women/30.jpg",
+    "points": {
+      "week": 20,
+      "month": 150,
+      "allTime": 1800
+    },
+    "isCurrentUser": false,
+    "joinDate": "2024-07-20T10:00:00Z"
+  }
+]
