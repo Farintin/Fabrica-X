@@ -1,15 +1,15 @@
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View, ViewProps } from "react-native";
 import { Image, ImageBackground } from "expo-image";
-import Button from "./Button";
 import { Size } from "@/src/constants/Shape";
 import { useTheme } from "@/src/hooks/useTheme";
+import BannerButton from "../../Button/BannerButton";
 
 // Import local image using require
 const bannerImage = require("@/assets/images/Challenge Thumbnail.png");
 const brandImage = require("@/assets/images/Challenge icon.png");
 const brandImageWidthPercent = 20;
 
-export default function Banner() {
+export default function Banner({ style }: ViewProps) {
   const theme = useTheme();
 
   return (
@@ -21,6 +21,7 @@ export default function Banner() {
           borderBottomLeftRadius: theme.radius.xxl,
           borderBottomRightRadius: theme.radius.xxl,
         },
+        style,
       ]}
     >
       <ImageBackground
@@ -43,13 +44,13 @@ export default function Banner() {
             },
           ]}
         >
-          <Button
+          <BannerButton
             iconName="link"
             label="register"
             onPress={() => Alert.alert("In Progress")}
           />
 
-          <Button
+          <BannerButton
             iconName="live"
             label="in progress"
             onPress={() => Alert.alert("In Progress")}
@@ -64,7 +65,7 @@ export default function Banner() {
           {
             borderColor: "rgba(231, 231, 233, 1)",
             borderRadius: theme.radius.pill,
-            bottom: (-Size.deviceWidth * brandImageWidthPercent) / 100 / 2 + 4,
+            bottom: (-Size.deviceWidth * brandImageWidthPercent) / 100 / 2 + 2,
           },
         ]}
         transition={300}
@@ -74,7 +75,6 @@ export default function Banner() {
 }
 
 const styles = StyleSheet.create({
-  root: {},
   bannerImage: {
     width: "100%",
     aspectRatio: 375 / 200,

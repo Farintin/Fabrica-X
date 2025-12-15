@@ -1,15 +1,40 @@
-import { View, StyleSheet, ScrollView } from "react-native";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  Platform,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import HeaderNav from "@/src/components/ui/HeaderNav";
+import { BlurView } from "expo-blur";
+import HeaderNav from "@/components/ui/HeaderNav";
 import Challenge from "@/components/ui/Challenge";
-import { useTheme } from "@/src/hooks/useTheme";
+import SegmentedTabs from "@/components/screens/SegmentedTabs";
+import PrizesSection from "@/components/screens/SegmentedTabs/PrizesSection";
+import { useTheme } from "@/hooks/useTheme";
+import LeaderboardSection, {
+  LeaderboardHeader,
+} from "@/components/screens/SegmentedTabs/LeaderboardSection";
 
 export default function AppLayout() {
+  const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
+  const [isSticky, setIsSticky] = useState(false);
+  const [isTabsSticky, setIsTabsSticky] = useState(false);
   const challengeY = useRef(0);
+  const segmentY = useRef(0);
   const headerNavHeight = useRef(0);
   const theme = useTheme();
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
+
+  const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const scrollY = e.nativeEvent.contentOffset.y;
+    setIsSticky(scrollY > challengeY.current + top - headerNavHeight.current);
+    setIsTabsSticky(
+      scrollY >= segmentY.current - top - headerNavHeight.current
+    );
+  };
 
   return (
     <View
@@ -26,23 +51,58 @@ export default function AppLayout() {
           styles.stickyTabs,
           {
             paddingTop: top,
-            paddingBottom: theme.spacing.md,
+            paddingBottom: theme.spacing.sm,
+            backgroundColor: isTabsSticky
+              ? theme.colors.background.black
+              : theme.colors.natural.transparent,
             gap: theme.spacing.sm,
           },
         ]}
       >
+        {/* Sticky Blur Header Nav */}
+        {isSticky && (
+          <BlurView
+            intensity={Platform.OS === "ios" ? 4 : 8}
+            tint="light"
+            style={[StyleSheet.absoluteFill]}
+          />
+        )}
+
         {/* Header Nav */}
         <HeaderNav
+          title={isTabsSticky ? "Fabrica X" : ""}
+          // hideNotice={isTabsSticky}
           onLayout={(e) => {
             headerNavHeight.current = e.nativeEvent.layout.height;
           }}
         />
+
+        {/* Sticky Segmented Tabs */}
+        {isTabsSticky && (
+          <SegmentedTabs
+            value={tab}
+            onChange={setTab}
+            style={{
+              marginHorizontal: theme.spacing.md,
+            }}
+          />
+        )}
+
+        {isTabsSticky && (
+          <LeaderboardHeader
+            style={{
+              marginHorizontal: theme.spacing.md,
+            }}
+          />
+        )}
       </View>
 
       {/* SCROLLABLE content */}
       <ScrollView
+        onScroll={onScroll}
         scrollEventThrottle={16}
         style={[styles.scroll]}
+        contentContainerStyle={{ paddingBottom: bottom }}
         showsVerticalScrollIndicator={false}
       >
         <Challenge
@@ -52,6 +112,36 @@ export default function AppLayout() {
           style={{ paddingBottom: theme.spacing.sm }}
         />
         {/* Tab content */}
+        <View
+          style={{
+            backgroundColor: theme.colors.background.black,
+            paddingTop: theme.spacing.md,
+            gap: theme.spacing.sm,
+          }}
+          onLayout={(e) => {
+            segmentY.current = e.nativeEvent.layout.y;
+          }}
+        >
+          {/* Original position (used for measuring) */}
+          {!isTabsSticky && (
+            <SegmentedTabs
+              value={tab}
+              onChange={setTab}
+              style={{
+                marginHorizontal: theme.spacing.md,
+              }}
+            />
+          )}
+          {/* Tab content */}
+          <View
+            style={{
+              paddingHorizontal: theme.spacing.md,
+            }}
+          >
+            {tab === "leaderboard" && <LeaderboardSection />}
+            {tab === "prizes" && <PrizesSection />}
+          </View>
+        </View>
       </ScrollView>
     </View>
   );

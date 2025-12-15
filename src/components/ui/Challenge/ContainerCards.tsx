@@ -134,7 +134,6 @@ const ContainerCards = ({ style }: ViewProps) => {
         {
           alignItems: "center",
           paddingHorizontal: theme.spacing.md,
-          paddingVertical: theme.spacing.sm,
           gap: theme.spacing.sm,
         },
         style,

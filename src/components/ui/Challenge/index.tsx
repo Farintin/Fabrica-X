@@ -1,4 +1,4 @@
-import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 import Banner from "./Banner";
 import ContainerCards from "./ContainerCards";
 import { StyleProp, ViewProps, ViewStyle } from "react-native";
@@ -13,11 +13,11 @@ export default function Challenge({
   return (
     <LinearGradient
       colors={["rgba(178, 176, 179, 1)", "rgba(18, 18, 18, 1)"]}
-      style={[{ gap: theme.spacing.sm }, style]}
+      style={[style]}
       {...restProps}
     >
-      <Banner />
-      <ContainerCards style={{ zIndex: -1 }} />
+      <Banner style={{ marginBottom: theme.spacing.sm }} />
+      <ContainerCards style={{ zIndex: -1, marginTop: theme.spacing.xs }} />
     </LinearGradient>
   );
 }

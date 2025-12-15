@@ -1,7 +1,10 @@
-import { StyleProp, TouchableOpacityProps, ViewStyle } from "react-native";
+import { StyleProp, TextStyle, TouchableOpacityProps } from "react-native";
 
 export type ButtonProps = TouchableOpacityProps & {
   label?: string;
+  labelStyle?: StyleProp<TextStyle>;
+  contentLeft?: any;
+  contentRight?: any;
 };
 
 export type IconButtonProps = ButtonProps & {

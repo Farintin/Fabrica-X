@@ -1,11 +1,5 @@
 // theme/typography.ts
 
-export const fonts = {
-  regular: "Poppins-Regular",
-  medium: "Poppins-Medium",
-  semibold: "Poppins-SemiBold",
-};
-
 // --- TYPOGRAPHY (Based on visual hierarchy) ---
 const typeBase = {
   lineHeight: 16,
@@ -19,14 +13,14 @@ export const Typography = {
     fontFamily: "Poppins-Bold",
   },
   h2: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: "Poppins-SemiBold",
   },
   heading: {
     ...typeBase,
     fontSize: 18,
     fontFamily: "Poppins-SemiBold",
-    lineHeight: 20,
+    lineHeight: 24,
   },
   subHeading: {
     ...typeBase,
@@ -46,6 +40,7 @@ export const Typography = {
     fontFamily: "Poppins-Regular",
   },
   desc: {
+    ...typeBase,
     fontSize: 14,
     fontFamily: "Poppins-Medium",
   },
@@ -56,11 +51,24 @@ export const Typography = {
     fontFamily: "Poppins-Regular",
     lineHeight: 19,
   },
-  buttonMini: {
+  buttonSmall: {
+    ...typeBase,
+    fontSize: 10,
+    fontFamily: "Poppins-Medium",
+    lineHeight: 14,
+  },
+  buttonLarge: {
+    ...typeBase,
+    fontSize: 16,
+    fontFamily: "Poppins-Medium",
+    lineHeight: 20,
+  },
+
+  name: {
     ...typeBase,
     fontSize: 12,
     fontFamily: "Poppins-Medium",
-    lineHeight: 16,
+    lineHeight: 14,
   },
   points: {
     fontSize: 14,

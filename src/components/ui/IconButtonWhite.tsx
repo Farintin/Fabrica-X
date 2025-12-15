@@ -62,7 +62,7 @@ const IconButtonWhite: React.FC<IconButtonWhiteProps> = ({
     >
       <SvgIcon name={iconName} size={iconSize} color={color} />
       {label && (
-        <Text style={[styles.label, theme.typography.buttonMini, { color }]}>
+        <Text style={[styles.label, theme.typography.buttonSmall, { color }]}>
           {label}
         </Text>
       )}

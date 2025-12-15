@@ -1,23 +1,21 @@
 import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
-import SvgIcon from "@/components/ui/SvgIcon";
 import { useTheme } from "@/src/hooks/useTheme";
-import { IconButtonProps } from "@/src/types/button";
+import { ButtonProps } from "@/src/types/button";
 import { BlurView } from "expo-blur";
 
-const Button: React.FC<IconButtonProps> = ({
-  iconName,
+const Button: React.FC<ButtonProps> = ({
   label,
-  onPress,
+  contentLeft,
+  contentRight,
   style,
-  iconSize = 18,
+  labelStyle,
+  ...restProps
 }) => {
   const theme = useTheme();
-  const iconColor = theme.colors.primary;
   const labelColor = theme.colors.textPrimary;
 
   return (
     <TouchableOpacity
-      onPress={onPress}
       style={[
         styles.button,
         {
@@ -28,6 +26,7 @@ const Button: React.FC<IconButtonProps> = ({
         },
         style,
       ]}
+      {...restProps}
     >
       <BlurView
         intensity={Platform.OS === "ios" ? 5 : 10}
@@ -36,16 +35,18 @@ const Button: React.FC<IconButtonProps> = ({
           { borderRadius: theme.radius.pill, overflow: "hidden" },
         ]}
       />
-      <SvgIcon name={iconName} size={iconSize} color={iconColor} />
+      {contentLeft}
       <Text
         style={[
           theme.typography.button,
           styles.buttonLabel,
           { color: labelColor },
+          labelStyle,
         ]}
       >
         {label}
       </Text>
+      {contentRight}
     </TouchableOpacity>
   );
 };
