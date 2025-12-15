@@ -1,3 +1,4 @@
+// src/components/ui/Challenge/Banner/index.tsx
 import { Alert, StyleSheet, View, ViewProps } from "react-native";
 import { Image, ImageBackground } from "expo-image";
 import { Size } from "@/src/constants/Shape";

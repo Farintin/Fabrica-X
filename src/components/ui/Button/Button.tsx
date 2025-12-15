@@ -8,7 +8,6 @@ const Button: React.FC<ButtonProps> = ({
   contentLeft,
   contentRight,
   style,
-  labelStyle,
   ...restProps
 }) => {
   const theme = useTheme();
@@ -41,7 +40,6 @@ const Button: React.FC<ButtonProps> = ({
           theme.typography.button,
           styles.buttonLabel,
           { color: labelColor },
-          labelStyle,
         ]}
       >
         {label}

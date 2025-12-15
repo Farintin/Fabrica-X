@@ -1,3 +1,4 @@
+// src/components/ui/Challenge/index.tsx
 import { LinearGradient } from "expo-linear-gradient";
 import Banner from "./Banner";
 import ContainerCards from "./ContainerCards";
