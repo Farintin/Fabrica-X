@@ -25,6 +25,7 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -92,136 +93,146 @@ export default function Home() {
   }));
 
   return (
-    <>
-      {/* Overlay header */}
-      <View
-        style={[
-          styles.stickyTabs,
-          {
-            paddingTop: top,
-            paddingBottom:
-              isSticky && !isTabsSticky ? theme.spacing.md : theme.spacing.sm,
-            backgroundColor: isTabsSticky
-              ? theme.colors.background.black
-              : theme.colors.natural.transparent,
-            gap: theme.spacing.sm,
-          },
+    <View style={[styles.root]}>
+      <LinearGradient
+        colors={[
+          theme.colors.natural.black,
+          theme.colors.natural.black,
+          theme.colors.background.black,
         ]}
+        style={{ flex: 1 }}
       >
-        {/* Sticky Blur Header Nav */}
-        {isSticky && (
-          <Animated.View style={[StyleSheet.absoluteFill, blurAnim]}>
-            <BlurView
-              intensity={12}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-            />
-          </Animated.View>
-        )}
+        {/* Overlay header */}
+        <View
+          style={[
+            styles.stickyTabs,
+            {
+              paddingTop: top,
+              paddingBottom:
+                isSticky && !isTabsSticky ? theme.spacing.md : theme.spacing.sm,
+              backgroundColor: isTabsSticky
+                ? theme.colors.background.black
+                : theme.colors.natural.transparent,
+              gap: theme.spacing.sm,
+            },
+          ]}
+        >
+          {/* Sticky Blur Header Nav */}
+          {isSticky && (
+            <Animated.View style={[StyleSheet.absoluteFill, blurAnim]}>
+              <BlurView
+                intensity={12}
+                tint="dark"
+                style={StyleSheet.absoluteFill}
+              />
+            </Animated.View>
+          )}
 
-        {/* Header Nav */}
-        <Animated.View style={headerAnim}>
-          <HeaderNav
-            title={isTabsSticky ? "Fabrica X" : ""}
-            onLayout={(e) => {
-              headerNavHeight.current = e.nativeEvent.layout.height;
-            }}
-          />
-        </Animated.View>
-
-        {/* Sticky Segmented Tabs */}
-        {isTabsSticky && (
-          <Animated.View style={stickyTabsAnim}>
-            <SegmentedTabs
-              value={tab}
-              onChange={setTab}
-              style={{ marginHorizontal: theme.spacing.md }}
-            />
-          </Animated.View>
-        )}
-
-        {isTabsSticky && tab === "leaderboard" && (
-          <Animated.View style={stickyTabsAnim}>
-            <LeaderboardHeader
-              style={{
-                marginHorizontal: theme.spacing.md,
+          {/* Header Nav */}
+          <Animated.View style={headerAnim}>
+            <HeaderNav
+              title={isTabsSticky ? "Fabrica X" : ""}
+              onLayout={(e) => {
+                headerNavHeight.current = e.nativeEvent.layout.height;
               }}
             />
           </Animated.View>
-        )}
-      </View>
 
-      {/* SCROLLABLE content */}
-      <ScrollView
-        onScroll={onScroll}
-        scrollEventThrottle={16}
-        style={[styles.scroll, { backgroundColor: theme.colors.natural.black }]}
-        contentContainerStyle={{
-          paddingBottom: bottom,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        <Challenge
-          onLayout={(e) => {
-            challengeY.current = e.nativeEvent.layout.y;
-            // allow cards to mount first
-            requestAnimationFrame(() => {
-              setChallengeReady(true);
-            });
-          }}
-          style={{ paddingBottom: theme.spacing.sm }}
-        />
-
-        {/* Tabs */}
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: theme.colors.background.black,
-            paddingTop: theme.spacing.md,
-            gap: theme.spacing.sm,
-          }}
-          onLayout={(e) => {
-            segmentY.current = e.nativeEvent.layout.y;
-          }}
-        >
-          {/* Original position (used for measuring) */}
-          {challengeReady && (
-            <Animated.View style={tabsNavAnim}>
+          {/* Sticky Segmented Tabs */}
+          {isTabsSticky && (
+            <Animated.View style={stickyTabsAnim}>
               <SegmentedTabs
                 value={tab}
                 onChange={setTab}
-                onLayout={() => {
-                  requestAnimationFrame(() => {
-                    setTabsNavReady(true);
-                  });
-                }}
                 style={{ marginHorizontal: theme.spacing.md }}
               />
             </Animated.View>
           )}
 
-          {/* Tab content */}
-          {tabsNavReady && (
-            <Animated.View
-              key={tab}
-              entering={
-                tab === "leaderboard"
-                  ? FadeInRight.delay(1000).duration(800)
-                  : FadeInLeft.delay(1000).duration(800)
-              }
-              style={{ paddingHorizontal: theme.spacing.md }}
-            >
-              {tab === "leaderboard" && <LeaderboardSection />}
-              {tab === "prizes" && <PrizesSection />}
+          {isTabsSticky && tab === "leaderboard" && (
+            <Animated.View style={stickyTabsAnim}>
+              <LeaderboardHeader
+                style={{
+                  marginHorizontal: theme.spacing.md,
+                }}
+              />
             </Animated.View>
           )}
         </View>
-      </ScrollView>
-    </>
+
+        {/* SCROLLABLE content */}
+        <ScrollView
+          onScroll={onScroll}
+          scrollEventThrottle={16}
+          style={[styles.scroll]}
+          showsVerticalScrollIndicator={false}
+        >
+          <Challenge
+            onLayout={(e) => {
+              challengeY.current = e.nativeEvent.layout.y;
+              // allow cards to mount first
+              requestAnimationFrame(() => {
+                setChallengeReady(true);
+              });
+            }}
+            style={{ paddingBottom: theme.spacing.sm }}
+          />
+
+          {/* Tabs */}
+          <View
+            style={{
+              flex: 1,
+              backgroundColor: theme.colors.background.black,
+              paddingTop: theme.spacing.md,
+              paddingBottom: bottom,
+              gap: theme.spacing.sm,
+            }}
+            onLayout={(e) => {
+              segmentY.current = e.nativeEvent.layout.y;
+            }}
+          >
+            {/* Original position (used for measuring) */}
+            {challengeReady && (
+              <Animated.View style={tabsNavAnim}>
+                <SegmentedTabs
+                  value={tab}
+                  onChange={setTab}
+                  onLayout={() => {
+                    requestAnimationFrame(() => {
+                      setTabsNavReady(true);
+                    });
+                  }}
+                  style={{ marginHorizontal: theme.spacing.md }}
+                />
+              </Animated.View>
+            )}
+
+            {/* Tab content */}
+            {tabsNavReady && (
+              <Animated.View
+                key={tab}
+                entering={
+                  tab === "leaderboard"
+                    ? FadeInRight.delay(1000).duration(800)
+                    : FadeInLeft.delay(1000).duration(800)
+                }
+                style={{ paddingHorizontal: theme.spacing.md }}
+              >
+                {tab === "leaderboard" && <LeaderboardSection />}
+                {tab === "prizes" && <PrizesSection />}
+              </Animated.View>
+            )}
+          </View>
+        </ScrollView>
+      </LinearGradient>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
   stickyTabs: {
     position: "absolute",
     top: 0,

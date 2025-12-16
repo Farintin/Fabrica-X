@@ -90,11 +90,20 @@ export default function Leaderboard() {
       )}
 
       {/* List */}
-      <View style={{ flex: 1, paddingHorizontal: theme.spacing.md }}>
+      <View
+        style={{
+          flex: 1,
+          paddingHorizontal: theme.spacing.md,
+        }}
+      >
         <LeaderboardList
           data={data}
           isLoading={isLoading}
           loadNextPage={loadNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          contentContainerStyle={{
+            paddingBottom: bottom,
+          }}
         />
       </View>
 

@@ -32,7 +32,7 @@ export const Typography = {
     ...typeBase,
     fontSize: 16,
     fontFamily: "Poppins-Medium",
-    lineHeight: 18,
+    lineHeight: 20,
   },
 
   bodyLarge: {

@@ -6,6 +6,9 @@ import {
   Text,
   ViewProps,
   ActivityIndicator,
+  FlatListProps,
+  VirtualizedListProps,
+  ScrollViewProps,
 } from "react-native";
 // Assuming RankTypeCard and LastRankTypeCard are the list items you created
 import { LastRankTypeCard, RankTypeCard } from "./cards";
@@ -13,7 +16,8 @@ import OutlineButton from "@/src/components/ui/Button/ButtonOutlined";
 import Button from "@/src/components/ui/Button/Button";
 import { useLeaderboardApi, PeriodFilter } from "@/src/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
 import { LeaderboardUser } from "@/src/api/leaderboardApi";
-import { router } from "expo-router";
+import { router, useRouter } from "expo-router";
+import { useRoute } from "@react-navigation/native";
 
 // --- 1. LeaderboardList Component ---
 // This component now receives props from the hook
@@ -21,14 +25,17 @@ import { router } from "expo-router";
 export const LeaderboardList = ({
   data,
   isLoading,
+  isFetchingNextPage = false,
   loadNextPage,
   scrollEnabled = true,
+  ...restProps
 }: {
   data: LeaderboardUser[];
   isLoading: boolean;
+  isFetchingNextPage?: boolean;
   loadNextPage: () => void;
   scrollEnabled?: boolean;
-}) => {
+} & ScrollViewProps) => {
   const theme = useTheme();
 
   return (
@@ -37,16 +44,19 @@ export const LeaderboardList = ({
       keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => <RankTypeCard userId={item.id} {...item} />}
       scrollEnabled={scrollEnabled}
-      onEndReached={loadNextPage}
+      onEndReached={() => {
+        scrollEnabled && loadNextPage();
+      }}
       onEndReachedThreshold={0.5}
       ListFooterComponent={
-        isLoading ? (
+        isFetchingNextPage ? (
           <ActivityIndicator
             color={theme.colors.primary}
             style={{ paddingVertical: theme.spacing.lg }}
           />
         ) : null
       }
+      {...restProps}
     />
   );
 };
@@ -57,12 +67,9 @@ export const LeaderboardHeader = ({ style }: ViewProps) => {
   const theme = useTheme();
 
   const apiState = useLeaderboardApi();
-  const { data, isLoading, filter, setFilter } = apiState;
+  const { data } = apiState;
   // Find the last item (lowest rank displayed)
   const lastRank = data.length > 0 ? data[data.length - 1] : undefined;
-
-  // Static Period Filter buttons placeholder (optional: expand this into a segmented control later)
-  const filters: PeriodFilter[] = ["This Week", "This Month", "All Time"];
 
   return (
     <View style={[style]}>
@@ -89,36 +96,6 @@ export const LeaderboardHeader = ({ style }: ViewProps) => {
         />
       </View>
 
-      {/* Optional: Add Period Filters here for functionality */}
-      {/* <View style={{ flexDirection: "row", gap: theme.spacing.sm }}>
-          {filters.map((f) => (
-            <Button
-              key={f}
-              label={f}
-              onPress={() => setFilter(f)}
-              style={{
-                backgroundColor:
-                  filter === f ? theme.colors.primary : theme.colors.surface,
-                paddingHorizontal: theme.spacing.md,
-              }}
-              labelStyle={{
-                color:
-                  filter === f
-                    ? theme.colors.buttonForeground
-                    : theme.colors.textPrimary,
-                ...theme.typography.buttonSmall,
-              }}
-            />
-          ))}
-        </View> */}
-
-      {/* Display the current user's (or lowest fetched) rank */}
-      {/* {isLoading && data.length === 0 ? (
-        <ActivityIndicator
-          color={theme.colors.primary}
-          style={{ marginTop: theme.spacing.sm }}
-        />
-      ) : ( */}
       {lastRank && (
         <LastRankTypeCard
           // 🎯 THE FIX: Explicitly map 'id' to 'userId'
@@ -127,8 +104,6 @@ export const LeaderboardHeader = ({ style }: ViewProps) => {
           {...lastRank}
         />
       )}
-      {/* )
-      )} */}
     </View>
   );
 };
@@ -136,16 +111,25 @@ export const LeaderboardHeader = ({ style }: ViewProps) => {
 // --- 3. Default Export Component ---
 export default function LeaderboardSection() {
   const theme = useTheme();
+  const router = useRouter();
 
   // 👈 CALL THE API HOOK ONCE HERE
   const apiState = useLeaderboardApi();
-  const { isLoading, data, loadNextPage, hasMore } = apiState;
+  const { isLoading, data, loadNextPage, hasMore, isFetchingNextPage } =
+    apiState;
 
   // Show a full screen loading indicator if it's the very first load
   if (isLoading && data.length === 0) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color={theme.colors.primary} />
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          padding: theme.spacing.lg,
+        }}
+      >
+        <ActivityIndicator size={"large"} color={theme.colors.primary} />
       </View>
     );
   }
@@ -160,6 +144,7 @@ export default function LeaderboardSection() {
       <LeaderboardList
         data={data}
         isLoading={isLoading}
+        isFetchingNextPage={isFetchingNextPage}
         loadNextPage={loadNextPage}
         scrollEnabled={false}
       />
@@ -167,15 +152,15 @@ export default function LeaderboardSection() {
       {/* Hide View All button if there are no more pages to load */}
       {hasMore && (
         <Button
-          label="View All"
-          onPress={loadNextPage} // Or navigate to a dedicated Leaderboard screen
+          label="view all"
+          onPress={() => router.push("/leaderboard")} // Or navigate to a dedicated Leaderboard screen
           style={{
             alignSelf: "center",
             paddingVertical: theme.spacing.sm + 6,
-            paddingHorizontal: theme.spacing.lg,
+            paddingHorizontal: theme.spacing.md + 6,
           }}
           labelStyle={[
-            theme.typography.button, // Use button style from theme
+            theme.typography.title, // Use button style from theme
             { textTransform: "uppercase" },
           ]}
         />

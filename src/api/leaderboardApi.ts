@@ -41,7 +41,7 @@ export async function fetchLeaderboardData(
   // ------------------------------------
   // A. SIMULATE API DELAY (300ms - 800ms)
   // ------------------------------------
-  const delay = Math.floor(Math.random() * (800 - 300 + 1)) + 300;
+  const delay = Math.floor(Math.random() * (800 - 300 + 1)) + 800;
   await new Promise((resolve) => setTimeout(resolve, delay));
 
   // ------------------------------------
