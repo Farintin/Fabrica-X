@@ -1,5 +1,5 @@
 import { ActivityIndicator, View } from "react-native";
-import { PeriodFilter } from "@/api/leaderboardApi";
+import { PeriodFilter } from "@/src/libs/api/leaderboardApi";
 import { LastRankTypeCard } from "@/components/screens/SegmentedTabs/LeaderboardSection/cards";
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { useTheme } from "../hooks/useTheme";

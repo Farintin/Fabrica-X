@@ -1,5 +1,5 @@
 import { Modal, Pressable, Text, View } from "react-native";
-import { PeriodFilter } from "@/api/leaderboardApi";
+import { PeriodFilter } from "@/src/libs/api/leaderboardApi";
 import { useTheme } from "@/hooks/useTheme";
 
 const OPTIONS: PeriodFilter[] = ["All Time", "This Week", "This Month"];

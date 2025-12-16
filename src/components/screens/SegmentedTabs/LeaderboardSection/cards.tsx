@@ -1,4 +1,4 @@
-import { LeaderboardUser, UserPoints } from "@/src/api/leaderboardApi";
+import { LeaderboardUser, UserPoints } from "@/src/libs/api/leaderboardApi";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";

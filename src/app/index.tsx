@@ -26,6 +26,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
+import { range } from "../util/helper";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -117,17 +118,6 @@ export default function Home() {
             },
           ]}
         >
-          {/* Sticky Blur Header Nav */}
-          {isSticky && (
-            <Animated.View style={[StyleSheet.absoluteFill, blurAnim]}>
-              <BlurView
-                intensity={12}
-                tint="dark"
-                style={StyleSheet.absoluteFill}
-              />
-            </Animated.View>
-          )}
-
           {/* Header Nav */}
           <Animated.View style={headerAnim}>
             <HeaderNav
@@ -157,6 +147,57 @@ export default function Home() {
                 }}
               />
             </Animated.View>
+          )}
+
+          {/* Sticky Blur Header Nav */}
+
+          {isSticky && (
+            <View
+              style={[
+                {
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  zIndex: -1,
+                },
+              ]}
+            >
+              <Animated.View
+                style={[
+                  {
+                    flex: 1,
+                  },
+                  blurAnim,
+                ]}
+              >
+                <BlurView
+                  intensity={16}
+                  tint="dark"
+                  style={StyleSheet.absoluteFill}
+                />
+              </Animated.View>
+              {range(12 - 2, 2, -4).map((n, i) => {
+                return (
+                  <Animated.View
+                    key={i}
+                    style={[
+                      {
+                        height: n <= 2 ? 2 : n - 2,
+                      },
+                      blurAnim,
+                    ]}
+                  >
+                    <BlurView
+                      intensity={n}
+                      tint="dark"
+                      style={StyleSheet.absoluteFill}
+                    />
+                  </Animated.View>
+                );
+              })}
+            </View>
           )}
         </View>
 

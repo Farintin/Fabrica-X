@@ -27,7 +27,7 @@ export interface PaginatedResponse {
 }
 
 // 2. Import Mock Data
-import mockData from "../data/mockLeaderboardData.json";
+import mockData from "@/data/mockLeaderboardData.json";
 const DATA_PER_PAGE = 10;
 
 /**

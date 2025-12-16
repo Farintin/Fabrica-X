@@ -15,7 +15,7 @@ import { LastRankTypeCard, RankTypeCard } from "./cards";
 import OutlineButton from "@/src/components/ui/Button/ButtonOutlined";
 import Button from "@/src/components/ui/Button/Button";
 import { useLeaderboardApi, PeriodFilter } from "@/src/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
-import { LeaderboardUser } from "@/src/api/leaderboardApi";
+import { LeaderboardUser } from "@/src/libs/api/leaderboardApi";
 import { router, useRouter } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 

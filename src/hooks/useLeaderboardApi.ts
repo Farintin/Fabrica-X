@@ -4,7 +4,7 @@ import {
   fetchLeaderboardData,
   LeaderboardUser,
   PeriodFilter,
-} from "../api/leaderboardApi";
+} from "../libs/api/leaderboardApi";
 
 interface LeaderboardState {
   data: LeaderboardUser[];
