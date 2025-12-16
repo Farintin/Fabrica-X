@@ -1,3 +1,4 @@
+// src/components/screens/SegmentedTabs/index.tsx
 import { View, Pressable, StyleSheet, ViewProps } from "react-native";
 import { useTheme } from "@/src/hooks/useTheme";
 import SvgIcon from "@/components/ui/SvgIcon";

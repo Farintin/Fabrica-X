@@ -1,4 +1,4 @@
-import React from "react";
+// src/components/screens/SegmentedTabs/index.tsx
 import { useTheme } from "@/src/hooks/useTheme";
 import {
   FlatList,
@@ -42,7 +42,9 @@ export const LeaderboardList = ({
     <FlatList
       data={data}
       keyExtractor={(item) => String(item.id)}
-      renderItem={({ item }) => <RankTypeCard userId={item.id} {...item} />}
+      renderItem={({ item }) => (
+        <RankTypeCard key={String(item.id)} userId={item.id} {...item} />
+      )}
       scrollEnabled={scrollEnabled}
       onEndReached={() => {
         scrollEnabled && loadNextPage();

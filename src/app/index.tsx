@@ -130,7 +130,7 @@ export default function Home() {
 
           {/* Sticky Segmented Tabs */}
           {isTabsSticky && (
-            <Animated.View style={stickyTabsAnim}>
+            <Animated.View key="sticky-tabs-nav" style={stickyTabsAnim}>
               <SegmentedTabs
                 value={tab}
                 onChange={setTab}
@@ -140,7 +140,10 @@ export default function Home() {
           )}
 
           {isTabsSticky && tab === "leaderboard" && (
-            <Animated.View style={stickyTabsAnim}>
+            <Animated.View
+              key="sticky-tabs-leaderboard-header"
+              style={stickyTabsAnim}
+            >
               <LeaderboardHeader
                 style={{
                   marginHorizontal: theme.spacing.md,
