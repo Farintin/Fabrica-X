@@ -4,13 +4,13 @@
     "slug": "fabrica-x",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/Challenge icon.png",
+    "icon": "./src/assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/assets/images/Challenge icon.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#00000"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -19,8 +19,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/Challenge icon.png",
-        "backgroundColor": "#00000"
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       },
       "package": "com.fabula.fabricax"
     },

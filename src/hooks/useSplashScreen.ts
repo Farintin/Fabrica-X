@@ -1,3 +1,4 @@
+// src/hooks/useSplashScreen.ts
 import { useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -19,7 +20,9 @@ export default function useSplashScreen() {
 
     if (fontsLoaded) {
       setAppIsReady(true);
-      SplashScreen.hideAsync();
+      requestAnimationFrame(() => {
+        SplashScreen.hideAsync();
+      });
     }
   }, [fontsLoaded, fontError]);
 

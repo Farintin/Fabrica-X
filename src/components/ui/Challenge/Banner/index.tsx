@@ -11,8 +11,8 @@ import Animated, {
 } from "react-native-reanimated";
 
 // Import local image using require
-const bannerImage = require("@/assets/images/Challenge Thumbnail.png");
-const brandImage = require("@/assets/images/Challenge icon.png");
+const bannerImage = require("@/assets/images/Challenge-Thumbnail.png");
+const brandImage = require("@/assets/images/Challenge-icon.png");
 const brandImageWidthPercent = 20;
 
 export default function Banner({ style }: ViewProps) {
@@ -63,7 +63,7 @@ export default function Banner({ style }: ViewProps) {
               <BannerButton
                 iconName="link"
                 label="register"
-                onPress={() => Alert.alert("In Progress")}
+                onPress={() => Alert.alert("Register")}
               />
             </Pressable>
           </Animated.View>
