@@ -1,4 +1,4 @@
-// app/_layout.tsx
+// src/app/_layout.tsx
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLayout from "@/components/layout/AppLayout";
 import useSplashScreen from "@/hooks/useSplashScreen";

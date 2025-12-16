@@ -9,7 +9,12 @@ type Props = ViewProps & {
   onChange: (v: TabKey) => void;
 };
 
-export default function SegmentedTabs({ value, onChange, style }: Props) {
+export default function SegmentedTabs({
+  value,
+  onChange,
+  style,
+  ...restProps
+}: Props) {
   const theme = useTheme();
   const iconSize = 20;
   const activeTabColor = theme.colors.primary;
@@ -28,6 +33,7 @@ export default function SegmentedTabs({ value, onChange, style }: Props) {
         },
         style,
       ]}
+      {...restProps}
     >
       <View
         style={[

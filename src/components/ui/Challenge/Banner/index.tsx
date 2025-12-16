@@ -1,9 +1,14 @@
 // src/components/ui/Challenge/Banner/index.tsx
-import { Alert, StyleSheet, View, ViewProps } from "react-native";
+import { Alert, Pressable, StyleSheet, View, ViewProps } from "react-native";
 import { Image, ImageBackground } from "expo-image";
 import { Size } from "@/src/constants/Shape";
 import { useTheme } from "@/src/hooks/useTheme";
 import BannerButton from "../../Button/BannerButton";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from "react-native-reanimated";
 
 // Import local image using require
 const bannerImage = require("@/assets/images/Challenge Thumbnail.png");
@@ -12,6 +17,11 @@ const brandImageWidthPercent = 20;
 
 export default function Banner({ style }: ViewProps) {
   const theme = useTheme();
+  const scale = useSharedValue(1);
+
+  const pressStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   return (
     <View
@@ -45,17 +55,31 @@ export default function Banner({ style }: ViewProps) {
             },
           ]}
         >
-          <BannerButton
-            iconName="link"
-            label="register"
-            onPress={() => Alert.alert("In Progress")}
-          />
+          <Animated.View style={pressStyle}>
+            <Pressable
+              onPressIn={() => (scale.value = withSpring(0.96))}
+              onPressOut={() => (scale.value = withSpring(1))}
+            >
+              <BannerButton
+                iconName="link"
+                label="register"
+                onPress={() => Alert.alert("In Progress")}
+              />
+            </Pressable>
+          </Animated.View>
 
-          <BannerButton
-            iconName="live"
-            label="in progress"
-            onPress={() => Alert.alert("In Progress")}
-          />
+          <Animated.View style={pressStyle}>
+            <Pressable
+              onPressIn={() => (scale.value = withSpring(0.96))}
+              onPressOut={() => (scale.value = withSpring(1))}
+            >
+              <BannerButton
+                iconName="live"
+                label="in progress"
+                onPress={() => Alert.alert("In Progress")}
+              />
+            </Pressable>
+          </Animated.View>
         </View>
       </ImageBackground>
 

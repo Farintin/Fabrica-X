@@ -1,3 +1,4 @@
+// src/app/index.tsx
 import { useRef, useState } from "react";
 import {
   View,
@@ -17,11 +18,20 @@ import { useTheme } from "@/hooks/useTheme";
 import LeaderboardSection, {
   LeaderboardHeader,
 } from "@/components/screens/SegmentedTabs/LeaderboardSection";
+import Animated, {
+  FadeInLeft,
+  FadeInRight,
+  useAnimatedStyle,
+  withDelay,
+  withTiming,
+} from "react-native-reanimated";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
   const [isSticky, setIsSticky] = useState(false);
   const [isTabsSticky, setIsTabsSticky] = useState(false);
+  const [challengeReady, setChallengeReady] = useState(false);
+  const [tabsNavReady, setTabsNavReady] = useState(false);
   const challengeY = useRef(0);
   const segmentY = useRef(0);
   const headerNavHeight = useRef(0);
@@ -36,6 +46,51 @@ export default function Home() {
     );
   };
 
+  const headerAnim = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: withTiming(isSticky ? 0 : -12, { duration: 180 }),
+      },
+    ],
+  }));
+
+  const blurAnim = useAnimatedStyle(() => ({
+    opacity: withTiming(isSticky ? 1 : 0, { duration: 600 }),
+  }));
+
+  const stickyTabsAnim = useAnimatedStyle(() => ({
+    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 160 }),
+    transform: [
+      { translateY: withTiming(isTabsSticky ? 0 : 8) },
+      { scale: withTiming(isTabsSticky ? 1 : 0.96) },
+    ],
+  }));
+  const stickyLeaderboardHeaderNarAnim = useAnimatedStyle(() => ({
+    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 160 }),
+    transform: [
+      { translateY: withTiming(isTabsSticky ? 0 : 8) },
+      { scale: withTiming(isTabsSticky ? 1 : 0.96) },
+    ],
+  }));
+
+  const tabsNavAnim = useAnimatedStyle(() => ({
+    opacity: withDelay(
+      1800,
+      withTiming(challengeReady ? 1 : 0, { duration: 800 })
+    ),
+    transform: [
+      {
+        translateY: withDelay(
+          1500,
+          withTiming(challengeReady ? 0 : 30, { duration: 1200 })
+        ),
+      },
+      {
+        scale: withTiming(challengeReady ? 1 : 0.97, { duration: 1500 }),
+      },
+    ],
+  }));
+
   return (
     <>
       {/* Overlay header */}
@@ -44,7 +99,8 @@ export default function Home() {
           styles.stickyTabs,
           {
             paddingTop: top,
-            paddingBottom: theme.spacing.sm,
+            paddingBottom:
+              isSticky && !isTabsSticky ? theme.spacing.md : theme.spacing.sm,
             backgroundColor: isTabsSticky
               ? theme.colors.background.black
               : theme.colors.natural.transparent,
@@ -54,39 +110,44 @@ export default function Home() {
       >
         {/* Sticky Blur Header Nav */}
         {isSticky && (
-          <BlurView
-            intensity={Platform.OS === "ios" ? 4 : 8}
-            tint="light"
-            style={[StyleSheet.absoluteFill]}
-          />
+          <Animated.View style={[StyleSheet.absoluteFill, blurAnim]}>
+            <BlurView
+              intensity={12}
+              tint="dark"
+              style={StyleSheet.absoluteFill}
+            />
+          </Animated.View>
         )}
 
         {/* Header Nav */}
-        <HeaderNav
-          title={isTabsSticky ? "Fabrica X" : ""}
-          // hideNotice={isTabsSticky}
-          onLayout={(e) => {
-            headerNavHeight.current = e.nativeEvent.layout.height;
-          }}
-        />
+        <Animated.View style={headerAnim}>
+          <HeaderNav
+            title={isTabsSticky ? "Fabrica X" : ""}
+            onLayout={(e) => {
+              headerNavHeight.current = e.nativeEvent.layout.height;
+            }}
+          />
+        </Animated.View>
 
         {/* Sticky Segmented Tabs */}
         {isTabsSticky && (
-          <SegmentedTabs
-            value={tab}
-            onChange={setTab}
-            style={{
-              marginHorizontal: theme.spacing.md,
-            }}
-          />
+          <Animated.View style={stickyTabsAnim}>
+            <SegmentedTabs
+              value={tab}
+              onChange={setTab}
+              style={{ marginHorizontal: theme.spacing.md }}
+            />
+          </Animated.View>
         )}
 
-        {isTabsSticky && (
-          <LeaderboardHeader
-            style={{
-              marginHorizontal: theme.spacing.md,
-            }}
-          />
+        {isTabsSticky && tab === "leaderboard" && (
+          <Animated.View style={stickyTabsAnim}>
+            <LeaderboardHeader
+              style={{
+                marginHorizontal: theme.spacing.md,
+              }}
+            />
+          </Animated.View>
         )}
       </View>
 
@@ -103,10 +164,15 @@ export default function Home() {
         <Challenge
           onLayout={(e) => {
             challengeY.current = e.nativeEvent.layout.y;
+            // allow cards to mount first
+            requestAnimationFrame(() => {
+              setChallengeReady(true);
+            });
           }}
           style={{ paddingBottom: theme.spacing.sm }}
         />
-        {/* Tab content */}
+
+        {/* Tabs */}
         <View
           style={{
             flex: 1,
@@ -119,24 +185,36 @@ export default function Home() {
           }}
         >
           {/* Original position (used for measuring) */}
-          {!isTabsSticky && (
-            <SegmentedTabs
-              value={tab}
-              onChange={setTab}
-              style={{
-                marginHorizontal: theme.spacing.md,
-              }}
-            />
+          {challengeReady && (
+            <Animated.View style={tabsNavAnim}>
+              <SegmentedTabs
+                value={tab}
+                onChange={setTab}
+                onLayout={() => {
+                  requestAnimationFrame(() => {
+                    setTabsNavReady(true);
+                  });
+                }}
+                style={{ marginHorizontal: theme.spacing.md }}
+              />
+            </Animated.View>
           )}
+
           {/* Tab content */}
-          <View
-            style={{
-              paddingHorizontal: theme.spacing.md,
-            }}
-          >
-            {tab === "leaderboard" && <LeaderboardSection />}
-            {tab === "prizes" && <PrizesSection />}
-          </View>
+          {tabsNavReady && (
+            <Animated.View
+              key={tab}
+              entering={
+                tab === "leaderboard"
+                  ? FadeInRight.delay(1000).duration(800)
+                  : FadeInLeft.delay(1000).duration(800)
+              }
+              style={{ paddingHorizontal: theme.spacing.md }}
+            >
+              {tab === "leaderboard" && <LeaderboardSection />}
+              {tab === "prizes" && <PrizesSection />}
+            </Animated.View>
+          )}
         </View>
       </ScrollView>
     </>

@@ -113,21 +113,22 @@ export const LeaderboardHeader = ({ style }: ViewProps) => {
         </View> */}
 
       {/* Display the current user's (or lowest fetched) rank */}
-      {isLoading && data.length === 0 ? (
+      {/* {isLoading && data.length === 0 ? (
         <ActivityIndicator
           color={theme.colors.primary}
           style={{ marginTop: theme.spacing.sm }}
         />
-      ) : (
-        lastRank && (
-          <LastRankTypeCard
-            // 🎯 THE FIX: Explicitly map 'id' to 'userId'
-            userId={lastRank.id}
-            // Spread the rest of the properties from the data object
-            {...lastRank}
-          />
-        )
+      ) : ( */}
+      {lastRank && (
+        <LastRankTypeCard
+          // 🎯 THE FIX: Explicitly map 'id' to 'userId'
+          userId={lastRank.id}
+          // Spread the rest of the properties from the data object
+          {...lastRank}
+        />
       )}
+      {/* )
+      )} */}
     </View>
   );
 };

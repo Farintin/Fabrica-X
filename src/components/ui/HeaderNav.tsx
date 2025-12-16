@@ -21,7 +21,11 @@ export default function HeaderNav({
     <View
       style={[
         styles.root,
-        { padding: theme.spacing.sm, backgroundColor: "transparent" },
+        {
+          paddingHorizontal: theme.spacing.sm,
+          paddingVertical: theme.spacing.sm,
+          backgroundColor: "transparent",
+        },
         style,
       ]}
       {...restProps}

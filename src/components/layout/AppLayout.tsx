@@ -1,3 +1,4 @@
+// src/components/layout/AppLayout.tsx
 import { View } from "react-native";
 import { useTheme } from "@/hooks/useTheme";
 import { Stack } from "expo-router";

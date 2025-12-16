@@ -12,6 +12,7 @@ import SvgIcon from "../SvgIcon";
 import IconButtonWhite from "../IconButtonWhite";
 import Timer from "../Timer";
 import { useTheme } from "@/src/hooks/useTheme";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 type ContainerProps = ViewProps & { wrapperStyle?: StyleProp<ViewStyle> };
 
@@ -46,6 +47,18 @@ const Card = ({ children, style, wrapperStyle }: ContainerProps) => {
     </View>
   );
 };
+const AnimatedCard = ({
+  children,
+  delay = 0,
+  ...restProps
+}: ContainerProps & { delay?: number }) => (
+  <Animated.View
+    style={{ width: "100%" }}
+    entering={FadeInDown.delay(delay).duration(800).springify().damping(18)}
+  >
+    <Card {...restProps}>{children}</Card>
+  </Animated.View>
+);
 
 const GroupButton = ({ style, wrapperStyle }: ContainerProps) => {
   const iconSize = 14;
@@ -140,7 +153,7 @@ const ContainerCards = ({ style }: ViewProps) => {
         style,
       ]}
     >
-      <Card>
+      <AnimatedCard delay={250}>
         <Text
           style={{
             ...theme.typography.heading,
@@ -182,24 +195,24 @@ const ContainerCards = ({ style }: ViewProps) => {
             <Article text={"17 Sep - 01 Oct"} />
           </Highlight>
         </View>
-      </Card>
+      </AnimatedCard>
 
-      <GroupButton
+      <Animated.View
+        entering={FadeInDown.delay(1000).duration(800).springify().damping(18)}
         style={{
-          marginTop: -22,
-          zIndex: 2,
+          marginVertical: -22,
+          zIndex: 1,
         }}
-        wrapperStyle={{
-          backgroundColor: "rgba(0, 0, 0, .35)",
-        }}
-      />
+      >
+        <GroupButton
+          wrapperStyle={{
+            backgroundColor: "rgba(0, 0, 0, .35)",
+          }}
+        />
+      </Animated.View>
 
-      <Card
-        style={[
-          {
-            marginTop: -22,
-          },
-        ]}
+      <AnimatedCard
+        delay={500}
         wrapperStyle={{
           paddingVertical: theme.spacing.md,
           backgroundColor: "rgba(0, 0, 0, .35)",
@@ -219,7 +232,7 @@ const ContainerCards = ({ style }: ViewProps) => {
           ENDS IN
         </Text>
         <Timer />
-      </Card>
+      </AnimatedCard>
     </View>
   );
 };
