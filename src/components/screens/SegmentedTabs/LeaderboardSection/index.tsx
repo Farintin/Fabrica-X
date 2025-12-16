@@ -21,7 +21,6 @@ import { useRoute } from "@react-navigation/native";
 
 // --- 1. LeaderboardList Component ---
 // This component now receives props from the hook
-
 export const LeaderboardList = ({
   data,
   isLoading,
@@ -39,27 +38,44 @@ export const LeaderboardList = ({
   const theme = useTheme();
 
   return (
-    <FlatList
-      data={data}
-      keyExtractor={(item) => String(item.id)}
-      renderItem={({ item }) => (
-        <RankTypeCard key={String(item.id)} userId={item.id} {...item} />
+    <>
+      {scrollEnabled ? (
+        <FlatList
+          data={data}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <RankTypeCard key={String(item.id)} userId={item.id} {...item} />
+          )}
+          onEndReached={() => {
+            loadNextPage();
+          }}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={
+            isFetchingNextPage ? (
+              <ActivityIndicator
+                color={theme.colors.primary}
+                style={{ paddingVertical: theme.spacing.lg }}
+              />
+            ) : null
+          }
+          {...restProps}
+        />
+      ) : (
+        <View>
+          {/* CORRECTED MAP SYNTAX */}
+          {data.map((item) => (
+            <RankTypeCard key={String(item.id)} userId={item.id} {...item} />
+          ))}
+          {/* List Footer for non-scrollable list (if needed) */}
+          {isFetchingNextPage ? (
+            <ActivityIndicator
+              color={theme.colors.primary}
+              style={{ paddingVertical: theme.spacing.lg }}
+            />
+          ) : null}
+        </View>
       )}
-      scrollEnabled={scrollEnabled}
-      onEndReached={() => {
-        scrollEnabled && loadNextPage();
-      }}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? (
-          <ActivityIndicator
-            color={theme.colors.primary}
-            style={{ paddingVertical: theme.spacing.lg }}
-          />
-        ) : null
-      }
-      {...restProps}
-    />
+    </>
   );
 };
 
@@ -137,7 +153,12 @@ export default function LeaderboardSection() {
   }
 
   return (
-    <View style={{ paddingVertical: 0, gap: theme.spacing.sm }}>
+    <View
+      style={{
+        paddingVertical: 0,
+        gap: theme.spacing.sm,
+      }}
+    >
       {/* Pass required state down to the Header */}
       <LeaderboardHeader />
 

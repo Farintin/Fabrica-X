@@ -1,4 +1,4 @@
-import { LeaderboardUser, UserPoints } from "@/src/libs/api/leaderboardApi";
+import { LeaderboardUser } from "@/src/libs/api/leaderboardApi";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -28,7 +28,6 @@ export const RankTypeCard = ({
   points,
   rank,
   style,
-  ...touchableProps
 }: RankTypeProps) => {
   const theme = useTheme();
 
@@ -60,7 +59,6 @@ export const RankTypeCard = ({
         },
         style,
       ]}
-      {...touchableProps}
     >
       <View
         style={[
@@ -163,7 +161,6 @@ export const RankTypeCard = ({
 };
 
 export const LastRankTypeCard = ({
-  userId,
   name,
   points,
   rank,

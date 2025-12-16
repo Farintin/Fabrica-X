@@ -67,13 +67,6 @@ export default function Home() {
       { scale: withTiming(isTabsSticky ? 1 : 0.96) },
     ],
   }));
-  const stickyLeaderboardHeaderNarAnim = useAnimatedStyle(() => ({
-    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 160 }),
-    transform: [
-      { translateY: withTiming(isTabsSticky ? 0 : 8) },
-      { scale: withTiming(isTabsSticky ? 1 : 0.96) },
-    ],
-  }));
 
   const tabsNavAnim = useAnimatedStyle(() => ({
     opacity: withDelay(
@@ -84,7 +77,7 @@ export default function Home() {
       {
         translateY: withDelay(
           1500,
-          withTiming(challengeReady ? 0 : 30, { duration: 1200 })
+          withTiming(challengeReady ? 0 : 8, { duration: 1200 })
         ),
       },
       {
@@ -254,7 +247,7 @@ export default function Home() {
             {/* Tab content */}
             {tabsNavReady && (
               <Animated.View
-                key={tab}
+                key={"tabs-content"}
                 entering={
                   tab === "leaderboard"
                     ? FadeInRight.delay(1000).duration(800)
