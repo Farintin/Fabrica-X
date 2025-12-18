@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
-import HeaderNav from "@/components/ui/HeaderNav";
+import HeaderNav from "@/src/components/ui/Header/HeaderNav";
 import Challenge from "@/components/ui/Challenge";
 import SegmentedTabs from "@/components/screens/SegmentedTabs";
 import PrizesSection from "@/components/screens/SegmentedTabs/PrizesSection";
@@ -27,6 +27,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import { range } from "../util/helper";
+import OverlayHeader from "../components/ui/Header/OverlayHeader";
+import VerticalGradientBlur from "../components/ui/VerticalGradientBlur";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -96,10 +98,8 @@ export default function Home() {
         ]}
         style={{ flex: 1 }}
       >
-        {/* Overlay header */}
-        <View
+        <OverlayHeader
           style={[
-            styles.stickyTabs,
             {
               paddingTop: top,
               paddingBottom:
@@ -148,7 +148,7 @@ export default function Home() {
           {/* Sticky Blur Header Nav */}
 
           {isSticky && (
-            <View
+            <Animated.View
               style={[
                 {
                   position: "absolute",
@@ -158,44 +158,13 @@ export default function Home() {
                   right: 0,
                   zIndex: -1,
                 },
+                blurAnim,
               ]}
             >
-              <Animated.View
-                style={[
-                  {
-                    flex: 1,
-                  },
-                  blurAnim,
-                ]}
-              >
-                <BlurView
-                  intensity={16}
-                  tint="dark"
-                  style={StyleSheet.absoluteFill}
-                />
-              </Animated.View>
-              {range(12 - 2, 2, -4).map((n, i) => {
-                return (
-                  <Animated.View
-                    key={i}
-                    style={[
-                      {
-                        height: n <= 2 ? 2 : n - 2,
-                      },
-                      blurAnim,
-                    ]}
-                  >
-                    <BlurView
-                      intensity={n}
-                      tint="dark"
-                      style={StyleSheet.absoluteFill}
-                    />
-                  </Animated.View>
-                );
-              })}
-            </View>
+              <VerticalGradientBlur />
+            </Animated.View>
           )}
-        </View>
+        </OverlayHeader>
 
         {/* SCROLLABLE content */}
         <ScrollView
@@ -269,12 +238,6 @@ export default function Home() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-  },
-  stickyTabs: {
-    position: "absolute",
-    top: 0,
-    width: "100%",
-    zIndex: 2,
   },
   scroll: {
     flex: 1,
