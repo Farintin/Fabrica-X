@@ -14,13 +14,7 @@ const rankOneImage = require("@/assets/images/rank-one-image.png");
 const rankTwoImage = require("@/assets/images/rank-two-image.png");
 const rankThreeImage = require("@/assets/images/rank-three-image.png");
 
-export default function RankCard({
-  userId,
-  name,
-  points,
-  rank,
-  style,
-}: RankProps) {
+export default function RankCard({ name, points, rank, style }: RankProps) {
   const theme = useTheme();
 
   const rankStyles = {

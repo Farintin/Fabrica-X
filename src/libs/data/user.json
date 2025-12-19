@@ -1,0 +1,10 @@
+{
+  "id": 2,
+  "name": "Maria Lopez",
+  "avatarUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+  "points": {
+    "week": 460,
+    "month": 5900,
+    "allTime": 27800
+  }
+}

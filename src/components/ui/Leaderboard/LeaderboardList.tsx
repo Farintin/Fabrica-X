@@ -9,6 +9,8 @@ import {
 import Animated, { FadeInLeft } from "react-native-reanimated";
 import { RankCard } from "../Cards";
 import { useTheme } from "@/src/hooks/useTheme";
+import UserRankCard from "../Cards/UserRankCard";
+import UserData from "@/data/user.json";
 
 // --- 1. LeaderboardList Component ---
 
@@ -36,14 +38,20 @@ export const LeaderboardList = ({
         <FlatList
           data={data}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item, index }) => (
-            <Animated.View
-              key={String(item.id)}
-              entering={FadeInLeft.delay(200 * index).duration(ANIMATE_TIME)}
-            >
-              <RankCard userId={item.id} {...item} />
-            </Animated.View>
-          )}
+          renderItem={({ item, index }) => {
+            return (
+              <Animated.View
+                key={String(item.id)}
+                entering={FadeInLeft.delay(200 * index).duration(ANIMATE_TIME)}
+              >
+                {String(UserData.id) === String(item.id) && index >= 3 ? (
+                  <UserRankCard userId={item.id} {...item} />
+                ) : (
+                  <RankCard userId={item.id} {...item} />
+                )}
+              </Animated.View>
+            );
+          }}
           onEndReached={() => {
             loadNextPage();
           }}
