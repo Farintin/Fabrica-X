@@ -85,7 +85,7 @@ export const LeaderboardList = ({
           {data.map((item, i) => (
             <Animated.View
               key={String(item.id)}
-              entering={FadeInLeft.delay(200 * i).duration(ANIMATE_TIME)}
+              entering={FadeInLeft.delay(200 * i + 1).duration(ANIMATE_TIME)}
             >
               <RankCard userId={item.id} {...item} />
             </Animated.View>
