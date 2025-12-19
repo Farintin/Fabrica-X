@@ -6,48 +6,37 @@ import {
   ScrollView,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BlurView } from "expo-blur";
 import HeaderNav from "@/src/components/ui/Header/HeaderNav";
 import Challenge from "@/components/ui/Challenge";
-import SegmentedTabs from "@/components/screens/SegmentedTabs";
-import PrizesSection from "@/components/screens/SegmentedTabs/PrizesSection";
+import SegmentedTabs from "@/components/SegmentedTabs";
 import { useTheme } from "@/hooks/useTheme";
-import LeaderboardSection, {
-  LeaderboardHeader,
-} from "@/components/screens/SegmentedTabs/LeaderboardSection";
 import Animated, {
-  FadeInLeft,
-  FadeInRight,
   useAnimatedStyle,
-  withDelay,
   withTiming,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
-import { range } from "../util/helper";
 import OverlayHeader from "../components/ui/Header/OverlayHeader";
 import VerticalGradientBlur from "../components/ui/VerticalGradientBlur";
+import SegmentedTabsNav from "../components/SegmentedTabs/SegmentedTabsNav";
+import { LeaderboardTabHeader } from "../components/ui/Leaderboard/LeaderboardTabHeader";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
   const [isSticky, setIsSticky] = useState(false);
   const [isTabsSticky, setIsTabsSticky] = useState(false);
   const [challengeReady, setChallengeReady] = useState(false);
-  const [tabsNavReady, setTabsNavReady] = useState(false);
   const challengeY = useRef(0);
-  const segmentY = useRef(0);
+  const tabsY = useRef(0);
   const headerNavHeight = useRef(0);
   const theme = useTheme();
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollY = e.nativeEvent.contentOffset.y;
     setIsSticky(scrollY > challengeY.current + top - headerNavHeight.current);
-    setIsTabsSticky(
-      scrollY >= segmentY.current - top - headerNavHeight.current
-    );
+    setIsTabsSticky(scrollY >= tabsY.current - top - headerNavHeight.current);
   };
 
   const headerAnim = useAnimatedStyle(() => ({
@@ -62,29 +51,19 @@ export default function Home() {
     opacity: withTiming(isSticky ? 1 : 0, { duration: 600 }),
   }));
 
-  const stickyTabsAnim = useAnimatedStyle(() => ({
-    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 160 }),
+  const stickyTabsNavAnim = useAnimatedStyle(() => ({
+    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 500 }),
     transform: [
-      { translateY: withTiming(isTabsSticky ? 0 : 8) },
-      { scale: withTiming(isTabsSticky ? 1 : 0.96) },
+      { translateY: withTiming(isTabsSticky ? 0 : 8, { duration: 500 }) },
+      { scale: withTiming(isTabsSticky ? 1 : 0.96, { duration: 500 }) },
     ],
   }));
 
-  const tabsNavAnim = useAnimatedStyle(() => ({
-    opacity: withDelay(
-      1800,
-      withTiming(challengeReady ? 1 : 0, { duration: 800 })
-    ),
+  const stickyLeaderboardTabHeaderAnim = useAnimatedStyle(() => ({
+    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 500 }),
     transform: [
-      {
-        translateY: withDelay(
-          1500,
-          withTiming(challengeReady ? 0 : 8, { duration: 1200 })
-        ),
-      },
-      {
-        scale: withTiming(challengeReady ? 1 : 0.97, { duration: 1500 }),
-      },
+      { translateY: withTiming(isTabsSticky ? 0 : -8, { duration: 500 }) },
+      { scale: withTiming(isTabsSticky ? 1 : 0.96, { duration: 500 }) },
     ],
   }));
 
@@ -96,6 +75,8 @@ export default function Home() {
           theme.colors.natural.black,
           theme.colors.background.black,
         ]}
+        start={{ x: 0, y: 0.1 }}
+        end={{ x: 0, y: 0.5 }}
         style={{ flex: 1 }}
       >
         <OverlayHeader
@@ -123,8 +104,9 @@ export default function Home() {
 
           {/* Sticky Segmented Tabs */}
           {isTabsSticky && (
-            <Animated.View key="sticky-tabs-nav" style={stickyTabsAnim}>
-              <SegmentedTabs
+            <Animated.View key="sticky-tabs-nav" style={stickyTabsNavAnim}>
+              <SegmentedTabsNav
+                isSticky={true}
                 value={tab}
                 onChange={setTab}
                 style={{ marginHorizontal: theme.spacing.md }}
@@ -135,9 +117,10 @@ export default function Home() {
           {isTabsSticky && tab === "leaderboard" && (
             <Animated.View
               key="sticky-tabs-leaderboard-header"
-              style={stickyTabsAnim}
+              style={stickyLeaderboardTabHeaderAnim}
             >
-              <LeaderboardHeader
+              <LeaderboardTabHeader
+                isTicky={true}
                 style={{
                   marginHorizontal: theme.spacing.md,
                 }}
@@ -170,65 +153,27 @@ export default function Home() {
         <ScrollView
           onScroll={onScroll}
           scrollEventThrottle={16}
-          style={[styles.scroll]}
           showsVerticalScrollIndicator={false}
         >
           <Challenge
             onLayout={(e) => {
               challengeY.current = e.nativeEvent.layout.y;
-              // allow cards to mount first
-              requestAnimationFrame(() => {
-                setChallengeReady(true);
-              });
+              // allow challenge to mount first
+              requestAnimationFrame(() => setChallengeReady(true));
             }}
             style={{ paddingBottom: theme.spacing.sm }}
           />
 
           {/* Tabs */}
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: theme.colors.background.black,
-              paddingTop: theme.spacing.md,
-              paddingBottom: bottom,
-              gap: theme.spacing.sm,
-            }}
-            onLayout={(e) => {
-              segmentY.current = e.nativeEvent.layout.y;
-            }}
-          >
-            {/* Original position (used for measuring) */}
-            {challengeReady && (
-              <Animated.View style={tabsNavAnim}>
-                <SegmentedTabs
-                  value={tab}
-                  onChange={setTab}
-                  onLayout={() => {
-                    requestAnimationFrame(() => {
-                      setTabsNavReady(true);
-                    });
-                  }}
-                  style={{ marginHorizontal: theme.spacing.md }}
-                />
-              </Animated.View>
-            )}
-
-            {/* Tab content */}
-            {tabsNavReady && (
-              <Animated.View
-                key={"tabs-content"}
-                entering={
-                  tab === "leaderboard"
-                    ? FadeInRight.delay(1000).duration(800)
-                    : FadeInLeft.delay(1000).duration(800)
-                }
-                style={{ paddingHorizontal: theme.spacing.md }}
-              >
-                {tab === "leaderboard" && <LeaderboardSection />}
-                {tab === "prizes" && <PrizesSection />}
-              </Animated.View>
-            )}
-          </View>
+          {challengeReady && (
+            <SegmentedTabs
+              value={tab}
+              setHandler={setTab}
+              onLayout={(e) => {
+                tabsY.current = e.nativeEvent.layout.y;
+              }}
+            />
+          )}
         </ScrollView>
       </LinearGradient>
     </View>
@@ -237,9 +182,6 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-  },
-  scroll: {
     flex: 1,
   },
 });

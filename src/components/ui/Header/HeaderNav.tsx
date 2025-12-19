@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, Alert, ViewProps } from "react-native";
-import IconButton from "../IconButton";
+import IconButton from "../Button/IconButton";
 import { useTheme } from "@/src/hooks/useTheme";
 
 export default function HeaderNav({

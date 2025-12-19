@@ -9,8 +9,8 @@ import {
   ViewStyle,
 } from "react-native";
 import SvgIcon from "../SvgIcon";
-import IconButtonWhite from "../IconButtonWhite";
-import Timer from "../Timer";
+import ButtonWhite from "../Button/ButtonWhite";
+import Timer from "./Timer";
 import { useTheme } from "@/src/hooks/useTheme";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
@@ -85,20 +85,20 @@ const GroupButton = ({ style, wrapperStyle }: ContainerProps) => {
       ]}
     >
       <View style={[styles.buttonGroup, { gap: theme.spacing.sm + 4 }]}>
-        <IconButtonWhite
+        <ButtonWhite
           iconName="leaderboard"
           label="leaderboard"
           iconSize={iconSize}
           onPress={() => Alert.alert("Leaderboard")}
         />
 
-        <IconButtonWhite
+        <ButtonWhite
           iconName="voucher"
           iconSize={iconSize + 1}
           onPress={() => Alert.alert("Voucher")}
         />
 
-        <IconButtonWhite
+        <ButtonWhite
           iconName="gift"
           iconSize={iconSize + 1}
           onPress={() => Alert.alert("Gift")}

@@ -1,16 +1,16 @@
 import { ActivityIndicator, View } from "react-native";
 import { PeriodFilter } from "@/src/libs/api/leaderboardApi";
-import { LastRankTypeCard } from "@/components/screens/SegmentedTabs/LeaderboardSection/cards";
+import { LastRankPreviewCard } from "@/src/components/ui/Cards";
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { useTheme } from "../hooks/useTheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import LeaderboardHeader from "../components/ui/LeaderboardHeader";
+import LeaderboardHeader from "../components/ui/Header/LeaderboardHeader";
 import ButtonOutlined from "../components/ui/Button/ButtonOutlined";
 import SvgIcon from "../components/ui/SvgIcon";
-import { LeaderboardList } from "../components/screens/SegmentedTabs/LeaderboardSection";
 import { useState } from "react";
-import LeaderboardFilterModal from "../components/ui/LeaderboardFilterModal";
+import LeaderboardFilterModal from "../components/ui/Leaderboard/LeaderboardFilterModal";
 import { useRouter } from "expo-router";
+import { LeaderboardList } from "../components/ui/Leaderboard/LeaderboardList";
 
 export default function Leaderboard() {
   const [showFilter, setShowFilter] = useState(false);
@@ -81,7 +81,7 @@ export default function Leaderboard() {
         />
       ) : (
         lastRank && (
-          <LastRankTypeCard
+          <LastRankPreviewCard
             userId={lastRank.id}
             {...lastRank}
             style={{ marginHorizontal: theme.spacing.md }}

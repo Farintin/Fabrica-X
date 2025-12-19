@@ -6,10 +6,10 @@ import {
   ViewStyle,
   Text,
 } from "react-native";
-import SvgIcon from "./SvgIcon"; // Import the icon component
+import SvgIcon from "../SvgIcon"; // Import the icon component
 import { useTheme } from "@/src/hooks/useTheme";
 
-interface IconButtonWhiteProps {
+interface ButtonWhiteProps {
   iconName:
     | "arrow-left"
     | "bell"
@@ -28,13 +28,13 @@ interface IconButtonWhiteProps {
   iconColor?: string;
 }
 
-const IconButtonWhite: React.FC<IconButtonWhiteProps> = ({
+export default function ButtonWhite({
   iconName,
   label,
   onPress,
   style,
   iconSize = 12,
-}) => {
+}: ButtonWhiteProps) {
   const theme = useTheme();
   const color = theme.colors.textBlack;
   let buttonStyle: StyleProp<ViewStyle> = styles.button;
@@ -68,7 +68,7 @@ const IconButtonWhite: React.FC<IconButtonWhiteProps> = ({
       )}
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -84,5 +84,3 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
 });
-
-export default IconButtonWhite;

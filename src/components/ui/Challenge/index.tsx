@@ -5,7 +5,6 @@ import ContainerCards from "./ContainerCards";
 import { StyleProp, ViewProps, ViewStyle } from "react-native";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image } from "expo-image";
-import { Size } from "@/src/constants/Shape";
 
 const brandImage = require("@/assets/images/Challenge-icon.png");
 const brandImageWidthPercent = 20;
@@ -31,14 +30,12 @@ export default function Challenge({
             width: `${brandImageWidthPercent}%`,
             aspectRatio: 1,
             borderWidth: 1,
-            // position: "relative",
-            marginTop: -55,
-            marginBottom: -32,
+            marginTop: -50,
+            marginBottom: -30,
             zIndex: 1,
             alignSelf: "center",
             borderColor: "rgba(231, 231, 233, 1)",
             borderRadius: theme.radius.pill,
-            // bottom: (-Size.deviceWidth * brandImageWidthPercent) / 100 / 2 + 2,
           },
         ]}
         transition={300}
