@@ -9,8 +9,11 @@ export default function PrizesSection() {
   const theme = useTheme();
 
   return (
-    <View style={{ paddingVertical: theme.spacing.md, gap: theme.spacing.xl }}>
-      <Animated.View entering={PRIZE_CONTENT_ENTER}>
+    <View>
+      <Animated.View
+        entering={PRIZE_CONTENT_ENTER}
+        style={{ paddingVertical: theme.spacing.md, gap: theme.spacing.xl }}
+      >
         <Prizes />
         <Collectables />
       </Animated.View>
