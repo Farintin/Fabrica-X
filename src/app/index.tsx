@@ -12,14 +12,16 @@ import HeaderNav from "@/src/components/ui/Header/HeaderNav";
 import Challenge from "@/components/ui/Challenge";
 import SegmentedTabs from "@/components/SegmentedTabs";
 import { useTheme } from "@/hooks/useTheme";
-import Animated, {
-  useAnimatedStyle,
-  withTiming,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import OverlayHeader from "../components/ui/Header/OverlayHeader";
 import SegmentedTabsNav from "../components/SegmentedTabs/SegmentedTabsNav";
 import { LeaderboardTabHeader } from "../components/ui/Leaderboard/LeaderboardTabHeader";
+import {
+  useHeaderAnimation,
+  useStickyLeaderboardHeaderAnimation,
+  useStickyTabsNavAnimation,
+} from "../hooks/animations";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -38,29 +40,10 @@ export default function Home() {
     setIsTabsSticky(scrollY >= tabsY.current - top - headerNavHeight.current);
   };
 
-  const headerAnim = useAnimatedStyle(() => ({
-    transform: [
-      {
-        translateY: withTiming(isSticky ? 0 : -12, { duration: 180 }),
-      },
-    ],
-  }));
-
-  const stickyTabsNavAnim = useAnimatedStyle(() => ({
-    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 500 }),
-    transform: [
-      { translateY: withTiming(isTabsSticky ? 0 : 8, { duration: 500 }) },
-      { scale: withTiming(isTabsSticky ? 1 : 0.96, { duration: 500 }) },
-    ],
-  }));
-
-  const stickyLeaderboardTabHeaderAnim = useAnimatedStyle(() => ({
-    opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 500 }),
-    transform: [
-      { translateY: withTiming(isTabsSticky ? 0 : -8, { duration: 500 }) },
-      { scale: withTiming(isTabsSticky ? 1 : 0.96, { duration: 500 }) },
-    ],
-  }));
+  const headerAnim = useHeaderAnimation(isSticky);
+  const stickyTabsNavAnim = useStickyTabsNavAnimation(isTabsSticky);
+  const stickyLeaderboardHeaderAnim =
+    useStickyLeaderboardHeaderAnimation(isTabsSticky);
 
   return (
     <View style={[styles.root]}>
@@ -112,7 +95,7 @@ export default function Home() {
           {isTabsSticky && tab === "leaderboard" && (
             <Animated.View
               key="sticky-tabs-leaderboard-header"
-              style={stickyLeaderboardTabHeaderAnim}
+              style={stickyLeaderboardHeaderAnim}
             >
               <LeaderboardTabHeader
                 isTicky={true}
