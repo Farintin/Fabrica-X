@@ -47,10 +47,6 @@ export default function Home() {
     ],
   }));
 
-  const blurAnim = useAnimatedStyle(() => ({
-    opacity: withTiming(isSticky ? 1 : 0, { duration: 600 }),
-  }));
-
   const stickyTabsNavAnim = useAnimatedStyle(() => ({
     opacity: withTiming(isTabsSticky ? 1 : 0, { duration: 500 }),
     transform: [
@@ -125,26 +121,6 @@ export default function Home() {
                   marginHorizontal: theme.spacing.md,
                 }}
               />
-            </Animated.View>
-          )}
-
-          {/* Sticky Blur Header Nav */}
-
-          {isSticky && (
-            <Animated.View
-              style={[
-                {
-                  position: "absolute",
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  zIndex: -1,
-                },
-                blurAnim,
-              ]}
-            >
-              <VerticalGradientBlur />
             </Animated.View>
           )}
         </OverlayHeader>
