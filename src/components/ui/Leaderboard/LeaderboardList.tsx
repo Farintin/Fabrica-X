@@ -1,3 +1,4 @@
+// src/components/ui/Leaderboard/LeaderboardList.tsx
 import { LeaderboardUser } from "@/src/libs/api/leaderboardApi";
 import {
   ScrollViewProps,
@@ -27,6 +28,7 @@ export const LeaderboardList = ({
   scrollEnabled?: boolean;
 } & ScrollViewProps) => {
   const theme = useTheme();
+  const ANIMATE_TIME = 300;
 
   return (
     <>
@@ -34,8 +36,13 @@ export const LeaderboardList = ({
         <FlatList
           data={data}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => (
-            <RankCard key={String(item.id)} userId={item.id} {...item} />
+          renderItem={({ item, index }) => (
+            <Animated.View
+              key={String(item.id)}
+              entering={FadeInLeft.delay(200 * index).duration(ANIMATE_TIME)}
+            >
+              <RankCard userId={item.id} {...item} />
+            </Animated.View>
           )}
           onEndReached={() => {
             loadNextPage();
@@ -57,7 +64,7 @@ export const LeaderboardList = ({
           {data.map((item, i) => (
             <Animated.View
               key={String(item.id)}
-              entering={FadeInLeft.delay(200 * i).duration(500)}
+              entering={FadeInLeft.delay(200 * i).duration(ANIMATE_TIME)}
             >
               <RankCard userId={item.id} {...item} />
             </Animated.View>

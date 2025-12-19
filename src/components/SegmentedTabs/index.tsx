@@ -3,14 +3,17 @@ import { View, ViewProps } from "react-native";
 import SegmentedTabsContent from "./SegmentedTabsContent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
-import Animated, {
-  FadeInRight,
-  FadeInLeft,
-  FadeInUp,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import SegmentedTabsNav from "./SegmentedTabsNav";
 import { SegmentedTabsProps } from "@/src/types/tabs";
 import { useTheme } from "@/src/hooks/useTheme";
+import {
+  ANIM_DURATION,
+  NAV_ANIM_DELAY,
+  SEGMENTED_CONTENT_LEFT,
+  SEGMENTED_CONTENT_RIGHT,
+  SEGMENTED_NAV_ENTER,
+} from "./animations";
 
 export default function SegmentedTabs({
   value,
@@ -21,13 +24,10 @@ export default function SegmentedTabs({
   const { bottom } = useSafeAreaInsets();
   const [navAnimated, setNavAnimated] = useState(false);
 
-  const NAV_ANIM_DELAY = 1500;
-  const NAV_ANIM_DURATION = 500;
-
   useEffect(() => {
     const t = setTimeout(() => {
       setNavAnimated(true);
-    }, NAV_ANIM_DELAY + NAV_ANIM_DURATION);
+    }, NAV_ANIM_DELAY + ANIM_DURATION);
 
     return () => clearTimeout(t);
   }, []);
@@ -42,10 +42,7 @@ export default function SegmentedTabs({
       }}
       {...restProps}
     >
-      <Animated.View
-        key="tabs-nav"
-        entering={FadeInUp.delay(NAV_ANIM_DELAY).duration(NAV_ANIM_DURATION)}
-      >
+      <Animated.View key="tabs-nav" entering={SEGMENTED_NAV_ENTER}>
         <SegmentedTabsNav
           value={value}
           onChange={setHandler}
@@ -58,8 +55,8 @@ export default function SegmentedTabs({
           key={value}
           entering={
             value === "leaderboard"
-              ? FadeInLeft.duration(500)
-              : FadeInRight.duration(500)
+              ? SEGMENTED_CONTENT_LEFT
+              : SEGMENTED_CONTENT_RIGHT
           }
           style={{ paddingHorizontal: theme.spacing.md }}
         >

@@ -1,3 +1,4 @@
+// src/app/leaderboard.tsx
 import { ActivityIndicator, View } from "react-native";
 import { PeriodFilter } from "@/src/libs/api/leaderboardApi";
 import { LastRankPreviewCard } from "@/src/components/ui/Cards";
@@ -7,12 +8,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LeaderboardHeader from "../components/ui/Header/LeaderboardHeader";
 import ButtonOutlined from "../components/ui/Button/ButtonOutlined";
 import SvgIcon from "../components/ui/SvgIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeaderboardFilterModal from "../components/ui/Leaderboard/LeaderboardFilterModal";
 import { useRouter } from "expo-router";
 import { LeaderboardList } from "../components/ui/Leaderboard/LeaderboardList";
+import Animated from "react-native-reanimated";
+import { lastRankEnter } from "@/src/components/ui/Leaderboard/animations";
 
 export default function Leaderboard() {
+  const [headerReady, setHeaderReady] = useState(false);
+
   const [showFilter, setShowFilter] = useState(false);
   const theme = useTheme();
   const { top, bottom } = useSafeAreaInsets();
@@ -33,6 +38,10 @@ export default function Leaderboard() {
   } = useLeaderboardApi();
 
   const lastRank = data.length > 0 ? data[data.length - 1] : undefined;
+
+  useEffect(() => {
+    requestAnimationFrame(() => setHeaderReady(true));
+  }, []);
 
   return (
     <View
@@ -80,12 +89,15 @@ export default function Leaderboard() {
           style={{ marginTop: theme.spacing.sm }}
         />
       ) : (
-        lastRank && (
-          <LastRankPreviewCard
-            userId={lastRank.id}
-            {...lastRank}
-            style={{ marginHorizontal: theme.spacing.md }}
-          />
+        lastRank &&
+        headerReady && (
+          <Animated.View entering={lastRankEnter}>
+            <LastRankPreviewCard
+              userId={lastRank.id}
+              {...lastRank}
+              style={{ marginHorizontal: theme.spacing.md }}
+            />
+          </Animated.View>
         )
       )}
 
@@ -93,7 +105,6 @@ export default function Leaderboard() {
       <View
         style={{
           flex: 1,
-          paddingHorizontal: theme.spacing.md,
         }}
       >
         <LeaderboardList
@@ -103,6 +114,7 @@ export default function Leaderboard() {
           isFetchingNextPage={isFetchingNextPage}
           contentContainerStyle={{
             paddingBottom: bottom,
+            paddingHorizontal: theme.spacing.md,
           }}
         />
       </View>

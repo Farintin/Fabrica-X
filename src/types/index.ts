@@ -1,4 +1,9 @@
-import { TouchableOpacityProps } from "react-native";
+import {
+  StyleProp,
+  TouchableOpacityProps,
+  ViewProps,
+  ViewStyle,
+} from "react-native";
 import { LeaderboardUser } from "../libs/api/leaderboardApi";
 
 export type IconNameType =
@@ -26,3 +31,7 @@ export type RankProps = Omit<TouchableOpacityProps, "id"> & // Remove the string
     // The rest of the fields (name, points, rank, etc.) are implicitly included
     // from LeaderboardUser and TouchableOpacityProps
   };
+
+export type ContainerProps = ViewProps & {
+  wrapperStyle?: StyleProp<ViewStyle>;
+};

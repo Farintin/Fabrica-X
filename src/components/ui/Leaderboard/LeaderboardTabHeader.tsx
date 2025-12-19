@@ -1,3 +1,4 @@
+// src/components/ui/Leaderboard/LeaderboardTabHeader.tsx
 import { useLeaderboardApi } from "@/src/hooks/useLeaderboardApi";
 import { router } from "expo-router";
 import { ViewProps, View, Text } from "react-native";
@@ -5,10 +6,10 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { LastRankPreviewCard } from "../Cards";
 import { useTheme } from "@/src/hooks/useTheme";
 import ButtonOutlined from "../Button/ButtonOutlined";
+import { lastRankEnter, lastRankEnterDelayed } from "./animations";
 
 // --- 2. LeaderboardHeader Component ---
 // This component now displays the current user's rank based on the hook data
-
 export const LeaderboardTabHeader = ({
   isTicky = false,
   style,
@@ -48,7 +49,7 @@ export const LeaderboardTabHeader = ({
 
       {lastRank && (
         <Animated.View
-          entering={FadeInDown.delay(isTicky ? 0 : 500).duration(800)}
+          entering={isTicky ? lastRankEnter : lastRankEnterDelayed}
         >
           <LastRankPreviewCard
             // 🎯 THE FIX: Explicitly map 'id' to 'userId'
