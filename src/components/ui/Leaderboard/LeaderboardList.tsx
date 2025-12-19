@@ -11,6 +11,7 @@ import { RankCard } from "../Cards";
 import { useTheme } from "@/src/hooks/useTheme";
 import UserRankCard from "../Cards/UserRankCard";
 import UserData from "@/data/user.json";
+import { useRef } from "react";
 
 // --- 1. LeaderboardList Component ---
 
@@ -29,7 +30,9 @@ export const LeaderboardList = ({
   loadNextPage: () => void;
   scrollEnabled?: boolean;
 } & ScrollViewProps) => {
+  const animDelayRef = useRef(0);
   const theme = useTheme();
+  const ANIMATE_LIMIT = 10;
   const ANIMATE_TIME = 300;
 
   return (
@@ -39,10 +42,20 @@ export const LeaderboardList = ({
           data={data}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item, index }) => {
+            let delay = 200;
+            if (animDelayRef.current >= delay * ANIMATE_LIMIT) {
+              animDelayRef.current = 0;
+            }
+            if (animDelayRef.current < delay * ANIMATE_LIMIT) {
+              animDelayRef.current += delay;
+            }
+
             return (
               <Animated.View
                 key={String(item.id)}
-                entering={FadeInLeft.delay(200 * index).duration(ANIMATE_TIME)}
+                entering={FadeInLeft.delay(animDelayRef.current).duration(
+                  ANIMATE_TIME
+                )}
               >
                 {String(UserData.id) === String(item.id) && index >= 3 ? (
                   <UserRankCard userId={item.id} {...item} />
