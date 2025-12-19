@@ -18,7 +18,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import OverlayHeader from "../components/ui/Header/OverlayHeader";
-import VerticalGradientBlur from "../components/ui/VerticalGradientBlur";
 import SegmentedTabsNav from "../components/SegmentedTabs/SegmentedTabsNav";
 import { LeaderboardTabHeader } from "../components/ui/Leaderboard/LeaderboardTabHeader";
 
