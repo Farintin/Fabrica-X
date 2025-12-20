@@ -53,13 +53,12 @@ export default function PrizeCard({
           }}
         >
           <BlurView
-            intensity={Platform.OS === "ios" ? 5 : 10}
+            intensity={Platform.OS === "ios" ? 10 : 20}
             tint="light"
             style={[StyleSheet.absoluteFill]}
           />
           <LinearGradient
             colors={[
-              "transparent",
               "transparent",
               "transparent",
               "rgba(00, 0, 0, 0.15)",
