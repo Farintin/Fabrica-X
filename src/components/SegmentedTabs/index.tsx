@@ -18,6 +18,7 @@ import {
 export default function SegmentedTabs({
   value,
   setHandler,
+  style,
   ...restProps
 }: SegmentedTabsProps & ViewProps) {
   const theme = useTheme();
@@ -34,12 +35,15 @@ export default function SegmentedTabs({
 
   return (
     <View
-      style={{
-        backgroundColor: theme.colors.background.black,
-        paddingTop: theme.spacing.md,
-        paddingBottom: bottom,
-        gap: theme.spacing.sm,
-      }}
+      style={[
+        {
+          backgroundColor: theme.colors.background.black,
+          paddingTop: theme.spacing.md,
+          paddingBottom: bottom,
+          gap: theme.spacing.sm,
+        },
+        style,
+      ]}
       {...restProps}
     >
       <Animated.View key="tabs-nav" entering={SEGMENTED_NAV_ENTER}>
@@ -58,7 +62,9 @@ export default function SegmentedTabs({
               ? SEGMENTED_CONTENT_LEFT
               : SEGMENTED_CONTENT_RIGHT
           }
-          style={{ paddingHorizontal: theme.spacing.md }}
+          style={{
+            paddingHorizontal: theme.spacing.md,
+          }}
         >
           <SegmentedTabsContent activeTab={value} />
         </Animated.View>

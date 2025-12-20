@@ -33,6 +33,7 @@ export default function Home() {
   const headerNavHeight = useRef(0);
   const theme = useTheme();
   const { top } = useSafeAreaInsets();
+  const [maxTabsHeight, setMaxTabsHeight] = useState<number>(0);
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollY = e.nativeEvent.contentOffset.y;
@@ -128,7 +129,14 @@ export default function Home() {
               value={tab}
               setHandler={setTab}
               onLayout={(e) => {
-                tabsY.current = e.nativeEvent.layout.y;
+                const { height, y } = e.nativeEvent.layout;
+                tabsY.current = y;
+                if (!isTabsSticky) {
+                  setMaxTabsHeight((prev) => (height > prev ? height : prev));
+                }
+              }}
+              style={{
+                minHeight: isTabsSticky ? undefined : maxTabsHeight,
               }}
             />
           )}
