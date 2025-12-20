@@ -2,6 +2,7 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { RankProps } from "@/src/types";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, StyleSheet } from "react-native";
+import { Heading } from "../../typography/Heading";
 
 export default function LastRankPreviewCard({
   name,
@@ -41,15 +42,9 @@ export default function LastRankPreviewCard({
             },
           ]}
         >
-          <Text
-            style={[
-              styles.nameAvatar,
-              theme.typography.heading,
-              { color: theme.colors.natural.white },
-            ]}
-          >
+          <Heading tone="white" style={[styles.nameAvatar]}>
             {name.substring(0, 2)}
-          </Text>
+          </Heading>
         </View>
         <Text style={[theme.typography.desc, { color: "#3A3A3C" }]}>
           {name}
@@ -86,16 +81,15 @@ export default function LastRankPreviewCard({
           marginHorizontal: theme.spacing.xs,
         }}
       >
-        <Text
+        <Heading
           style={[
-            theme.typography.heading,
             {
               color: theme.colors.background.base,
             },
           ]}
         >
           {points.allTime}
-        </Text>
+        </Heading>
         <Text style={[theme.typography.desc, { color: "#808080" }]}>pts</Text>
       </View>
     </LinearGradient>

@@ -4,6 +4,7 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
 import Highlight from "../Highlight";
 import Article from "../Article";
+import { Heading } from "@/src/components/typography/Heading";
 
 export default function AwardCard() {
   const theme = useTheme();
@@ -12,27 +13,20 @@ export default function AwardCard() {
 
   return (
     <AnimatedChallengeCard delay={250}>
-      <Text
-        style={{
-          ...theme.typography.heading,
-          color: theme.colors.textPrimary,
-          marginVertical: theme.spacing.sm,
-          textAlign: "center",
-        }}
-      >
+      <Heading align="center" spaced>
         Global Change Award @ Fabrica X
-      </Text>
+      </Heading>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          marginTop: theme.spacing.sm,
+          marginVertical: theme.spacing.xs,
         }}
       >
         {/* Left side of the header */}
         <Highlight>
           <SvgIcon name="user-octagon" size={iconSize} color={iconColor} />
-          <Article text={"Fabrica X \n H&M Foundation"} />
+          <Article>Fabrica X {"\n"} H&M Foundation</Article>
         </Highlight>
 
         {/* Center of the header (title) */}
@@ -44,13 +38,13 @@ export default function AwardCard() {
           }}
         >
           <SvgIcon name="location" size={iconSize} color={iconColor} />
-          <Article text={"Fabrica X, \n King’s Cross, London"} />
+          <Article>Fabrica X, {"\n"} King’s Cross, London</Article>
         </Highlight>
 
         {/* Right side of the header (grid items) */}
         <Highlight>
           <SvgIcon name="duration" size={iconSize} color={iconColor} />
-          <Article text={"17 Sep - 01 Oct"} />
+          <Article>17 Sep - 01 Oct</Article>
         </Highlight>
       </View>
     </AnimatedChallengeCard>

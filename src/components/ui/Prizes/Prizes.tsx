@@ -1,19 +1,13 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import PrizeCard from "../Cards/PrizeCard";
 import { View, Text } from "react-native";
+import { Heading } from "../../typography/Heading";
 
 export default function Prizes() {
   const theme = useTheme();
   return (
     <View style={{ gap: theme.spacing.sm }}>
-      <Text
-        style={{
-          ...theme.typography.heading,
-          color: theme.colors.textPrimary,
-        }}
-      >
-        What Can You Expect
-      </Text>
+      <Heading>What Can You Expect</Heading>
       <PrizeCard
         source={require("@/assets/images/1st Place Prize.png")}
         iconName="leaderboard-prize"

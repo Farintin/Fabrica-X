@@ -14,7 +14,7 @@ export default function ContainerCards({ style }: ViewProps) {
       style={[
         {
           alignItems: "center",
-          paddingHorizontal: theme.spacing.md,
+          paddingHorizontal: theme.spacing.base,
           gap: theme.spacing.sm,
         },
         style,

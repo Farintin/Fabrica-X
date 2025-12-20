@@ -16,7 +16,7 @@ import { useRef } from "react";
 // --- 1. LeaderboardList Component ---
 
 // This component now receives props from the hook
-export const LeaderboardList = ({
+export default function LeaderboardList({
   data,
   isLoading,
   isFetchingNextPage = false,
@@ -29,7 +29,7 @@ export const LeaderboardList = ({
   isFetchingNextPage?: boolean;
   loadNextPage: () => void;
   scrollEnabled?: boolean;
-} & ScrollViewProps) => {
+} & ScrollViewProps) {
   const animDelayRef = useRef(0);
   const theme = useTheme();
   const ANIMATE_LIMIT = 10;
@@ -101,4 +101,4 @@ export const LeaderboardList = ({
       )}
     </>
   );
-};
+}

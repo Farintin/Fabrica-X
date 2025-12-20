@@ -1,65 +1,69 @@
-import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import { useTheme } from "@/src/hooks/useTheme";
 import { ButtonProps } from "@/src/types/button";
 import { BlurView } from "expo-blur";
+import { ButtonText } from "../../typography/ButtonText";
 
-const Button: React.FC<ButtonProps> = ({
+export default function Button({
   label,
   contentLeft,
   contentRight,
   style,
   labelStyle,
+  labelColor,
+  size = "large",
+  blurBackground = false,
   ...restProps
-}) => {
+}: ButtonProps) {
   const theme = useTheme();
-  const labelColor = theme.colors.textPrimary;
 
   return (
     <TouchableOpacity
       style={[
-        styles.button,
         {
-          borderRadius: theme.radius.xxl,
-          paddingHorizontal: theme.spacing.md + 4,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: theme.radius.pill,
+          backgroundColor: "rgba(85, 85, 85, 0.8)",
+        },
+        size === "small" && {
+          paddingHorizontal: theme.spacing.md,
+          paddingVertical: theme.spacing.xs,
+          gap: theme.spacing.xs,
+        },
+        size === "large" && {
+          paddingHorizontal: theme.spacing.base,
           paddingVertical: theme.spacing.sm,
-          gap: theme.spacing.xs + 2,
+          gap: theme.spacing.sm,
         },
         style,
       ]}
       {...restProps}
     >
-      <BlurView
-        intensity={Platform.OS === "ios" ? 5 : 10}
-        style={[
-          StyleSheet.absoluteFill,
-          { borderRadius: theme.radius.pill, overflow: "hidden" },
-        ]}
-      />
+      {blurBackground && (
+        <BlurView
+          intensity={Platform.OS === "ios" ? 5 : 10}
+          style={[
+            StyleSheet.absoluteFill,
+            { borderRadius: theme.radius.pill, overflow: "hidden" },
+          ]}
+        />
+      )}
       {contentLeft}
-      <Text
-        style={[
-          theme.typography.button,
-          styles.buttonLabel,
-          { color: labelColor },
-          labelStyle,
-        ]}
-      >
-        {label}
-      </Text>
+      {label && (
+        <ButtonText
+          style={[
+            size === "small" && theme.typography.buttonSmall,
+            size === "large" && theme.typography.button,
+            { color: labelColor || theme.colors.textPrimary },
+            labelStyle,
+          ]}
+        >
+          {label}
+        </ButtonText>
+      )}
       {contentRight}
     </TouchableOpacity>
   );
-};
-
-const styles = StyleSheet.create({
-  button: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "rgba(85, 85, 85, 0.8)",
-  },
-  buttonLabel: {
-    textTransform: "capitalize",
-  },
-});
-
-export default Button;
+}

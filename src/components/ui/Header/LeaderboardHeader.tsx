@@ -1,7 +1,9 @@
 // import { useRouter } from "expo-router";
-import { View, Text, StyleSheet, ViewProps } from "react-native";
+import { StyleSheet } from "react-native";
 import IconButton from "../Button/IconButton";
 import { useTheme } from "@/src/hooks/useTheme";
+import { Heading } from "../../typography/Heading";
+import { View, ViewProps } from "../../Themed";
 
 export default function LeaderboardHeader({
   title = "Leaderboard",
@@ -26,19 +28,12 @@ export default function LeaderboardHeader({
       {/* Left side of the header */}
       <View style={[styles.column]}>
         {/* Back Button */}
-        <IconButton
-          iconName="menu"
-          // onPress={goBackHandler}
-          iconColor={color}
-          style={styles.gridItem}
-        />
+        <IconButton iconName="menu" iconColor={color} style={styles.gridItem} />
       </View>
 
       {/* Center of the header (title) */}
       <View style={[styles.column, styles.headerCenter]}>
-        {title && (
-          <Text style={[theme.typography.heading, { color }]}>{title}</Text>
-        )}
+        {title && <Heading style={[{ color }]}>{title}</Heading>}
       </View>
 
       {/* Right side of the header (grid items) */}

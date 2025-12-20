@@ -38,7 +38,7 @@ export default function SegmentedTabs({
       style={[
         {
           backgroundColor: theme.colors.background.black,
-          paddingTop: theme.spacing.md,
+          paddingTop: theme.spacing.base,
           paddingBottom: bottom,
           gap: theme.spacing.sm,
         },
@@ -50,7 +50,7 @@ export default function SegmentedTabs({
         <SegmentedTabsNav
           value={value}
           onChange={setHandler}
-          style={{ marginHorizontal: theme.spacing.md }}
+          style={{ marginHorizontal: theme.spacing.base }}
         />
       </Animated.View>
 
@@ -63,7 +63,7 @@ export default function SegmentedTabs({
               : SEGMENTED_CONTENT_RIGHT
           }
           style={{
-            paddingHorizontal: theme.spacing.md,
+            paddingHorizontal: theme.spacing.base,
           }}
         >
           <SegmentedTabsContent activeTab={value} />

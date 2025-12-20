@@ -1,15 +1,15 @@
 import { Text, TextProps } from "@/src/components/Themed";
 import { useTheme } from "@/src/hooks/useTheme";
 
-export default function Article(props: TextProps) {
+export function ButtonText(props: TextProps) {
   const theme = useTheme();
 
   return (
     <Text
       {...props}
       style={[
-        theme.typography.miniText,
-        { color: theme.colors.textPrimary, textAlign: "center" },
+        theme.typography.button,
+        { textTransform: "capitalize" },
         props.style,
       ]}
     />

@@ -1,14 +1,8 @@
-import { LeaderboardUser } from "@/src/libs/api/leaderboardApi";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image } from "expo-image";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { RankProps } from "@/src/types";
+import { Heading } from "../../typography/Heading";
 
 const rankOneImage = require("@/assets/images/rank-one-image.png");
 const rankTwoImage = require("@/assets/images/rank-two-image.png");
@@ -40,7 +34,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
             ? rankStyles[rank].surfaceColor
             : "#232527",
           borderRadius: theme.radius.md,
-          padding: theme.spacing.md,
+          padding: theme.spacing.base,
           marginBottom: theme.spacing.sm + 2,
         },
         style,
@@ -63,16 +57,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
             style={{ width: 28, aspectRatio: 1 }}
           />
         ) : (
-          <Text
-            style={[
-              theme.typography.heading,
-              {
-                color: theme.colors.natural.white,
-              },
-            ]}
-          >
-            {rank}
-          </Text>
+          <Heading tone="white">{rank}</Heading>
         )}
       </View>
       <View
@@ -80,7 +65,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
           flexDirection: "row",
           alignItems: "center",
           flex: 1,
-          marginHorizontal: theme.spacing.md,
+          marginHorizontal: theme.spacing.base,
           gap: theme.spacing.sm,
         }}
       >
@@ -93,15 +78,9 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
             },
           ]}
         >
-          <Text
-            style={[
-              styles.nameAvatar,
-              theme.typography.heading,
-              { color: theme.colors.natural.white },
-            ]}
-          >
+          <Heading tone="white" style={[styles.nameAvatar]}>
             {name.substring(0, 2)}
-          </Text>
+          </Heading>
         </View>
         <Text
           style={[
@@ -120,9 +99,9 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
           marginHorizontal: theme.spacing.xs,
         }}
       >
-        <Text
+        <Heading
+          tone="white"
           style={[
-            theme.typography.heading,
             {
               color:
                 rank <= 3
@@ -132,7 +111,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
           ]}
         >
           {points.allTime}
-        </Text>
+        </Heading>
         <Text
           style={[
             theme.typography.desc,

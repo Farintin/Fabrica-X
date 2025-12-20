@@ -4,13 +4,13 @@ import SvgIcon from "../SvgIcon"; // Import the icon component
 import { useTheme } from "@/src/hooks/useTheme";
 import { IconButtonProps } from "@/src/types/button";
 
-const IconButton: React.FC<IconButtonProps> = ({
+export default function IconButton({
   iconName,
   onPress,
   style,
   iconSize = 26,
   iconColor = "#000",
-}) => {
+}: IconButtonProps) {
   const theme = useTheme();
 
   return (
@@ -25,7 +25,7 @@ const IconButton: React.FC<IconButtonProps> = ({
       <SvgIcon name={iconName} size={iconSize} color={iconColor} />
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {
@@ -33,5 +33,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default IconButton;

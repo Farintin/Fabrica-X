@@ -6,6 +6,7 @@ import Button from "./Button";
 export default function BannerButton({
   iconName,
   iconSize = 18,
+  style,
   ...restProps
 }: IconButtonProps) {
   const theme = useTheme();
@@ -13,9 +14,11 @@ export default function BannerButton({
 
   return (
     <Button
+      blurBackground={true}
       contentLeft={
         <SvgIcon name={iconName} size={iconSize} color={iconColor} />
       }
+      style={[style]}
       {...restProps}
     />
   );

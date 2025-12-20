@@ -1,19 +1,20 @@
 // src/app/leaderboard.tsx
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator } from "react-native";
 import { PeriodFilter } from "@/src/libs/api/leaderboardApi";
 import { LastRankPreviewCard } from "@/src/components/ui/Cards";
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { useTheme } from "../hooks/useTheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import LeaderboardHeader from "../components/ui/Header/LeaderboardHeader";
-import ButtonOutlined from "../components/ui/Button/ButtonOutlined";
 import SvgIcon from "../components/ui/SvgIcon";
 import { useEffect, useState } from "react";
 import LeaderboardFilterModal from "../components/ui/Leaderboard/LeaderboardFilterModal";
 import { useRouter } from "expo-router";
-import { LeaderboardList } from "../components/ui/Leaderboard/LeaderboardList";
+import LeaderboardList from "../components/ui/Leaderboard/LeaderboardList";
 import Animated from "react-native-reanimated";
 import { lastRankEnter } from "@/src/components/ui/Leaderboard/animations";
+import { LeaderboardNavButton } from "../components/ui/Button";
+import { View } from "../components/Themed";
 
 export default function Leaderboard() {
   const [headerReady, setHeaderReady] = useState(false);
@@ -54,29 +55,24 @@ export default function Leaderboard() {
     >
       <LeaderboardHeader />
 
-      {/* Filter button row */}
       <View
         style={{
           flexDirection: "row",
-          gap: theme.spacing.sm + 2,
-          paddingHorizontal: theme.spacing.md,
+          gap: theme.spacing.md,
+          paddingHorizontal: theme.spacing.base,
           paddingVertical: theme.spacing.xs,
         }}
       >
-        <ButtonOutlined
+        <LeaderboardNavButton
           label="Filter"
-          color="#31313180"
-          borderColor="#E6E6E6"
           onPress={() => setShowFilter(true)}
           contentLeft={
             <SvgIcon name="setting" color={theme.colors.primary} size={20} />
           }
         />
 
-        <ButtonOutlined
+        <LeaderboardNavButton
           label="Fabrica X"
-          color="#31313180"
-          borderColor="#E6E6E6"
           onPress={goBackHandler}
           style={{ flexGrow: 1 }}
         />
@@ -95,7 +91,7 @@ export default function Leaderboard() {
             <LastRankPreviewCard
               userId={lastRank.id}
               {...lastRank}
-              style={{ marginHorizontal: theme.spacing.md }}
+              style={{ marginHorizontal: theme.spacing.base }}
             />
           </Animated.View>
         )
@@ -114,7 +110,7 @@ export default function Leaderboard() {
           isFetchingNextPage={isFetchingNextPage}
           contentContainerStyle={{
             paddingBottom: bottom,
-            paddingHorizontal: theme.spacing.md,
+            paddingHorizontal: theme.spacing.base,
           }}
         />
       </View>

@@ -7,10 +7,12 @@ const { width, height } = Dimensions.get("window");
 export const Spacing = {
   xs: 4,
   sm: 8,
-  md: 16, // Standard padding/margin
-  lg: 24, // Section separator spacing
-  xl: 32, // Large gap
-  xxl: 48,
+  md: 12,
+  base: 16, // Standard padding/margin
+  lg: 20, // Section separator spacing
+  xl: 24, // Large gap
+  xxl: 28,
+  wide: 32,
 };
 
 // --- 5. BORDER RADIUS (New Section) ---

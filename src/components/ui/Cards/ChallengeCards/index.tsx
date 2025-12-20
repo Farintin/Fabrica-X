@@ -1,6 +1,6 @@
+import { View } from "@/src/components/Themed";
 import { useTheme } from "@/src/hooks/useTheme";
 import { ContainerProps } from "@/src/types";
-import { View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export const AnimatedChallengeCard = ({
@@ -40,8 +40,8 @@ export default function ChallengeCard({
           {
             backgroundColor: "rgba(51, 53, 58, 0.6)",
             borderRadius: theme.radius.md,
-            paddingHorizontal: theme.spacing.md,
-            paddingVertical: theme.spacing.xl,
+            paddingHorizontal: theme.spacing.base,
+            paddingVertical: theme.spacing.xxl,
           },
           wrapperStyle,
         ]}
@@ -51,11 +51,3 @@ export default function ChallengeCard({
     </View>
   );
 }
-
-// const styles = StyleSheet.create({
-//   card: {
-//   },
-//   wrapper: {
-//     // borderRadius: 20,
-//   },
-// });

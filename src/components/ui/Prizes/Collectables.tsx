@@ -1,19 +1,13 @@
 import { useTheme } from "@/src/hooks/useTheme";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import PointCard from "../Cards/PointCard";
+import { Heading } from "../../typography/Heading";
 
 export default function Collectables() {
   const theme = useTheme();
   return (
     <View style={{ gap: theme.spacing.sm }}>
-      <Text
-        style={{
-          ...theme.typography.heading,
-          color: theme.colors.textPrimary,
-        }}
-      >
-        Type of Collectibles
-      </Text>
+      <Heading>Type of Collectibles</Heading>
       <View
         style={{
           flexDirection: "row",

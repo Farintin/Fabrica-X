@@ -11,6 +11,7 @@ import {
 import SvgIcon from "../SvgIcon";
 import { useTheme } from "@/src/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
+import { Heading } from "../../typography/Heading";
 
 export default function PrizeCard({
   source: imageSource,
@@ -34,7 +35,7 @@ export default function PrizeCard({
       <ImageBackground
         source={imageSource}
         style={{
-          gap: theme.spacing.md,
+          gap: theme.spacing.base,
           alignItems: "center",
         }}
       >
@@ -66,20 +67,15 @@ export default function PrizeCard({
             ]}
             style={[
               {
-                padding: theme.spacing.md,
+                padding: theme.spacing.base,
                 gap: theme.spacing.sm,
                 alignItems: "center",
               },
             ]}
           >
-            <Text
-              style={[
-                theme.typography.heading,
-                { color: theme.colors.primary },
-              ]}
-            >
+            <Heading style={[{ color: theme.colors.primary }]}>
               {levelText}
-            </Text>
+            </Heading>
             <Text
               style={[
                 theme.typography.subHeading,

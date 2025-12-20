@@ -1,6 +1,6 @@
 import { useTheme } from "@/src/hooks/useTheme";
 import { PointsButtonProps } from "@/src/types/button";
-import OutlineButton from "@/src/components/ui/Button/ButtonOutlined";
+import OutlinedButton from "@/src/components/ui/Button/OutlinedButton";
 
 const PointsButton: React.FC<PointsButtonProps> = ({
   point,
@@ -10,7 +10,7 @@ const PointsButton: React.FC<PointsButtonProps> = ({
   const theme = useTheme();
 
   return (
-    <OutlineButton
+    <OutlinedButton
       label={`${point} point`}
       color="#CDCDCD33"
       borderColor={theme.colors.primary}

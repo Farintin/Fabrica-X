@@ -57,7 +57,7 @@ export default function LeaderboardFilterModal({
                 key={option}
                 onPress={() => onSelect(option)}
                 style={{
-                  paddingVertical: theme.spacing.md,
+                  paddingVertical: theme.spacing.base,
                   flexDirection: "row",
                   justifyContent: "space-between",
                   alignItems: "center",
@@ -117,7 +117,7 @@ export default function LeaderboardFilterModal({
               color: "#F5F5F5",
               fontSize: 18,
               fontFamily: "Poppins-Regular",
-              marginBottom: theme.spacing.md,
+              marginBottom: theme.spacing.base,
               textAlign: "center",
               marginTop: theme.spacing.xl,
             }}

@@ -1,4 +1,6 @@
-// theme/typography.ts
+// constant/typography.ts
+
+import { StyleProp, TextStyle } from "react-native";
 
 // --- TYPOGRAPHY (Based on visual hierarchy) ---
 const typeBase = {
@@ -6,10 +8,9 @@ const typeBase = {
   letterSpacing: 0,
 };
 
-export const Typography = {
+export const Typography: Record<string, TextStyle> = {
   h1: {
     fontSize: 28,
-    // Use the custom font file name for the desired weight
     fontFamily: "Poppins-Bold",
   },
   h2: {
@@ -18,7 +19,7 @@ export const Typography = {
   },
   heading: {
     ...typeBase,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: "Poppins-SemiBold",
     lineHeight: 24,
   },
@@ -35,14 +36,38 @@ export const Typography = {
     lineHeight: 20,
   },
 
-  bodyLarge: {
+  bodyTextLarge: {
+    ...typeBase,
     fontSize: 16,
-    fontFamily: "Poppins-Regular",
+    fontFamily: "Poppins-Medium",
   },
+  bodyText: {
+    ...typeBase,
+    fontSize: 14,
+    fontFamily: "Poppins-Medium",
+  },
+  bodyTextSmall: {
+    ...typeBase,
+    fontSize: 12,
+    fontFamily: "Poppins-Medium",
+  },
+
   desc: {
     ...typeBase,
     fontSize: 14,
     fontFamily: "Poppins-Medium",
+  },
+
+  miniTextBold: {
+    ...typeBase,
+    fontSize: 10,
+    fontFamily: "Poppins-SemiBold",
+  },
+  miniText: {
+    ...typeBase,
+    fontSize: 10,
+    fontFamily: "Poppins-Medium",
+    lineHeight: 14,
   },
 
   button: {
@@ -62,6 +87,13 @@ export const Typography = {
     fontSize: 16,
     fontFamily: "Poppins-Medium",
     lineHeight: 20,
+  },
+
+  timerValue: {
+    fontFamily: "Poppins-Medium",
+    fontSize: 30,
+    lineHeight: 34,
+    letterSpacing: -1,
   },
 
   name: {

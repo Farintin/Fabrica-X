@@ -48,7 +48,7 @@ export default function Banner({ style }: ViewProps) {
           style={[
             styles.buttonGroup,
             {
-              padding: theme.spacing.md,
+              padding: theme.spacing.base,
             },
           ]}
         >

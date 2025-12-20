@@ -1,7 +1,6 @@
 // src/app/index.tsx
 import { useRef, useState } from "react";
 import {
-  View,
   StyleSheet,
   ScrollView,
   NativeScrollEvent,
@@ -16,12 +15,13 @@ import Animated from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import OverlayHeader from "../components/ui/Header/OverlayHeader";
 import SegmentedTabsNav from "../components/SegmentedTabs/SegmentedTabsNav";
-import { LeaderboardTabHeader } from "../components/ui/Leaderboard/LeaderboardTabHeader";
+import LeaderboardTabHeader from "../components/ui/Leaderboard/LeaderboardTabHeader";
 import {
   useHeaderAnimation,
   useStickyLeaderboardHeaderAnimation,
   useStickyTabsNavAnimation,
 } from "../hooks/animations";
+import { View } from "../components/Themed";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -63,7 +63,9 @@ export default function Home() {
             {
               paddingTop: top,
               paddingBottom:
-                isSticky && !isTabsSticky ? theme.spacing.md : theme.spacing.sm,
+                isSticky && !isTabsSticky
+                  ? theme.spacing.base
+                  : theme.spacing.sm,
               backgroundColor: isTabsSticky
                 ? theme.colors.background.black
                 : theme.colors.natural.transparent,
@@ -88,7 +90,7 @@ export default function Home() {
                 isSticky={true}
                 value={tab}
                 onChange={setTab}
-                style={{ marginHorizontal: theme.spacing.md }}
+                style={{ marginHorizontal: theme.spacing.base }}
               />
             </Animated.View>
           )}
@@ -99,9 +101,9 @@ export default function Home() {
               style={stickyLeaderboardHeaderAnim}
             >
               <LeaderboardTabHeader
-                isTicky={true}
+                isSticky={true}
                 style={{
-                  marginHorizontal: theme.spacing.md,
+                  marginHorizontal: theme.spacing.base,
                 }}
               />
             </Animated.View>

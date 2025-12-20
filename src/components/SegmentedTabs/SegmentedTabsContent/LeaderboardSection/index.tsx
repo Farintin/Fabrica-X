@@ -1,14 +1,12 @@
 // src/components/screens/SegmentedTabs/index.tsx
 import { useTheme } from "@/src/hooks/useTheme";
 import { View, ActivityIndicator } from "react-native";
-// Assuming RankTypeCard and LastRankTypeCard are the list items you created
 import Button from "@/src/components/ui/Button/Button";
 import { useLeaderboardApi } from "@/src/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
 import { useRouter } from "expo-router";
-import { LeaderboardList } from "@/src/components/ui/Leaderboard/LeaderboardList";
-import { LeaderboardTabHeader } from "@/src/components/ui/Leaderboard/LeaderboardTabHeader";
+import LeaderboardList from "@/src/components/ui/Leaderboard/LeaderboardList";
+import LeaderboardTabHeader from "@/src/components/ui/Leaderboard/LeaderboardTabHeader";
 
-// --- 3. Default Export Component ---
 export default function LeaderboardSection() {
   const theme = useTheme();
   const router = useRouter();
@@ -36,13 +34,9 @@ export default function LeaderboardSection() {
   }
 
   return (
-    <View
-      style={{
-        gap: theme.spacing.sm,
-      }}
-    >
+    <View>
       {/* Pass required state down to the Header */}
-      <LeaderboardTabHeader />
+      <LeaderboardTabHeader style={{ marginBottom: theme.spacing.sm }} />
 
       {/* Pass required state and handlers down to the List */}
       <LeaderboardList
@@ -53,20 +47,16 @@ export default function LeaderboardSection() {
         scrollEnabled={false}
       />
 
-      {/* Hide View All button if there are no more pages to load */}
       {hasMore && (
         <Button
           label="view all"
-          onPress={() => router.push("/leaderboard")} // Or navigate to a dedicated Leaderboard screen
+          onPress={() => router.push("/leaderboard")}
           style={{
             alignSelf: "center",
-            paddingVertical: theme.spacing.sm + 6,
-            paddingHorizontal: theme.spacing.md + 6,
+            paddingVertical: theme.spacing.md,
+            paddingHorizontal: theme.spacing.xl,
           }}
-          labelStyle={[
-            theme.typography.title, // Use button style from theme
-            { textTransform: "uppercase" },
-          ]}
+          labelStyle={[theme.typography.title, { textTransform: "uppercase" }]}
         />
       )}
     </View>

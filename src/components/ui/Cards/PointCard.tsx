@@ -17,9 +17,9 @@ export default function PointCard({
         {
           backgroundColor: "#808080",
           borderRadius: theme.radius.md,
-          paddingHorizontal: theme.spacing.md,
+          paddingHorizontal: theme.spacing.base,
           paddingVertical: theme.spacing.lg,
-          gap: theme.spacing.md,
+          gap: theme.spacing.base,
           flexShrink: 1,
           justifyContent: "space-between",
         },
@@ -29,7 +29,7 @@ export default function PointCard({
       <View
         style={[
           {
-            gap: theme.spacing.md,
+            gap: theme.spacing.base,
           },
           style,
         ]}
