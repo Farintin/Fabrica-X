@@ -2,6 +2,7 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import AppLayout from "@/components/layout/AppLayout";
 import useSplashScreen from "@/hooks/useSplashScreen";
+import { StatusBar } from "expo-status-bar";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -13,10 +14,8 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView
-      style={{ flex: 1 }}
-      edges={["left", "right"]} // 👈 important
-    >
+    <SafeAreaView style={{ flex: 1 }} edges={["left", "right"]}>
+      <StatusBar style={"light"} />
       <AppLayout />
     </SafeAreaView>
   );
