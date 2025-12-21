@@ -12,7 +12,10 @@ export default function PrizesSection() {
     <View>
       <Animated.View
         entering={PRIZE_CONTENT_ENTER}
-        style={{ paddingVertical: theme.spacing.md, gap: theme.spacing.xl }}
+        style={{
+          paddingVertical: theme.spacing.md,
+          gap: theme.spacing.xl,
+        }}
       >
         <Prizes />
         <Collectables />

@@ -41,6 +41,8 @@ export default function SegmentedTabs({
           paddingTop: theme.spacing.base,
           paddingBottom: bottom,
           gap: theme.spacing.sm,
+          flex: 1,
+          height: "100%",
         },
         style,
       ]}
@@ -64,6 +66,7 @@ export default function SegmentedTabs({
           }
           style={{
             paddingHorizontal: theme.spacing.base,
+            // flex: 1,
           }}
         >
           <SegmentedTabsContent activeTab={value} />
