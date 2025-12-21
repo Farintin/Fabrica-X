@@ -3,8 +3,6 @@ import { BlurView } from "expo-blur";
 import {
   TouchableOpacity,
   ImageBackground,
-  View,
-  Text,
   Platform,
   StyleSheet,
 } from "react-native";
@@ -12,6 +10,7 @@ import SvgIcon from "../SvgIcon";
 import { useTheme } from "@/src/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 import { Heading } from "../../typography/Heading";
+import { View, Text } from "../../Themed";
 
 export default function PrizeCard({
   source: imageSource,

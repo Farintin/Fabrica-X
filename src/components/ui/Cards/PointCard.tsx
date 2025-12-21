@@ -1,7 +1,7 @@
 import { PointCardProps } from "@/src/types/card";
-import { View, Text } from "react-native";
 import { useTheme } from "@/src/hooks/useTheme";
 import PointsButton from "../Button/PointsButton";
+import { View, Text } from "../../Themed";
 
 export default function PointCard({
   title,
@@ -20,7 +20,6 @@ export default function PointCard({
           paddingHorizontal: theme.spacing.base,
           paddingVertical: theme.spacing.lg,
           gap: theme.spacing.base,
-          flexShrink: 1,
           justifyContent: "space-between",
         },
         style,
