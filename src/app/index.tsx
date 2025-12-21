@@ -42,8 +42,16 @@ export default function Home() {
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollY = e.nativeEvent.contentOffset.y;
-    setIsSticky(scrollY > challengeY.current + top - headerNavHeight.current);
-    setIsTabsSticky(scrollY >= tabsY.current - top - headerNavHeight.current);
+
+    const nextSticky =
+      scrollY > challengeY.current + top - headerNavHeight.current;
+    const nextTabsSticky =
+      scrollY >= tabsY.current - top - headerNavHeight.current;
+
+    setIsSticky((prev) => (prev !== nextSticky ? nextSticky : prev));
+    setIsTabsSticky((prev) =>
+      prev !== nextTabsSticky ? nextTabsSticky : prev
+    );
   };
 
   const onScrollEndDrag = () => {
