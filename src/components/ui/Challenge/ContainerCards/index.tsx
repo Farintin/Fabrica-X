@@ -1,6 +1,6 @@
 // src/components/ui/Challenge/ContainerCards.tsx
 import { View, ViewProps } from "react-native";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import GroupButtonCard from "./Cards/GroupButtonCard";
 import AwardCard from "./Cards/AwardCard";

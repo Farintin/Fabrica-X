@@ -1,5 +1,5 @@
 import { View, ViewProps } from "../../../../Themed";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import Label from "./Label";
 import Time from "./Time";
 

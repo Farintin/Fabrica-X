@@ -1,8 +1,8 @@
 // src/components/ui/Challenge/ContainerCards.tsx
 import Timer from "../Timer";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
-import { ContainerProps } from "@/src/types";
+import { ContainerProps } from "@/types";
 import Article from "../Article";
 
 export default function CountdownCard({

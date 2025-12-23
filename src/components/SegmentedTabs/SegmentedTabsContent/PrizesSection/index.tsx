@@ -1,9 +1,9 @@
 import { View } from "react-native";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import Animated from "react-native-reanimated";
 import { PRIZE_CONTENT_ENTER } from "../../animations";
-import Prizes from "@/src/components/ui/Prizes/Prizes";
-import Collectables from "@/src/components/ui/Prizes/Collectables";
+import Prizes from "@/components/ui/Prizes/Prizes";
+import Collectables from "@/components/ui/Prizes/Collectables";
 
 export default function PrizesSection() {
   const theme = useTheme();

@@ -1,5 +1,4 @@
 // src/components/ui/Leaderboard/LeaderboardList.tsx
-import { LeaderboardUser } from "@/src/libs/api/leaderboardApi";
 import {
   ScrollViewProps,
   FlatList,
@@ -8,13 +7,13 @@ import {
 } from "react-native";
 import Animated, { FadeInLeft } from "react-native-reanimated";
 import { RankCard } from "../Cards";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import UserRankCard from "../Cards/UserRankCard";
-import UserData from "@/data/user.json";
 import { useRef } from "react";
+import { LeaderboardRow } from "@/libs/api/leaderboardApi";
 
 // --- 1. LeaderboardList Component ---
-
+const CURRENT_USER_ID = "user-005";
 // This component now receives props from the hook
 export default function LeaderboardList({
   data,
@@ -24,7 +23,7 @@ export default function LeaderboardList({
   scrollEnabled = true,
   ...restProps
 }: {
-  data: LeaderboardUser[];
+  data: LeaderboardRow[];
   isLoading: boolean;
   isFetchingNextPage?: boolean;
   loadNextPage: () => void;
@@ -40,8 +39,9 @@ export default function LeaderboardList({
       {scrollEnabled ? (
         <FlatList
           data={data}
-          keyExtractor={(item) => String(item.id)}
+          keyExtractor={(item) => item.userId}
           renderItem={({ item, index }) => {
+            const { userId, rank } = item;
             let delay = 200;
             if (animDelayRef.current >= delay * ANIMATE_LIMIT) {
               animDelayRef.current = 0;
@@ -52,15 +52,15 @@ export default function LeaderboardList({
 
             return (
               <Animated.View
-                key={String(item.id)}
+                key={`${userId}-${rank}-${index}`}
                 entering={FadeInLeft.delay(animDelayRef.current).duration(
                   ANIMATE_TIME
                 )}
               >
-                {String(UserData.id) === String(item.id) && index >= 3 ? (
-                  <UserRankCard userId={item.id} {...item} />
+                {CURRENT_USER_ID === userId && rank >= 3 ? (
+                  <UserRankCard {...item} />
                 ) : (
-                  <RankCard userId={item.id} {...item} />
+                  <RankCard {...item} />
                 )}
               </Animated.View>
             );
@@ -84,10 +84,10 @@ export default function LeaderboardList({
           {/* CORRECTED MAP SYNTAX */}
           {data.map((item, i) => (
             <Animated.View
-              key={String(item.id)}
+              key={String(item.userId)}
               entering={FadeInLeft.delay(200 * i + 1).duration(ANIMATE_TIME)}
             >
-              <RankCard userId={item.id} {...item} />
+              <RankCard {...item} />
             </Animated.View>
           ))}
           {/* List Footer for non-scrollable list (if needed) */}

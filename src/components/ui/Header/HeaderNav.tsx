@@ -1,7 +1,8 @@
 import { useRouter } from "expo-router";
 import { View, Text, StyleSheet, Alert, ViewProps } from "react-native";
 import IconButton from "../Button/IconButton";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
+import BackButton from "../Button/BackButton";
 
 export default function HeaderNav({
   title = "",
@@ -10,12 +11,7 @@ export default function HeaderNav({
   ...restProps
 }: { title?: string; hideNotice?: boolean } & ViewProps) {
   const theme = useTheme();
-  const router = useRouter();
   const color = theme.colors.textPrimary;
-
-  const goBackHandler = () => {
-    router.canGoBack() ? router.back() : null;
-  };
 
   return (
     <View
@@ -33,12 +29,7 @@ export default function HeaderNav({
       {/* Left side of the header */}
       <View style={[styles.column]}>
         {/* Back Button */}
-        <IconButton
-          iconName="arrow-left"
-          onPress={goBackHandler}
-          iconColor={color}
-          style={styles.gridItem}
-        />
+        <BackButton iconColor={color} style={styles.gridItem} />
       </View>
 
       {/* Center of the header (title) */}

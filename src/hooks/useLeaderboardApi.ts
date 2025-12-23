@@ -2,54 +2,72 @@
 import { useState, useEffect, useCallback } from "react";
 import {
   fetchLeaderboardData,
-  LeaderboardUser,
   PeriodFilter,
-} from "../libs/api/leaderboardApi";
+  LeaderboardRow,
+} from "@/libs/api/leaderboardApi";
+import { LeaderboardId } from "@/constants/Leaderboards";
+
+/* -------------------------------------------------------
+   STATE
+------------------------------------------------------- */
 
 interface LeaderboardState {
-  data: LeaderboardUser[];
+  data: LeaderboardRow[];
   isLoading: boolean;
   isFetchingNextPage: boolean;
   hasMore: boolean;
   error: string | null;
-  filter: PeriodFilter;
+  period: PeriodFilter;
+  leaderboardId: LeaderboardId;
   currentPage: number;
 }
-const initialState: LeaderboardState = {
+
+const INITIAL_STATE: Omit<LeaderboardState, "leaderboardId"> = {
   data: [],
   isLoading: false,
   isFetchingNextPage: false,
   hasMore: true,
   error: null,
-  filter: "This Week",
+  period: "week",
   currentPage: 1,
 };
 
-export const useLeaderboardApi = () => {
+/* -------------------------------------------------------
+   HOOK
+------------------------------------------------------- */
+
+export function useLeaderboardApi({
+  leaderboardId: initialLeaderboardId,
+}: {
+  leaderboardId: LeaderboardId;
+}) {
   const [state, setState] = useState<LeaderboardState>({
-    ...initialState,
-    currentPage: 1,
+    ...INITIAL_STATE,
+    leaderboardId: initialLeaderboardId,
   });
 
-  const loadData = useCallback(
-    async (
-      targetFilter: PeriodFilter,
-      pageToLoad: number,
-      isInitialLoad = false
-    ) => {
-      if (isInitialLoad) {
-        setState((s) => ({ ...s, isLoading: true }));
-      } else {
-        setState((s) => ({ ...s, isFetchingNextPage: true }));
-      }
+  /* -------------------------------------------------------
+     FETCH
+  ------------------------------------------------------- */
+
+  const loadPage = useCallback(
+    async (page: number, isInitial = false) => {
+      setState((s) => ({
+        ...s,
+        isLoading: isInitial,
+        isFetchingNextPage: !isInitial,
+      }));
 
       try {
-        const response = await fetchLeaderboardData(targetFilter, pageToLoad);
+        const response = await fetchLeaderboardData({
+          leaderboardId: state.leaderboardId,
+          period: state.period,
+          page,
+        });
 
         setState((s) => ({
           ...s,
-          data:
-            pageToLoad === 1 ? response.data : [...s.data, ...response.data],
+          data: page === 1 ? response.data : [...s.data, ...response.data],
           hasMore: response.hasMore,
           currentPage: response.currentPage,
           isLoading: false,
@@ -59,41 +77,64 @@ export const useLeaderboardApi = () => {
       } catch {
         setState((s) => ({
           ...s,
-          error: "Failed to fetch leaderboard data.",
           isLoading: false,
           isFetchingNextPage: false,
+          error: "Failed to load leaderboard",
         }));
       }
     },
-    []
+    [state.leaderboardId, state.period]
   );
 
+  /* -------------------------------------------------------
+     RELOAD ON FILTER CHANGE
+  ------------------------------------------------------- */
+
   useEffect(() => {
-    loadData(state.filter, 1, true);
-  }, [state.filter]);
+    loadPage(1, true);
+  }, [state.leaderboardId, state.period, loadPage]);
+
+  /* -------------------------------------------------------
+     ACTIONS
+  ------------------------------------------------------- */
 
   const loadNextPage = () => {
-    if (!state.hasMore || state.isLoading || state.isFetchingNextPage) return;
-    loadData(state.filter, state.currentPage + 1);
+    if (state.isLoading || state.isFetchingNextPage || !state.hasMore) return;
+    loadPage(state.currentPage + 1);
   };
 
-  const setFilter = (newFilter: PeriodFilter) => {
-    if (newFilter !== state.filter) {
-      setState((s) => ({
-        ...s,
-        filter: newFilter,
-        data: [],
-        currentPage: 1,
-        hasMore: true,
-      }));
-    }
+  const setPeriod = (period: PeriodFilter) => {
+    setState((s) =>
+      s.period === period
+        ? s
+        : {
+            ...s,
+            period,
+            data: [],
+            currentPage: 1,
+            hasMore: true,
+          }
+    );
+  };
+
+  const setLeaderboardId = (id: LeaderboardId) => {
+    setState((s) =>
+      s.leaderboardId === id
+        ? s
+        : {
+            ...s,
+            leaderboardId: id,
+            data: [],
+            currentPage: 1,
+            hasMore: true,
+          }
+    );
   };
 
   return {
     ...state,
-    setFilter,
+    setPeriod,
+    setLeaderboardId,
     loadNextPage,
   };
-};
-
-export { PeriodFilter };
+}

@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Banner from "./Banner";
 import ContainerCards from "./ContainerCards";
 import { StyleProp, ViewProps, ViewStyle } from "react-native";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { Image } from "expo-image";
 
 const brandImage = require("@/assets/images/Challenge-icon.png");

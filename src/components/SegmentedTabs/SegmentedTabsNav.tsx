@@ -6,8 +6,8 @@ import {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
-import { useTheme } from "@/src/hooks/useTheme";
-import { SegmentedTabsNavProps } from "@/src/types/tabs";
+import { useTheme } from "@/hooks/useTheme";
+import { SegmentedTabsNavProps } from "@/types/tabs";
 import { ActiveTabIndicator, TabButton } from "../ui/Button/SegmentedTabButton";
 
 export default function SegmentedTabsNav({

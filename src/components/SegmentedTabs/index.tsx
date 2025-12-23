@@ -5,8 +5,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import Animated from "react-native-reanimated";
 import SegmentedTabsNav from "./SegmentedTabsNav";
-import { SegmentedTabsProps } from "@/src/types/tabs";
-import { useTheme } from "@/src/hooks/useTheme";
+import { SegmentedTabsProps } from "@/types/tabs";
+import { useTheme } from "@/hooks/useTheme";
 import {
   ANIM_DURATION,
   NAV_ANIM_DELAY,

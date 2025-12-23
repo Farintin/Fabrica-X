@@ -1,5 +1,5 @@
 // src/components/screens/SegmentedTabs/SegmentedTabsContent/index.tsx
-import { TabsKey } from "@/src/types/tabs";
+import { TabsKey } from "@/types/tabs";
 import LeaderboardSection from "./LeaderboardSection";
 import PrizesSection from "./PrizesSection";
 

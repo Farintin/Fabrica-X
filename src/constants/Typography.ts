@@ -76,6 +76,12 @@ export const Typography: Record<string, TextStyle> = {
     fontFamily: "Poppins-Regular",
     lineHeight: 19,
   },
+  buttonMini: {
+    ...typeBase,
+    fontSize: 12,
+    fontFamily: "Poppins-Regular",
+    lineHeight: 14,
+  },
   buttonSmall: {
     ...typeBase,
     fontSize: 10,

@@ -1,5 +1,5 @@
 import { Text, TextProps } from "../../../../Themed";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 export default function Label(props: TextProps) {
   const theme = useTheme();

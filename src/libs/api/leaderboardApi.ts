@@ -1,95 +1,158 @@
-// src/api/leaderboardApi.ts
+// src/libs/api/leaderboardApi.ts
 
-// 1. Define Types for Clarity and Safety
-export type PeriodFilter = "This Week" | "This Month" | "All Time";
+/* -------------------------------------------------------
+   TYPES
+------------------------------------------------------- */
 
-export interface UserPoints {
+export type PeriodFilter = "week" | "month" | "allTime";
+
+export interface UserScores {
   week: number;
   month: number;
   allTime: number;
 }
 
-export interface LeaderboardUser {
-  id: number;
-  name: string;
-  avatarUrl: string;
-  points: UserPoints;
-  joinDate?: string;
-  rank: number; // Will be added during processing
+export interface LeaderboardEntryRaw {
+  id: string;
+  userId: string;
+  scores: UserScores;
+  joinedAt: string;
 }
 
-export interface PaginatedResponse {
-  data: LeaderboardUser[];
+export interface User {
+  id: string;
+  displayName: string;
+  avatarUrl: string;
+}
+
+export interface LeaderboardRow {
+  userId: string;
+  displayName: string;
+  avatarUrl: string;
+  points: number;
+  rank: number;
+}
+
+export interface PaginatedLeaderboardResponse {
+  data: LeaderboardRow[];
   totalItems: number;
   totalPages: number;
   currentPage: number;
   hasMore: boolean;
 }
 
-// 2. Import Mock Data
-import mockData from "@/data/mockLeaderboardData.json";
-const DATA_PER_PAGE = 10;
+/* -------------------------------------------------------
+   MOCK DATA IMPORTS
+------------------------------------------------------- */
+
+import users from "@/data/users.json";
+
+import lbFabricaX from "@/data/leaderboardEntries/lb-fabrica-x.json";
+import lbChallenge1 from "@/data/leaderboardEntries/lb-challenge-1.json";
+import lbChallenge2 from "@/data/leaderboardEntries/lb-challenge-2.json";
+import lbChallenge3 from "@/data/leaderboardEntries/lb-challenge-3.json";
+
+/* -------------------------------------------------------
+   INTERNAL CONSTANTS
+------------------------------------------------------- */
+
+const PAGE_SIZE = 10;
+
+const leaderboardMap: Record<string, LeaderboardEntryRaw[]> = {
+  "lb-fabrica-x": lbFabricaX,
+  "lb-challenge-1": lbChallenge1,
+  "lb-challenge-2": lbChallenge2,
+  "lb-challenge-3": lbChallenge3,
+};
+
+const userMap = new Map<string, User>(users.map((u) => [u.id, u]));
+
+/* -------------------------------------------------------
+   MAIN API FUNCTION
+------------------------------------------------------- */
 
 /**
- * Simulates an asynchronous API call to fetch leaderboard data.
- * Includes filtering, sorting, pagination, and artificial delay.
+ * Simulates a backend leaderboard API.
+ * Handles sorting, ranking, pagination, and optional pinned user.
  */
-export async function fetchLeaderboardData(
-  filter: PeriodFilter,
-  page: number = 1
-): Promise<PaginatedResponse> {
+export async function fetchLeaderboardData({
+  leaderboardId,
+  period,
+  page = 1,
+}: {
+  leaderboardId: string;
+  period: PeriodFilter;
+  page?: number;
+}): Promise<PaginatedLeaderboardResponse> {
   // ------------------------------------
-  // A. SIMULATE API DELAY (300ms - 800ms)
+  // ARTIFICIAL NETWORK LATENCY
   // ------------------------------------
-  const delay = Math.floor(Math.random() * (800 - 300 + 1)) + 500;
-  await new Promise((resolve) => setTimeout(resolve, delay));
-
-  // ------------------------------------
-  // B. FILTER & SORT THE DATA
-  // ------------------------------------
-
-  // Determine which point field to use for sorting
-  let scoreKey: keyof UserPoints;
-  if (filter === "This Week") {
-    scoreKey = "week";
-  } else if (filter === "This Month") {
-    scoreKey = "month";
-  } else {
-    scoreKey = "allTime";
-  }
-
-  // 1. Sort the full dataset by the selected scoreKey (highest score first)
-  const sortedData = [...mockData].sort(
-    (a, b) => b.points[scoreKey] - a.points[scoreKey]
+  await new Promise((resolve) =>
+    setTimeout(resolve, 400 + Math.random() * 400)
   );
 
-  // 2. Add the rank to each user object (this is done on the server in a real API)
-  const rankedData: LeaderboardUser[] = sortedData.map((user, index) => ({
-    ...user,
-    rank: index + 1,
-  })) as LeaderboardUser[];
+  // ------------------------------------
+  // LOAD LEADERBOARD DATA
+  // ------------------------------------
+  const rawEntries = leaderboardMap[leaderboardId];
+
+  if (!rawEntries) {
+    throw new Error(`Leaderboard "${leaderboardId}" not found`);
+  }
 
   // ------------------------------------
-  // C. PAGINATION
+  // SORT BY SELECTED PERIOD (DESC)
   // ------------------------------------
-  const totalItems = rankedData.length;
-  const totalPages = Math.ceil(totalItems / DATA_PER_PAGE);
-
-  // Calculate start and end indexes for the current page
-  const startIndex = (page - 1) * DATA_PER_PAGE;
-  const endIndex = startIndex + DATA_PER_PAGE;
-
-  // Slice the data for the current page
-  const paginatedData = rankedData.slice(startIndex, endIndex);
+  const sorted = [...rawEntries].sort(
+    (a, b) => b.scores[period] - a.scores[period]
+  );
 
   // ------------------------------------
-  // D. RETURN THE RESPONSE
+  // ASSIGN RANKS (SERVER-SIDE LOGIC)
+  // ------------------------------------
+  let lastScore = Infinity;
+  let lastRank = 0;
+
+  const ranked = sorted.map((entry, index) => {
+    const score = entry.scores[period];
+    if (score !== lastScore) {
+      lastRank = index + 1;
+      lastScore = score;
+    }
+
+    const user = userMap.get(entry.userId);
+
+    return {
+      userId: entry.userId,
+      displayName: user?.displayName ?? "Unknown",
+      avatarUrl: user?.avatarUrl ?? "",
+      points: entry.scores[period],
+      rank: lastRank,
+    };
+  });
+
+  // ------------------------------------
+  // PAGINATION
+  // ------------------------------------
+  const totalItems = ranked.length;
+  const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+
+  // ✅ CLAMP PAGE NUMBER
+  const safePage = Math.max(1, Math.min(page, totalPages || 1));
+
+  const start = (safePage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+
+  const paginated = ranked.slice(start, end);
+
+  // ------------------------------------
+  // RESPONSE
   // ------------------------------------
   return {
-    data: paginatedData,
+    data: paginated,
     totalItems,
     totalPages,
-    currentPage: page,
-    hasMore: page < totalPages,
+    currentPage: safePage,
+    hasMore: safePage < totalPages,
   };
 }

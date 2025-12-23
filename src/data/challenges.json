@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fabrica-x",
+    "title": "Fabrica X",
+    "description": "Main competitive ladder",
+    "leaderboardId": "lb-fabrica-x"
+  },
+  {
+    "id": "challenge-1",
+    "title": "Challenge 1",
+    "description": "Speed Run challenge",
+    "leaderboardId": "lb-challenge-1"
+  },
+  {
+    "id": "challenge-2",
+    "title": "Challenge 2",
+    "description": "Egg Hunt challenge",
+    "leaderboardId": "lb-challenge-2"
+  },
+  {
+    "id": "challenge-3",
+    "title": "Challenge 3",
+    "description": "Boss Battle challenge",
+    "leaderboardId": "lb-challenge-3"
+  }
+]

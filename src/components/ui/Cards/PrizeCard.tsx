@@ -1,4 +1,4 @@
-import { PrizeCardProps } from "@/src/types/card";
+import { PrizeCardProps } from "@/types/card";
 import { BlurView } from "expo-blur";
 import {
   TouchableOpacity,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import SvgIcon from "../SvgIcon";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 import { Heading } from "../../typography/Heading";
 import { View, Text } from "../../Themed";

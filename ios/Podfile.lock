@@ -7,10 +7,18 @@ PODS:
     - ExpoModulesCore
   - Expo (50.0.21):
     - ExpoModulesCore
+  - ExpoBlur (12.9.2):
+    - ExpoModulesCore
   - ExpoFileSystem (16.0.9):
     - ExpoModulesCore
   - ExpoHead (3.4.10):
     - ExpoModulesCore
+  - ExpoImage (1.10.6):
+    - ExpoModulesCore
+    - SDWebImage (~> 5.17.0)
+    - SDWebImageAVIFCoder (~> 0.10.1)
+    - SDWebImageSVGCoder (~> 1.7.0)
+    - SDWebImageWebPCoder (~> 0.13.0)
   - ExpoKeepAwake (12.8.2):
     - ExpoModulesCore
   - ExpoLinearGradient (12.7.2):
@@ -44,7 +52,28 @@ PODS:
   - hermes-engine (0.73.6):
     - hermes-engine/Pre-built (= 0.73.6)
   - hermes-engine/Pre-built (0.73.6)
+  - libaom (3.0.0):
+    - libvmaf (>= 2.2.0)
+  - libavif (0.11.1):
+    - libavif/libaom (= 0.11.1)
+  - libavif/core (0.11.1)
+  - libavif/libaom (0.11.1):
+    - libaom (>= 2.0.0)
+    - libavif/core
   - libevent (2.1.12)
+  - libvmaf (2.3.1)
+  - libwebp (1.5.0):
+    - libwebp/demux (= 1.5.0)
+    - libwebp/mux (= 1.5.0)
+    - libwebp/sharpyuv (= 1.5.0)
+    - libwebp/webp (= 1.5.0)
+  - libwebp/demux (1.5.0):
+    - libwebp/webp
+  - libwebp/mux (1.5.0):
+    - libwebp/demux
+  - libwebp/sharpyuv (1.5.0)
+  - libwebp/webp (1.5.0):
+    - libwebp/sharpyuv
   - RCT-Folly (2022.05.16.00):
     - boost
     - DoubleConversion
@@ -1085,18 +1114,32 @@ PODS:
     - React-jsi (= 0.73.6)
     - React-logger (= 0.73.6)
     - React-perflogger (= 0.73.6)
+  - RNGestureHandler (2.29.1):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - RNReanimated (3.6.3):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
     - ReactCommon/turbomodule/core
-  - RNScreens (4.18.0):
+  - RNScreens (3.29.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-    - React-RCTImage
   - RNSVG (14.1.0):
     - React-Core
+  - SDWebImage (5.17.0):
+    - SDWebImage/Core (= 5.17.0)
+  - SDWebImage/Core (5.17.0)
+  - SDWebImageAVIFCoder (0.10.1):
+    - libavif (>= 0.11.0)
+    - SDWebImage (~> 5.10)
+  - SDWebImageSVGCoder (1.7.0):
+    - SDWebImage/Core (~> 5.6)
+  - SDWebImageWebPCoder (0.13.0):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.17)
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -1106,8 +1149,10 @@ DEPENDENCIES:
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - Expo (from `../node_modules/expo`)
+  - ExpoBlur (from `../node_modules/expo-blur/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoHead (from `../node_modules/expo-router/ios`)
+  - ExpoImage (from `../node_modules/expo-image/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
@@ -1163,6 +1208,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -1171,7 +1217,15 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - fmt
+    - libaom
+    - libavif
     - libevent
+    - libvmaf
+    - libwebp
+    - SDWebImage
+    - SDWebImageAVIFCoder
+    - SDWebImageSVGCoder
+    - SDWebImageWebPCoder
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1185,10 +1239,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-font/ios"
   Expo:
     :path: "../node_modules/expo"
+  ExpoBlur:
+    :path: "../node_modules/expo-blur/ios"
   ExpoFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   ExpoHead:
     :path: "../node_modules/expo-router/ios"
+  ExpoImage:
+    :path: "../node_modules/expo-image/ios"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoLinearGradient:
@@ -1294,6 +1352,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1309,8 +1369,10 @@ SPEC CHECKSUMS:
   EXConstants: c378c1b344ff1ecfbad27b90f0e48d1d0ead8cbb
   EXFont: 64e653a110eee050ad80dfcd676c4bada0a1ff92
   Expo: 1b33cb8ab60cff9abf805ed6020af3d1846e457c
+  ExpoBlur: 3a9548a738624968836926f4aa1e18fa22155640
   ExpoFileSystem: df58e1eb2a4d6f1006a1ca70bddfbbf63e52fa4f
   ExpoHead: 304de9c15437e3c4c0691587a3bb59ae42ad399f
+  ExpoImage: a70db90f39a7af98930cef91c84e877b1131f3dd
   ExpoKeepAwake: 3b8cf8533b9212500565a1e41fb080fc5af29918
   ExpoLinearGradient: 501f9bbd83f3ec1d0e0425862b9ef4693605fc1c
   ExpoModulesCore: 43ebd65adf2c0e6ffb0de24a41f8f7de12829331
@@ -1322,7 +1384,11 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   hermes-engine: 9cecf9953a681df7556b8cc9c74905de8f3293c0
+  libaom: 144606b1da4b5915a1054383c3a4459ccdb3c661
+  libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
+  libvmaf: 27f523f1e63c694d14d534cd0fddd2fab0ae8711
+  libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
   RCT-Folly: cd21f1661364f975ae76b3308167ad66b09f53f5
   RCTRequired: ca1d7414aba0b27efcfa2ccd37637edb1ab77d96
   RCTTypeSafety: 678e344fb976ff98343ca61dc62e151f3a042292
@@ -1365,9 +1431,14 @@ SPEC CHECKSUMS:
   React-runtimescheduler: a01dfb7ca980edebcc7d2d289ca900dea5d7e28b
   React-utils: 288c9cb9a73bb150c273c84df7c2f8546f28e23f
   ReactCommon: 2e5492a3e3a8e72d635c266405e49d12627e5bf0
+  RNGestureHandler: f486293adb7105372945d26a356960096c0a47e1
   RNReanimated: 8adb252a83153bb04b99abf93a09b47d4cac8f92
-  RNScreens: 3468822ceebfaeca8a059b6666ee6df374da4cb8
+  RNScreens: 59f615aa0782077560c8eea46c2daec3a716dba9
   RNSVG: 6d5ed33b6635ed6d6ecb50744dcf127580c39ed5
+  SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
+  SDWebImageAVIFCoder: 8348fef6d0ec69e129c66c9fe4d74fbfbf366112
+  SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
+  SDWebImageWebPCoder: af09429398d99d524cae2fe00f6f0f6e491ed102
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 805bf71192903b20fc14babe48080582fee65a80
 

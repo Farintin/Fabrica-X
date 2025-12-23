@@ -1,5 +1,5 @@
-import { PointCardProps } from "@/src/types/card";
-import { useTheme } from "@/src/hooks/useTheme";
+import { PointCardProps } from "@/types/card";
+import { useTheme } from "@/hooks/useTheme";
 import PointsButton from "../Button/PointsButton";
 import { View, Text } from "../../Themed";
 

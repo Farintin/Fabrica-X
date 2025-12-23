@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
 import SvgIcon from "../../../SvgIcon";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
 import Highlight from "../Highlight";
 import Article from "../Article";
-import { Heading } from "@/src/components/typography/Heading";
+import { Heading } from "@/components/typography/Heading";
 
 export default function AwardCard() {
   const theme = useTheme();

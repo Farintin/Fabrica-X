@@ -1,7 +1,7 @@
 // src/components/ui/Challenge/Banner/index.tsx
 import { Alert, Pressable, StyleSheet, View, ViewProps } from "react-native";
 import { ImageBackground } from "expo-image";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import BannerButton from "../../Button/BannerButton";
 import Animated, {
   useSharedValue,

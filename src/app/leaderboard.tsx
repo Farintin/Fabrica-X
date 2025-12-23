@@ -1,44 +1,43 @@
 // src/app/leaderboard.tsx
 import { ActivityIndicator } from "react-native";
-import { PeriodFilter } from "@/src/libs/api/leaderboardApi";
-import { LastRankPreviewCard } from "@/src/components/ui/Cards";
-import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
-import { useTheme } from "../hooks/useTheme";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import LeaderboardHeader from "../components/ui/Header/LeaderboardHeader";
-import SvgIcon from "../components/ui/SvgIcon";
 import { useEffect, useState } from "react";
-import LeaderboardFilterModal from "../components/ui/Leaderboard/LeaderboardFilterModal";
-import { useRouter } from "expo-router";
-import LeaderboardList from "../components/ui/Leaderboard/LeaderboardList";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated from "react-native-reanimated";
-import { lastRankEnter } from "@/src/components/ui/Leaderboard/animations";
-import { LeaderboardNavButton } from "../components/ui/Button";
-import { View } from "../components/Themed";
+
+import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
+import { useTheme } from "@/hooks/useTheme";
+
+import LeaderboardHeader from "@/components/ui/Header/LeaderboardHeader";
+import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
+import LeaderboardFilterModal from "@/components/ui/Leaderboard/LeaderboardFilterModal";
+import { LastRankPreviewCard } from "@/components/ui/Cards";
+import { LeaderboardNavButton } from "@/components/ui/Button";
+import SvgIcon from "@/components/ui/SvgIcon";
+import { lastRankEnter } from "@/components/ui/Leaderboard/animations";
+import { View } from "@/components/Themed";
+import { LEADERBOARDS } from "@/constants/Leaderboards";
 
 export default function Leaderboard() {
-  const [headerReady, setHeaderReady] = useState(false);
-
-  const [showFilter, setShowFilter] = useState(false);
   const theme = useTheme();
   const { top, bottom } = useSafeAreaInsets();
 
-  const router = useRouter();
-
-  const goBackHandler = () => {
-    router.canGoBack() ? router.back() : null;
-  };
+  const [headerReady, setHeaderReady] = useState(false);
+  const [showFilter, setShowFilter] = useState(false);
 
   const {
     data,
-    filter,
-    setFilter,
+    leaderboardId,
+    setLeaderboardId,
+    period,
+    setPeriod,
     isLoading,
     loadNextPage,
     isFetchingNextPage,
-  } = useLeaderboardApi();
+  } = useLeaderboardApi({
+    leaderboardId: "lb-fabrica-x",
+  });
 
-  const lastRank = data.length > 0 ? data[data.length - 1] : undefined;
+  const lastRank = data.at(-1);
 
   useEffect(() => {
     requestAnimationFrame(() => setHeaderReady(true));
@@ -55,6 +54,7 @@ export default function Leaderboard() {
     >
       <LeaderboardHeader />
 
+      {/* Controls */}
       <View
         style={{
           flexDirection: "row",
@@ -72,13 +72,15 @@ export default function Leaderboard() {
         />
 
         <LeaderboardNavButton
-          label="Fabrica X"
-          onPress={goBackHandler}
+          label={LEADERBOARDS.find((lb) => lb.id === leaderboardId)?.label}
+          disabled
           style={{ flexGrow: 1 }}
         />
       </View>
 
-      {/* Last rank */}
+      {/* Leaderboard Selector (Figma position) */}
+
+      {/* Last Rank Preview */}
       {isLoading && data.length === 0 ? (
         <ActivityIndicator
           color={theme.colors.primary}
@@ -89,7 +91,6 @@ export default function Leaderboard() {
         headerReady && (
           <Animated.View entering={lastRankEnter}>
             <LastRankPreviewCard
-              userId={lastRank.id}
               {...lastRank}
               style={{ marginHorizontal: theme.spacing.base }}
             />
@@ -98,11 +99,7 @@ export default function Leaderboard() {
       )}
 
       {/* List */}
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
+      <View style={{ flex: 1 }}>
         <LeaderboardList
           data={data}
           isLoading={isLoading}
@@ -115,13 +112,13 @@ export default function Leaderboard() {
         />
       </View>
 
+      {/* Filter Modal */}
       <LeaderboardFilterModal
         visible={showFilter}
-        value={filter}
-        onSelect={(period: PeriodFilter) => {
-          setFilter(period); // 🔥 triggers API refetch + sort
-          setShowFilter(false);
-        }}
+        period={period}
+        leaderboardId={leaderboardId}
+        onSelectPeriod={setPeriod}
+        onSelectLeaderboard={setLeaderboardId}
         onClose={() => setShowFilter(false)}
       />
     </View>

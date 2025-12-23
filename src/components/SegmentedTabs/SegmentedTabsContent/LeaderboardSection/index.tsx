@@ -1,20 +1,22 @@
 // src/components/screens/SegmentedTabs/index.tsx
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { View, ActivityIndicator } from "react-native";
-import Button from "@/src/components/ui/Button/Button";
-import { useLeaderboardApi } from "@/src/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
+import Button from "@/components/ui/Button/Button";
+import { useLeaderboardApi } from "@/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
 import { useRouter } from "expo-router";
-import LeaderboardList from "@/src/components/ui/Leaderboard/LeaderboardList";
-import LeaderboardTabHeader from "@/src/components/ui/Leaderboard/LeaderboardTabHeader";
+import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
+import LeaderboardTabHeader from "@/components/ui/Leaderboard/LeaderboardTabHeader";
 
 export default function LeaderboardSection() {
   const theme = useTheme();
   const router = useRouter();
 
   // 👈 CALL THE API HOOK ONCE HERE
-  const apiState = useLeaderboardApi();
+
   const { isLoading, data, loadNextPage, hasMore, isFetchingNextPage } =
-    apiState;
+    useLeaderboardApi({
+      leaderboardId: "lb-fabrica-x",
+    });
 
   // Show a full screen loading indicator if it's the very first load
   if (isLoading && data.length === 0) {

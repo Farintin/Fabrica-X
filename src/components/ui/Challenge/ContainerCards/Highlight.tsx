@@ -1,4 +1,4 @@
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { View, ViewProps } from "react-native";
 
 export default function Highlight({ children, style }: ViewProps) {

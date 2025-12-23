@@ -3,10 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./src/*"],
       "@/assets/*": ["./src/assets/*"],
+      "@/data/*": ["./src/data/*"],
       "@/api/*": ["./src/libs/api/*"],
-      "@/data/*": ["./src/libs/data/*"],
       "@/app/*": ["./src/app/*"],
       "@/components/*": ["./src/components/*"],
       "@/constants/*": ["./src/constants/*"],

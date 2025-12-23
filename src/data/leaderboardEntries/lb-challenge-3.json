@@ -1,0 +1,22 @@
+[
+{"id": "lbe-c3-001", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-001", "scores": {"week": 450, "month": 2000, "allTime": 8000}, "joinedAt": "2024-06-10T09:00:00Z"},
+{"id": "lbe-c3-002", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-002", "scores": {"week": 430, "month": 1950, "allTime": 7600}, "joinedAt": "2024-06-10T09:05:00Z"},
+{"id": "lbe-c3-003", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-003", "scores": {"week": 410, "month": 1900, "allTime": 7200}, "joinedAt": "2024-06-10T09:10:00Z"},
+{"id": "lbe-c3-004", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-004", "scores": {"week": 390, "month": 1850, "allTime": 6800}, "joinedAt": "2024-06-10T09:15:00Z"},
+{"id": "lbe-c3-005", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-005", "scores": {"week": 370, "month": 1800, "allTime": 6400}, "joinedAt": "2024-06-10T09:20:00Z"},
+{"id": "lbe-c3-006", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-006", "scores": {"week": 350, "month": 1750, "allTime": 6000}, "joinedAt": "2024-06-10T09:25:00Z"},
+{"id": "lbe-c3-007", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-007", "scores": {"week": 330, "month": 1700, "allTime": 5600}, "joinedAt": "2024-06-10T09:30:00Z"},
+{"id": "lbe-c3-008", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-008", "scores": {"week": 310, "month": 1650, "allTime": 5200}, "joinedAt": "2024-06-10T09:35:00Z"},
+{"id": "lbe-c3-009", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-009", "scores": {"week": 290, "month": 1600, "allTime": 4800}, "joinedAt": "2024-06-10T09:40:00Z"},
+{"id": "lbe-c3-010", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-010", "scores": {"week": 270, "month": 1550, "allTime": 4400}, "joinedAt": "2024-06-10T09:45:00Z"},
+{"id": "lbe-c3-011", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-011", "scores": {"week": 250, "month": 1500, "allTime": 4000}, "joinedAt": "2024-06-10T09:50:00Z"},
+{"id": "lbe-c3-012", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-012", "scores": {"week": 230, "month": 1450, "allTime": 3600}, "joinedAt": "2024-06-10T09:55:00Z"},
+{"id": "lbe-c3-013", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-013", "scores": {"week": 210, "month": 1400, "allTime": 3200}, "joinedAt": "2024-06-10T10:00:00Z"},
+{"id": "lbe-c3-014", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-014", "scores": {"week": 190, "month": 1350, "allTime": 2800}, "joinedAt": "2024-06-10T10:05:00Z"},
+{"id": "lbe-c3-015", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-015", "scores": {"week": 170, "month": 1300, "allTime": 2400}, "joinedAt": "2024-06-10T10:10:00Z"},
+{"id": "lbe-c3-016", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-016", "scores": {"week": 150, "month": 1250, "allTime": 2000}, "joinedAt": "2024-06-10T10:15:00Z"},
+{"id": "lbe-c3-017", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-017", "scores": {"week": 130, "month": 1200, "allTime": 1600}, "joinedAt": "2024-06-10T10:20:00Z"},
+{"id": "lbe-c3-018", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-018", "scores": {"week": 110, "month": 1150, "allTime": 1200}, "joinedAt": "2024-06-10T10:25:00Z"},
+{"id": "lbe-c3-019", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-019", "scores": {"week": 90, "month": 1100, "allTime": 800}, "joinedAt": "2024-06-10T10:30:00Z"},
+{"id": "lbe-c3-020", "leaderboardId": "lb-challenge-3", "challengeId": "challenge-3", "userId": "user-020", "scores": {"week": 70, "month": 1050, "allTime": 400}, "joinedAt": "2024-06-10T10:35:00Z"}
+]

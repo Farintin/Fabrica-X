@@ -1,10 +1,10 @@
 // src/components/ui/Leaderboard/LeaderboardTabHeader.tsx
-import { useLeaderboardApi } from "@/src/hooks/useLeaderboardApi";
+import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { router } from "expo-router";
 import { ViewProps, View, Text } from "react-native";
 import Animated from "react-native-reanimated";
 import { LastRankPreviewCard } from "../Cards";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import OutlinedButton from "../Button/OutlinedButton";
 import { lastRankEnter, lastRankEnterDelayed } from "./animations";
 import { Heading } from "../../typography/Heading";
@@ -17,7 +17,9 @@ export default function LeaderboardTabHeader({
 }: { isSticky?: boolean } & ViewProps) {
   const theme = useTheme();
 
-  const apiState = useLeaderboardApi();
+  const apiState = useLeaderboardApi({
+    leaderboardId: "lb-fabrica-x",
+  });
   const { data } = apiState;
   // Find the last item (lowest rank displayed)
   const lastRank = data.length > 0 ? data[data.length - 1] : undefined;
@@ -46,8 +48,6 @@ export default function LeaderboardTabHeader({
           entering={isSticky ? lastRankEnter : lastRankEnterDelayed}
         >
           <LastRankPreviewCard
-            // 🎯 THE FIX: Explicitly map 'id' to 'userId'
-            userId={lastRank.id}
             // Spread the rest of the properties from the data object
             {...lastRank}
           />

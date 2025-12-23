@@ -1,5 +1,5 @@
-import { Text, TextProps } from "@/src/components/Themed";
-import { useTheme } from "@/src/hooks/useTheme";
+import { Text, TextProps } from "@/components/Themed";
+import { useTheme } from "@/hooks/useTheme";
 
 type HeadingProps = TextProps & {
   align?: "left" | "center" | "right";

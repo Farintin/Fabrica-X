@@ -1,14 +1,19 @@
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { Image } from "expo-image";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { RankProps } from "@/src/types";
+import { RankProps } from "@/types";
 import { Heading } from "../../typography/Heading";
 
 const rankOneImage = require("@/assets/images/rank-one-image.png");
 const rankTwoImage = require("@/assets/images/rank-two-image.png");
 const rankThreeImage = require("@/assets/images/rank-three-image.png");
 
-export default function RankCard({ name, points, rank, style }: RankProps) {
+export default function RankCard({
+  displayName,
+  points,
+  rank,
+  style,
+}: RankProps) {
   const theme = useTheme();
 
   const rankStyles = {
@@ -79,7 +84,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
           ]}
         >
           <Heading tone="white" style={[styles.nameAvatar]}>
-            {name.substring(0, 2)}
+            {displayName.substring(0, 2)}
           </Heading>
         </View>
         <Text
@@ -88,7 +93,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
             { color: rank <= 3 ? "#3A3A3C" : theme.colors.natural.white },
           ]}
         >
-          {name}
+          {displayName}
         </Text>
       </View>
       <View
@@ -110,7 +115,7 @@ export default function RankCard({ name, points, rank, style }: RankProps) {
             },
           ]}
         >
-          {points.allTime}
+          {points}
         </Heading>
         <Text
           style={[

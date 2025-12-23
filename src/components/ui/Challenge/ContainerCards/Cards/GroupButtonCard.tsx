@@ -1,7 +1,7 @@
-import { ContainerProps } from "@/src/types";
+import { ContainerProps } from "@/types";
 import { View, Alert } from "react-native";
 import ChallengeCard from "../../../Cards/ChallengeCards";
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { ChallengeWhiteButton } from "../../../Button";
 
 export default function GroupButtonCard({

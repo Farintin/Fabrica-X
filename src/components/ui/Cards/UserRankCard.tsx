@@ -1,14 +1,4 @@
-import { LeaderboardUser } from "@/src/libs/api/leaderboardApi";
-import { useTheme } from "@/src/hooks/useTheme";
-import { Image } from "expo-image";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
-import { RankProps } from "@/src/types";
+import { RankProps } from "@/types";
 import RankCard from "./RankCard";
 
 export default function UserRankCard({ style, ...restProps }: RankProps) {
@@ -24,19 +14,3 @@ export default function UserRankCard({ style, ...restProps }: RankProps) {
     />
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  avatar: {
-    width: 42,
-    aspectRatio: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  nameAvatar: { textTransform: "uppercase" },
-});

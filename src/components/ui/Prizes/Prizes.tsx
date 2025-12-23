@@ -1,4 +1,4 @@
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import PrizeCard from "../Cards/PrizeCard";
 import { StyleSheet } from "react-native";
 import { Heading } from "../../typography/Heading";

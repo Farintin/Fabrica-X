@@ -1,8 +1,8 @@
 import { StyleProp, ViewStyle } from "react-native";
 import SvgIcon from "../SvgIcon"; // Import the icon component
-import { useTheme } from "@/src/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import Button from "./Button";
-import { IconButtonProps } from "@/src/types/button";
+import { IconButtonProps } from "@/types/button";
 
 export default function ChallengeWhiteButton({
   iconName,

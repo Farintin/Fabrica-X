@@ -7,20 +7,20 @@ import {
   NativeSyntheticEvent,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import HeaderNav from "@/src/components/ui/Header/HeaderNav";
+import HeaderNav from "@/components/ui/Header/HeaderNav";
 import Challenge from "@/components/ui/Challenge";
 import SegmentedTabs from "@/components/SegmentedTabs";
 import { useTheme } from "@/hooks/useTheme";
 import Animated from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
-import OverlayHeader from "../components/ui/Header/OverlayHeader";
-import SegmentedTabsNav from "../components/SegmentedTabs/SegmentedTabsNav";
-import LeaderboardTabHeader from "../components/ui/Leaderboard/LeaderboardTabHeader";
+import OverlayHeader from "@/components/ui/Header/OverlayHeader";
+import SegmentedTabsNav from "@/components/SegmentedTabs/SegmentedTabsNav";
+import LeaderboardTabHeader from "@/components/ui/Leaderboard/LeaderboardTabHeader";
 import {
   useHeaderAnimation,
   useStickyTabsNavAnimation,
-} from "../hooks/animations";
-import { View } from "../components/Themed";
+} from "@/hooks/animations";
+import { View } from "@/components/Themed";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -167,7 +167,7 @@ export default function Home() {
               <SegmentedTabs
                 value={tab}
                 setHandler={setTab}
-                onLayout={(e) => {
+                onLayout={(e: any) => {
                   const { height, y } = e.nativeEvent.layout;
                   tabsY.current = y;
 
