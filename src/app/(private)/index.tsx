@@ -5,10 +5,11 @@ import {
   ScrollView,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  LayoutChangeEvent,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeHeader from "@/components/ui/Header/HomeHeader";
-import Challenge from "@/components/ui/Challenge";
+import Challenge from "@/components/Challenge";
 import SegmentedTabs from "@/components/Tabs/SegmentedTabs";
 import { useTheme } from "@/hooks/theme/useTheme";
 import Animated from "react-native-reanimated";
@@ -103,7 +104,7 @@ export default function Home() {
             <Animated.View style={headerAnim}>
               <HomeHeader
                 title={isTabsSticky ? "Fabrica X" : ""}
-                onLayout={(e) => {
+                onLayout={(e: LayoutChangeEvent) => {
                   headerNavHeight.current = e.nativeEvent.layout.height;
                 }}
               />
@@ -154,7 +155,7 @@ export default function Home() {
             overScrollMode="never"
           >
             <Challenge
-              onLayout={(e) => {
+              onLayout={(e: LayoutChangeEvent) => {
                 challengeY.current = e.nativeEvent.layout.y;
                 // allow challenge to mount first
                 requestAnimationFrame(() => setChallengeReady(true));
@@ -167,7 +168,7 @@ export default function Home() {
               <SegmentedTabs
                 value={tab}
                 setHandler={setTab}
-                onLayout={(e: any) => {
+                onLayout={(e: LayoutChangeEvent) => {
                   const { height, y } = e.nativeEvent.layout;
                   tabsY.current = y;
 
