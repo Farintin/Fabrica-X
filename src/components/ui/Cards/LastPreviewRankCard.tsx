@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Heading } from "../../typography/Heading";
 import UserRankCardAvatar from "../Avatar/UserRankCardAvatar";
 
-export default function LastRankPreviewCard({
+export default function LastPreviewRankCard({
   avatarUrl,
   displayName,
   points,

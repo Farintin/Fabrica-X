@@ -3,11 +3,11 @@ import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { router } from "expo-router";
 import { ViewProps, View, Text } from "react-native";
 import Animated from "react-native-reanimated";
-import { LastRankPreviewCard } from "../Cards";
 import { useTheme } from "@/hooks/useTheme";
 import OutlinedButton from "../Button/OutlinedButton";
 import { lastRankEnter, lastRankEnterDelayed } from "./animations";
 import { Heading } from "../../typography/Heading";
+import { LastPreviewRankCard } from "../Cards";
 
 // --- 2. LeaderboardHeader Component ---
 // This component now displays the current user's rank based on the hook data
@@ -47,7 +47,7 @@ export default function LeaderboardTabHeader({
         <Animated.View
           entering={isSticky ? lastRankEnter : lastRankEnterDelayed}
         >
-          <LastRankPreviewCard
+          <LastPreviewRankCard
             // Spread the rest of the properties from the data object
             {...lastRank}
           />

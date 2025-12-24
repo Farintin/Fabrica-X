@@ -10,7 +10,7 @@ import { useTheme } from "@/hooks/useTheme";
 import LeaderboardHeader from "@/components/ui/Header/LeaderboardHeader";
 import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
 import LeaderboardFilterModal from "@/components/ui/Leaderboard/LeaderboardFilterModal";
-import { LastRankPreviewCard } from "@/components/ui/Cards";
+import { LastPreviewRankCard } from "@/components/ui/Cards";
 import { LeaderboardNavButton } from "@/components/ui/Button";
 import SvgIcon from "@/components/ui/SvgIcon";
 import { lastRankEnter } from "@/components/ui/Leaderboard/animations";
@@ -90,7 +90,7 @@ export default function Leaderboard() {
         lastRank &&
         headerReady && (
           <Animated.View entering={lastRankEnter}>
-            <LastRankPreviewCard
+            <LastPreviewRankCard
               {...lastRank}
               style={{ marginHorizontal: theme.spacing.base }}
             />

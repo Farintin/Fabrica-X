@@ -1,7 +1,7 @@
 import { RankProps } from "@/types";
 import RankCard from "./RankCard";
 
-export default function UserRankCard({ style, ...restProps }: RankProps) {
+export default function HighlightRankCard({ style, ...restProps }: RankProps) {
   return (
     <RankCard
       style={{

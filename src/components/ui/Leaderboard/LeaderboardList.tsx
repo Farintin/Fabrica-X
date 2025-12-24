@@ -6,9 +6,9 @@ import {
   View,
 } from "react-native";
 import Animated, { FadeInLeft } from "react-native-reanimated";
-import { RankCard } from "../Cards";
+import { HighlightRankCard, RankCard } from "../Cards";
 import { useTheme } from "@/hooks/useTheme";
-import UserRankCard from "../Cards/UserRankCard";
+import UserRankCard from "../Cards/HighlightRankCard";
 import { useRef } from "react";
 import { LeaderboardRow } from "@/libs/api/leaderboardApi";
 
@@ -58,7 +58,7 @@ export default function LeaderboardList({
                 )}
               >
                 {CURRENT_USER_ID === userId && rank >= 3 ? (
-                  <UserRankCard {...item} />
+                  <HighlightRankCard {...item} />
                 ) : (
                   <RankCard {...item} />
                 )}
