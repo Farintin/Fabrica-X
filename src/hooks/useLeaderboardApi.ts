@@ -1,11 +1,8 @@
 // src/hooks/useLeaderboardApi.ts
 import { useState, useEffect, useCallback } from "react";
-import {
-  fetchLeaderboardData,
-  PeriodFilter,
-  LeaderboardRow,
-} from "@/libs/api/leaderboardApi";
+import { fetchLeaderboardData } from "@/libs/api/leaderboardApi";
 import { LeaderboardId } from "@/constants/Leaderboards";
+import { LeaderboardRow, PeriodFilter } from "@/types/leaderboard";
 
 /* -------------------------------------------------------
    STATE
