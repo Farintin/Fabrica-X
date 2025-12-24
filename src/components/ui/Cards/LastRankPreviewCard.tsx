@@ -1,10 +1,13 @@
+// src/components/ui/Cards/LastRankPreviewCard.tsx
 import { useTheme } from "@/hooks/useTheme";
 import { RankProps } from "@/types";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, StyleSheet } from "react-native";
 import { Heading } from "../../typography/Heading";
+import UserRankCardAvatar from "../Avatar/UserRankCardAvatar";
 
 export default function LastRankPreviewCard({
+  avatarUrl,
   displayName,
   points,
   rank,
@@ -33,19 +36,15 @@ export default function LastRankPreviewCard({
           gap: theme.spacing.xs,
         }}
       >
-        <View
+        <UserRankCardAvatar
+          displayName={displayName}
+          avatarUrl={avatarUrl}
           style={[
-            styles.avatar,
             {
               backgroundColor: "#808080",
-              borderRadius: theme.radius.pill,
             },
           ]}
-        >
-          <Heading tone="white" style={[styles.nameAvatar]}>
-            {displayName.substring(0, 2)}
-          </Heading>
-        </View>
+        />
         <Text style={[theme.typography.desc, { color: "#3A3A3C" }]}>
           {displayName}
         </Text>

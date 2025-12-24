@@ -1,14 +1,17 @@
+// src/components/ui/Cards/RankCard.tsx
 import { useTheme } from "@/hooks/useTheme";
 import { Image } from "expo-image";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { RankProps } from "@/types";
 import { Heading } from "../../typography/Heading";
+import UserRankCardAvatar from "../Avatar/UserRankCardAvatar";
 
 const rankOneImage = require("@/assets/images/rank-one-image.png");
 const rankTwoImage = require("@/assets/images/rank-two-image.png");
 const rankThreeImage = require("@/assets/images/rank-three-image.png");
 
 export default function RankCard({
+  avatarUrl,
   displayName,
   points,
   rank,
@@ -74,19 +77,7 @@ export default function RankCard({
           gap: theme.spacing.sm,
         }}
       >
-        <View
-          style={[
-            styles.avatar,
-            {
-              backgroundColor: "#A0A0A7",
-              borderRadius: theme.radius.pill,
-            },
-          ]}
-        >
-          <Heading tone="white" style={[styles.nameAvatar]}>
-            {displayName.substring(0, 2)}
-          </Heading>
-        </View>
+        <UserRankCardAvatar displayName={displayName} avatarUrl={avatarUrl} />
         <Text
           style={[
             theme.typography.desc,
@@ -136,12 +127,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  avatar: {
-    width: 42,
-    aspectRatio: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  nameAvatar: { textTransform: "uppercase" },
 });
