@@ -4,8 +4,8 @@ import Animated, { FadeInLeft } from "react-native-reanimated";
 import { HighlightRankCard, RankCard } from "../Cards";
 import { useTheme } from "@/hooks/theme/useTheme";
 import { useRef } from "react";
-import { LeaderboardRow } from "@/libs/api/leaderboardApi";
 import { ThemedView } from "@/components/Themed";
+import { LeaderboardRow } from "@/types/leaderboard";
 
 // --- 1. LeaderboardList Component ---
 const CURRENT_USER_ID = "user-005";

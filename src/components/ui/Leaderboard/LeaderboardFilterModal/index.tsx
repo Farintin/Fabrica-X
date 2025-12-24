@@ -3,7 +3,7 @@ import { Modal, Pressable } from "react-native";
 import { useState } from "react";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
 
-import { PeriodFilter } from "@/libs/api/leaderboardApi";
+import { PeriodFilter } from "@/types/leaderboard";
 import {
   LeaderboardId,
   LEADERBOARDS,

@@ -1,45 +1,7 @@
 // src/libs/api/leaderboardApi.ts
-
-/* -------------------------------------------------------
-   TYPES
-------------------------------------------------------- */
-
-export type PeriodFilter = "week" | "month" | "allTime";
-
-export interface UserScores {
-  week: number;
-  month: number;
-  allTime: number;
-}
-
-export interface LeaderboardEntryRaw {
-  id: string;
-  userId: string;
-  scores: UserScores;
-  joinedAt: string;
-}
-
-export interface User {
-  id: string;
-  displayName: string;
-  avatarUrl: string;
-}
-
-export interface LeaderboardRow {
-  userId: string;
-  displayName: string;
-  avatarUrl: string;
-  points: number;
-  rank: number;
-}
-
-export interface PaginatedLeaderboardResponse {
-  data: LeaderboardRow[];
-  totalItems: number;
-  totalPages: number;
-  currentPage: number;
-  hasMore: boolean;
-}
+import { User, PeriodFilter } from "@/types/leaderboard";
+import { LeaderboardEntryRaw } from "@/types/api/leaderboard";
+import { PaginatedLeaderboardResponse } from "@/types/api/pagination";
 
 /* -------------------------------------------------------
    MOCK DATA IMPORTS
