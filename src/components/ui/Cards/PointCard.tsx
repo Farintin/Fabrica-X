@@ -1,7 +1,7 @@
 import { PointCardProps } from "@/types/card";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import PointsButton from "../Button/PointsButton";
-import { View, Text } from "../../Themed";
+import { ThemedView, ThemedText } from "@/components/Themed";
 
 export default function PointCard({
   title,
@@ -12,7 +12,7 @@ export default function PointCard({
   const theme = useTheme();
 
   return (
-    <View
+    <ThemedView
       style={[
         {
           backgroundColor: "#808080",
@@ -25,7 +25,7 @@ export default function PointCard({
         style,
       ]}
     >
-      <View
+      <ThemedView
         style={[
           {
             gap: theme.spacing.base,
@@ -33,16 +33,16 @@ export default function PointCard({
           style,
         ]}
       >
-        <Text
+        <ThemedText
           style={[theme.typography.heading, { color: theme.colors.primary }]}
         >
           {title}
-        </Text>
-        <Text style={[theme.typography.desc, { color: "#E6E6E6" }]}>
+        </ThemedText>
+        <ThemedText style={[theme.typography.desc, { color: "#E6E6E6" }]}>
           {desc}
-        </Text>
-      </View>
+        </ThemedText>
+      </ThemedView>
       <PointsButton point={point} style={{ alignSelf: "flex-end" }} />
-    </View>
+    </ThemedView>
   );
 }

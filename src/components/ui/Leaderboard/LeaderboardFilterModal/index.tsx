@@ -9,9 +9,14 @@ import {
   LEADERBOARDS,
   PERIOD_OPTIONS,
 } from "@/constants/Leaderboards";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import SvgIcon from "@/components/ui/SvgIcon";
-import { View, Text, ViewProps, TextProps } from "@/components/Themed";
+import {
+  ThemedViewProps,
+  ThemedTextProps,
+  ThemedText,
+  ThemedView,
+} from "@/components/Themed";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const CLOSE_DELAY = 150;
@@ -25,10 +30,10 @@ interface Props {
   onClose: () => void;
 }
 
-const Row = ({ style, ...restProps }: ViewProps) => {
+const Row = ({ style, ...restProps }: ThemedViewProps) => {
   const theme = useTheme();
   return (
-    <View
+    <ThemedView
       style={[
         {
           flexDirection: "row",
@@ -43,10 +48,10 @@ const Row = ({ style, ...restProps }: ViewProps) => {
   );
 };
 
-const HeadingText = ({ style, ...restProps }: TextProps) => {
+const HeadingText = ({ style, ...restProps }: ThemedTextProps) => {
   const theme = useTheme();
   return (
-    <Text
+    <ThemedText
       style={[
         theme.typography.title,
         {
@@ -79,7 +84,7 @@ const SelectItem = ({
         alignItems: "center",
       }}
     >
-      <Text
+      <ThemedText
         style={[
           theme.typography.button,
           {
@@ -88,10 +93,10 @@ const SelectItem = ({
         ]}
       >
         {label}
-      </Text>
+      </ThemedText>
 
       {selected ? (
-        <View
+        <ThemedView
           style={{
             width: 18,
             height: 18,
@@ -102,7 +107,7 @@ const SelectItem = ({
             justifyContent: "center",
           }}
         >
-          <View
+          <ThemedView
             style={{
               width: 11,
               height: 11,
@@ -110,9 +115,9 @@ const SelectItem = ({
               backgroundColor: theme.colors.primary,
             }}
           />
-        </View>
+        </ThemedView>
       ) : (
-        <View
+        <ThemedView
           style={{
             width: 18,
             height: 18,
@@ -145,12 +150,12 @@ const RootView = ({
     requestClose();
   };
   return (
-    <View
+    <ThemedView
       style={{
         gap: theme.spacing.lg,
       }}
     >
-      <View
+      <ThemedView
         style={{
           gap: theme.spacing.md,
         }}
@@ -168,17 +173,17 @@ const RootView = ({
             />
           );
         })}
-      </View>
+      </ThemedView>
 
       {/* Challenge Navigation */}
-      <View>
+      <ThemedView>
         <SelectItem
           selected={true}
           label="Challenge"
           onSelect={() => setView("challenge")}
         />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 };
 
@@ -198,7 +203,7 @@ const ChallengeView = ({
   };
 
   return (
-    <View
+    <ThemedView
       style={{
         gap: theme.spacing.md,
       }}
@@ -215,7 +220,7 @@ const ChallengeView = ({
           />
         );
       })}
-    </View>
+    </ThemedView>
   );
 };
 

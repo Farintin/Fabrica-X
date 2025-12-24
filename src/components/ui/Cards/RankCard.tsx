@@ -1,10 +1,11 @@
 // src/components/ui/Cards/RankCard.tsx
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { Image } from "expo-image";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { RankProps } from "@/types";
 import { Heading } from "../../typography/Heading";
 import UserRankCardAvatar from "../Avatar/UserRankCardAvatar";
+import { ThemedView, ThemedText } from "@/components/Themed";
 
 const rankOneImage = require("@/assets/images/rank-one-image.png");
 const rankTwoImage = require("@/assets/images/rank-two-image.png");
@@ -48,7 +49,7 @@ export default function RankCard({
         style,
       ]}
     >
-      <View
+      <ThemedView
         style={[
           {
             width: 32,
@@ -67,8 +68,8 @@ export default function RankCard({
         ) : (
           <Heading tone="white">{rank}</Heading>
         )}
-      </View>
-      <View
+      </ThemedView>
+      <ThemedView
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -78,16 +79,16 @@ export default function RankCard({
         }}
       >
         <UserRankCardAvatar displayName={displayName} avatarUrl={avatarUrl} />
-        <Text
+        <ThemedText
           style={[
             theme.typography.desc,
             { color: rank <= 3 ? "#3A3A3C" : theme.colors.natural.white },
           ]}
         >
           {displayName}
-        </Text>
-      </View>
-      <View
+        </ThemedText>
+      </ThemedView>
+      <ThemedView
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -108,15 +109,15 @@ export default function RankCard({
         >
           {points}
         </Heading>
-        <Text
+        <ThemedText
           style={[
             theme.typography.desc,
             { color: rank <= 3 ? "#808080" : "rgba(255, 255, 255, .55)" },
           ]}
         >
           pts
-        </Text>
-      </View>
+        </ThemedText>
+      </ThemedView>
     </TouchableOpacity>
   );
 }

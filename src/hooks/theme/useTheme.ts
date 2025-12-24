@@ -11,4 +11,4 @@ export const useTheme = () => {
   };
 };
 
-// Note: If you add Dark Mode later, this hook would use React Context.
+// Note: With add Dark Mode later, this hook would use React Context.

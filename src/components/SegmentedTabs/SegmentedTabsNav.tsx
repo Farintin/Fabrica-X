@@ -1,14 +1,14 @@
 // src/components/SegmentedTabs/SegmentedTabsNav/index.tsx
-import { View, ViewProps } from "react-native";
 import { useEffect } from "react";
 import {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { SegmentedTabsNavProps } from "@/types/tabs";
 import { ActiveTabIndicator, TabButton } from "../ui/Button/SegmentedTabButton";
+import { ThemedView, ThemedViewProps } from "../Themed";
 
 export default function SegmentedTabsNav({
   isSticky,
@@ -16,7 +16,7 @@ export default function SegmentedTabsNav({
   onChange,
   style,
   ...restProps
-}: SegmentedTabsNavProps & ViewProps & { isSticky?: boolean }) {
+}: SegmentedTabsNavProps & ThemedViewProps & { isSticky?: boolean }) {
   const theme = useTheme();
 
   const hasLayout = useSharedValue(false);
@@ -50,7 +50,7 @@ export default function SegmentedTabsNav({
   });
 
   return (
-    <View
+    <ThemedView
       style={[
         theme.colors.shadow.segmentedTabs,
         {
@@ -61,7 +61,7 @@ export default function SegmentedTabsNav({
       ]}
       {...restProps}
     >
-      <View
+      <ThemedView
         onLayout={(e) => {
           containerWidth.value = e.nativeEvent.layout.width;
           hasLayout.value = true;
@@ -89,7 +89,7 @@ export default function SegmentedTabsNav({
           onChange={onChange}
           activeTab={value}
         />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }

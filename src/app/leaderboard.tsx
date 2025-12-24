@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated from "react-native-reanimated";
 
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 
 import LeaderboardHeader from "@/components/ui/Header/LeaderboardHeader";
 import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
@@ -14,7 +14,7 @@ import { LastPreviewRankCard } from "@/components/ui/Cards";
 import { LeaderboardNavButton } from "@/components/ui/Button";
 import SvgIcon from "@/components/ui/SvgIcon";
 import { lastRankEnter } from "@/components/ui/Leaderboard/animations";
-import { View } from "@/components/Themed";
+import { ThemedView } from "@/components/Themed";
 import { LEADERBOARDS } from "@/constants/Leaderboards";
 
 export default function Leaderboard() {
@@ -44,7 +44,7 @@ export default function Leaderboard() {
   }, []);
 
   return (
-    <View
+    <ThemedView
       style={{
         flex: 1,
         backgroundColor: theme.colors.background.black,
@@ -55,7 +55,7 @@ export default function Leaderboard() {
       <LeaderboardHeader />
 
       {/* Controls */}
-      <View
+      <ThemedView
         style={{
           flexDirection: "row",
           gap: theme.spacing.md,
@@ -76,11 +76,11 @@ export default function Leaderboard() {
           disabled
           style={{ flexGrow: 1 }}
         />
-      </View>
+      </ThemedView>
 
       {/* Leaderboard Selector (Figma position) */}
 
-      {/* Last Rank Preview */}
+      {/* Last Rank PreThemedView */}
       {isLoading && data.length === 0 ? (
         <ActivityIndicator
           color={theme.colors.primary}
@@ -99,7 +99,7 @@ export default function Leaderboard() {
       )}
 
       {/* List */}
-      <View style={{ flex: 1 }}>
+      <ThemedView style={{ flex: 1 }}>
         <LeaderboardList
           data={data}
           isLoading={isLoading}
@@ -110,7 +110,7 @@ export default function Leaderboard() {
             paddingHorizontal: theme.spacing.base,
           }}
         />
-      </View>
+      </ThemedView>
 
       {/* Filter Modal */}
       <LeaderboardFilterModal
@@ -121,6 +121,6 @@ export default function Leaderboard() {
         onSelectLeaderboard={setLeaderboardId}
         onClose={() => setShowFilter(false)}
       />
-    </View>
+    </ThemedView>
   );
 }

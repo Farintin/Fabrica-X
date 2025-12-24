@@ -1,8 +1,9 @@
 import { ContainerProps } from "@/types";
-import { View, Alert } from "react-native";
+import { Alert } from "react-native";
 import ChallengeCard from "../../../Cards/ChallengeCards";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { ChallengeWhiteButton } from "../../../Button";
+import { ThemedView } from "@/components/Themed";
 
 export default function GroupButtonCard({
   style,
@@ -21,7 +22,7 @@ export default function GroupButtonCard({
         wrapperStyle,
       ]}
     >
-      <View
+      <ThemedView
         style={[
           {
             flexDirection: "row",
@@ -46,7 +47,7 @@ export default function GroupButtonCard({
           iconName="gift"
           onPress={() => Alert.alert("Gift")}
         />
-      </View>
+      </ThemedView>
     </ChallengeCard>
   );
 }

@@ -1,4 +1,4 @@
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import Time from "./Time";
 
 export default function Separator() {

@@ -1,6 +1,6 @@
 import { StyleProp, ViewStyle } from "react-native";
 import SvgIcon from "../SvgIcon"; // Import the icon component
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import Button from "./Button";
 import { IconButtonProps } from "@/types/button";
 

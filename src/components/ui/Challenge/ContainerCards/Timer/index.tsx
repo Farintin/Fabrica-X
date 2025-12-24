@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { View, ViewProps } from "../../../../Themed";
 import Separator from "./Separator";
 import TimeUnit from "./TimeUnit";
+import { ThemedView, ThemedViewProps } from "@/components/Themed";
 
-export default function Timer({ style }: ViewProps) {
+export default function Timer({ style }: ThemedViewProps) {
   return (
-    <View style={[styles.container, style]}>
+    <ThemedView style={[styles.container, style]}>
       <TimeUnit value="03" label="days" />
       <Separator />
       <TimeUnit value="10" label="hours" />
@@ -13,7 +13,7 @@ export default function Timer({ style }: ViewProps) {
       <TimeUnit value="20" label="min" />
       <Separator />
       <TimeUnit value="45" label="sec" />
-    </View>
+    </ThemedView>
   );
 }
 

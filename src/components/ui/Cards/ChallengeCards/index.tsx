@@ -1,5 +1,5 @@
-import { View } from "@/components/Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedView } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { ContainerProps } from "@/types";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
@@ -24,7 +24,7 @@ export default function ChallengeCard({
   const theme = useTheme();
 
   return (
-    <View
+    <ThemedView
       style={[
         theme.colors.shadow.card,
         {
@@ -35,7 +35,7 @@ export default function ChallengeCard({
         style,
       ]}
     >
-      <View
+      <ThemedView
         style={[
           {
             backgroundColor: "rgba(51, 53, 58, 0.6)",
@@ -47,7 +47,7 @@ export default function ChallengeCard({
         ]}
       >
         {children}
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }

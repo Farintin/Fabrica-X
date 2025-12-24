@@ -1,16 +1,17 @@
 // src/components/ui/Challenge/ContainerCards.tsx
-import { View, ViewProps } from "react-native";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import GroupButtonCard from "./Cards/GroupButtonCard";
 import AwardCard from "./Cards/AwardCard";
 import CountdownCard from "./Cards/CountdownCard";
+import { ThemedView } from "@/components/Themed";
+import { ThemedViewProps } from "@/components/Themed/ThemedView";
 
-export default function ContainerCards({ style }: ViewProps) {
+export default function ContainerCards({ style }: ThemedViewProps) {
   const theme = useTheme();
 
   return (
-    <View
+    <ThemedView
       style={[
         {
           alignItems: "center",
@@ -37,6 +38,6 @@ export default function ContainerCards({ style }: ViewProps) {
       </Animated.View>
 
       <CountdownCard />
-    </View>
+    </ThemedView>
   );
 }

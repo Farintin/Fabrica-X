@@ -1,22 +1,22 @@
 // import { useRouter } from "expo-router";
 import { StyleSheet } from "react-native";
 import IconButton from "../Button/IconButton";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { Heading } from "../../typography/Heading";
-import { View, ViewProps } from "../../Themed";
 import BackButton from "../Button/BackButton";
+import { ThemedView, ThemedViewProps } from "@/components/Themed";
 
 export default function LeaderboardHeader({
   title = "Leaderboard",
   hideNotice = false,
   style,
   ...restProps
-}: { title?: string; hideNotice?: boolean } & ViewProps) {
+}: { title?: string; hideNotice?: boolean } & ThemedViewProps) {
   const theme = useTheme();
   const color = theme.colors.textPrimary;
 
   return (
-    <View
+    <ThemedView
       style={[
         styles.root,
         {
@@ -27,20 +27,20 @@ export default function LeaderboardHeader({
       {...restProps}
     >
       {/* Left side of the header */}
-      <View style={[styles.column]}>
+      <ThemedView style={[styles.column]}>
         <BackButton iconColor={color} style={styles.gridItem} />
-      </View>
+      </ThemedView>
 
       {/* Center of the header (title) */}
-      <View style={[styles.column, styles.headerCenter]}>
+      <ThemedView style={[styles.column, styles.headerCenter]}>
         {title && <Heading style={[{ color }]}>{title}</Heading>}
-      </View>
+      </ThemedView>
 
       {/* Right side of the header (grid items) */}
-      <View style={[styles.column, styles.headerRight]}>
+      <ThemedView style={[styles.column, styles.headerRight]}>
         <IconButton iconName="menu" iconColor={color} style={styles.gridItem} />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

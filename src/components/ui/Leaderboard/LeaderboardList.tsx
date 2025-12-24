@@ -1,16 +1,11 @@
 // src/components/ui/Leaderboard/LeaderboardList.tsx
-import {
-  ScrollViewProps,
-  FlatList,
-  ActivityIndicator,
-  View,
-} from "react-native";
+import { ScrollViewProps, FlatList, ActivityIndicator } from "react-native";
 import Animated, { FadeInLeft } from "react-native-reanimated";
 import { HighlightRankCard, RankCard } from "../Cards";
-import { useTheme } from "@/hooks/useTheme";
-import UserRankCard from "../Cards/HighlightRankCard";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { useRef } from "react";
 import { LeaderboardRow } from "@/libs/api/leaderboardApi";
+import { ThemedView } from "@/components/Themed";
 
 // --- 1. LeaderboardList Component ---
 const CURRENT_USER_ID = "user-005";
@@ -80,7 +75,7 @@ export default function LeaderboardList({
           {...restProps}
         />
       ) : (
-        <View>
+        <ThemedView>
           {/* CORRECTED MAP SYNTAX */}
           {data.map((item, i) => (
             <Animated.View
@@ -97,7 +92,7 @@ export default function LeaderboardList({
               style={{ paddingVertical: theme.spacing.lg }}
             />
           ) : null}
-        </View>
+        </ThemedView>
       )}
     </>
   );

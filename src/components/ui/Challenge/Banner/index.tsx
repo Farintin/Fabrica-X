@@ -1,18 +1,19 @@
 // src/components/ui/Challenge/Banner/index.tsx
-import { Alert, Pressable, StyleSheet, View, ViewProps } from "react-native";
+import { Alert, Pressable, StyleSheet } from "react-native";
 import { ImageBackground } from "expo-image";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import BannerButton from "../../Button/BannerButton";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
+import { ThemedView, ThemedViewProps } from "@/components/Themed";
 
 // Import local image using require
 const bannerImage = require("@/assets/images/Challenge-Thumbnail.png");
 
-export default function Banner({ style }: ViewProps) {
+export default function Banner({ style }: ThemedViewProps) {
   const theme = useTheme();
   const scale = useSharedValue(1);
 
@@ -21,7 +22,7 @@ export default function Banner({ style }: ViewProps) {
   }));
 
   return (
-    <View
+    <ThemedView
       style={[
         theme.colors.shadow.banner,
         {
@@ -44,7 +45,7 @@ export default function Banner({ style }: ViewProps) {
           },
         ]}
       >
-        <View
+        <ThemedView
           style={[
             styles.buttonGroup,
             {
@@ -77,9 +78,9 @@ export default function Banner({ style }: ViewProps) {
               />
             </Pressable>
           </Animated.View>
-        </View>
+        </ThemedView>
       </ImageBackground>
-    </View>
+    </ThemedView>
   );
 }
 

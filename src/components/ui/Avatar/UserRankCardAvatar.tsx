@@ -1,7 +1,7 @@
 // src/components/ui/Avatar/UserRankCardAvatar.tsx
-import { View, ViewProps } from "@/components/Themed";
+import { ThemedView, ThemedViewProps } from "@/components/Themed";
 import { Heading } from "@/components/typography/Heading";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { Image } from "expo-image";
 import { StyleSheet } from "react-native";
 
@@ -9,7 +9,7 @@ export default function UserRankCardAvatar({
   displayName,
   avatarUrl,
   style,
-}: { displayName: string; avatarUrl: string } & ViewProps) {
+}: { displayName: string; avatarUrl: string } & ThemedViewProps) {
   const theme = useTheme();
   const names = displayName.split(" ");
   const fname = names[0];
@@ -17,7 +17,7 @@ export default function UserRankCardAvatar({
   const nameAvatar = fname[0] + lname[0];
 
   return (
-    <View
+    <ThemedView
       style={[
         styles.avatar,
         {
@@ -38,7 +38,7 @@ export default function UserRankCardAvatar({
           {nameAvatar}
         </Heading>
       )}
-    </View>
+    </ThemedView>
   );
 }
 

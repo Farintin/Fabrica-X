@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HeaderNav from "@/components/ui/Header/HeaderNav";
 import Challenge from "@/components/ui/Challenge";
 import SegmentedTabs from "@/components/SegmentedTabs";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import Animated from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import OverlayHeader from "@/components/ui/Header/OverlayHeader";
@@ -20,7 +20,7 @@ import {
   useHeaderAnimation,
   useStickyTabsNavAnimation,
 } from "@/hooks/animations";
-import { View } from "@/components/Themed";
+import { ThemedView } from "@/components/Themed";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
@@ -73,7 +73,7 @@ export default function Home() {
   }, [isTabsSticky, tab]);
 
   return (
-    <View style={[styles.root]}>
+    <ThemedView style={[styles.root]}>
       <LinearGradient
         colors={[
           theme.colors.natural.black,
@@ -84,7 +84,7 @@ export default function Home() {
         end={{ x: 0, y: 0.5 }}
         style={[styles.gradient]}
       >
-        <View style={[styles.container]}>
+        <ThemedView style={[styles.container]}>
           <OverlayHeader
             style={[
               {
@@ -180,9 +180,9 @@ export default function Home() {
               />
             )}
           </ScrollView>
-        </View>
+        </ThemedView>
       </LinearGradient>
-    </View>
+    </ThemedView>
   );
 }
 

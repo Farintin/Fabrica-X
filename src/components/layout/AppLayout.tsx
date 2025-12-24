@@ -1,7 +1,7 @@
 // src/components/layout/AppLayout.tsx
-import { View } from "react-native";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { Stack } from "expo-router";
+import { ThemedView } from "../Themed";
 
 export const unstable_settings = {
   initialRouteName: "index",
@@ -11,7 +11,7 @@ export default function AppLayout() {
   const theme = useTheme();
 
   return (
-    <View
+    <ThemedView
       style={[
         {
           flex: 1,
@@ -29,6 +29,6 @@ export default function AppLayout() {
           }}
         />
       </Stack>
-    </View>
+    </ThemedView>
   );
 }

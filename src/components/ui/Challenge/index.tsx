@@ -2,9 +2,10 @@
 import { LinearGradient } from "expo-linear-gradient";
 import Banner from "./Banner";
 import ContainerCards from "./ContainerCards";
-import { StyleProp, ViewProps, ViewStyle } from "react-native";
-import { useTheme } from "@/hooks/useTheme";
+import { StyleProp, ViewStyle } from "react-native";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { Image } from "expo-image";
+import { ThemedViewProps } from "@/components/Themed";
 
 const brandImage = require("@/assets/images/Challenge-icon.png");
 const brandImageWidthPercent = 20;
@@ -12,7 +13,7 @@ const brandImageWidthPercent = 20;
 export default function Challenge({
   style,
   ...restProps
-}: ViewProps & { style?: StyleProp<ViewStyle> }) {
+}: ThemedViewProps & { style?: StyleProp<ViewStyle> }) {
   const theme = useTheme();
 
   return (

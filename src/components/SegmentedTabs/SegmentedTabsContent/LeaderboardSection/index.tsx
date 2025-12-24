@@ -1,11 +1,12 @@
 // src/components/screens/SegmentedTabs/index.tsx
-import { useTheme } from "@/hooks/useTheme";
-import { View, ActivityIndicator } from "react-native";
+import { useTheme } from "@/hooks/theme/useTheme";
+import { ActivityIndicator } from "react-native";
 import Button from "@/components/ui/Button/Button";
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
 import { useRouter } from "expo-router";
 import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
 import LeaderboardTabHeader from "@/components/ui/Leaderboard/LeaderboardTabHeader";
+import { ThemedView } from "@/components/Themed";
 
 export default function LeaderboardSection() {
   const theme = useTheme();
@@ -21,7 +22,7 @@ export default function LeaderboardSection() {
   // Show a full screen loading indicator if it's the very first load
   if (isLoading && data.length === 0) {
     return (
-      <View
+      <ThemedView
         style={{
           flex: 1,
           justifyContent: "center",
@@ -31,12 +32,12 @@ export default function LeaderboardSection() {
         }}
       >
         <ActivityIndicator size={"small"} color={theme.colors.primary} />
-      </View>
+      </ThemedView>
     );
   }
 
   return (
-    <View>
+    <ThemedView>
       {/* Pass required state down to the Header */}
       <LeaderboardTabHeader style={{ marginBottom: theme.spacing.sm }} />
 
@@ -61,6 +62,6 @@ export default function LeaderboardSection() {
           labelStyle={[theme.typography.title, { textTransform: "uppercase" }]}
         />
       )}
-    </View>
+    </ThemedView>
   );
 }

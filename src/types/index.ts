@@ -1,10 +1,6 @@
-import {
-  StyleProp,
-  TouchableOpacityProps,
-  ViewProps,
-  ViewStyle,
-} from "react-native";
+import { StyleProp, TouchableOpacityProps, ViewStyle } from "react-native";
 import { LeaderboardRow } from "@/libs/api/leaderboardApi";
+import { ThemedViewProps } from "@/components/Themed";
 
 export type IconNameType =
   | "arrow-left"
@@ -26,6 +22,6 @@ export type IconNameType =
 
 export type RankProps = TouchableOpacityProps & LeaderboardRow;
 
-export type ContainerProps = ViewProps & {
+export type ContainerProps = ThemedViewProps & {
   wrapperStyle?: StyleProp<ViewStyle>;
 };

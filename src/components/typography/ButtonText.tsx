@@ -1,11 +1,11 @@
-import { Text, TextProps } from "@/components/Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedText, ThemedTextProps } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-export function ButtonText(props: TextProps) {
+export function ButtonText(props: ThemedTextProps) {
   const theme = useTheme();
 
   return (
-    <Text
+    <ThemedText
       {...props}
       style={[
         theme.typography.button,

@@ -1,10 +1,10 @@
-import { Text, View } from "react-native";
 import SvgIcon from "../../../SvgIcon";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
 import Highlight from "../Highlight";
 import Article from "../Article";
 import { Heading } from "@/components/typography/Heading";
+import { ThemedView } from "@/components/Themed";
 
 export default function AwardCard() {
   const theme = useTheme();
@@ -16,7 +16,7 @@ export default function AwardCard() {
       <Heading align="center" spaced>
         Global Change Award @ Fabrica X
       </Heading>
-      <View
+      <ThemedView
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
@@ -46,7 +46,7 @@ export default function AwardCard() {
           <SvgIcon name="duration" size={iconSize} color={iconColor} />
           <Article>17 Sep - 01 Oct</Article>
         </Highlight>
-      </View>
+      </ThemedView>
     </AnimatedChallengeCard>
   );
 }

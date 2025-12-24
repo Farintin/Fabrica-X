@@ -1,20 +1,20 @@
 // src/components/ui/Leaderboard/LeaderboardTabHeader.tsx
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { router } from "expo-router";
-import { ViewProps, View, Text } from "react-native";
 import Animated from "react-native-reanimated";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import OutlinedButton from "../Button/OutlinedButton";
 import { lastRankEnter, lastRankEnterDelayed } from "./animations";
 import { Heading } from "../../typography/Heading";
 import { LastPreviewRankCard } from "../Cards";
+import { ThemedViewProps, ThemedView } from "@/components/Themed";
 
 // --- 2. LeaderboardHeader Component ---
 // This component now displays the current user's rank based on the hook data
 export default function LeaderboardTabHeader({
   isSticky = false,
   style,
-}: { isSticky?: boolean } & ViewProps) {
+}: { isSticky?: boolean } & ThemedViewProps) {
   const theme = useTheme();
 
   const apiState = useLeaderboardApi({
@@ -25,8 +25,8 @@ export default function LeaderboardTabHeader({
   const lastRank = data.length > 0 ? data[data.length - 1] : undefined;
 
   return (
-    <View style={[style]}>
-      <View
+    <ThemedView style={[style]}>
+      <ThemedView
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
@@ -41,7 +41,7 @@ export default function LeaderboardTabHeader({
           size="small"
           onPress={() => router.push("/leaderboard")}
         />
-      </View>
+      </ThemedView>
 
       {lastRank && (
         <Animated.View
@@ -53,6 +53,6 @@ export default function LeaderboardTabHeader({
           />
         </Animated.View>
       )}
-    </View>
+    </ThemedView>
   );
 }

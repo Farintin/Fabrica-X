@@ -1,12 +1,12 @@
-import { View, ViewProps } from "react-native";
+import { ThemedView, ThemedViewProps } from "@/components/Themed";
 
 export default function OverlayHeader({
   children,
   style,
   ...restProps
-}: ViewProps) {
+}: ThemedViewProps) {
   return (
-    <View
+    <ThemedView
       style={[
         {
           position: "absolute",
@@ -19,6 +19,6 @@ export default function OverlayHeader({
       {...restProps}
     >
       {children}
-    </View>
+    </ThemedView>
   );
 }

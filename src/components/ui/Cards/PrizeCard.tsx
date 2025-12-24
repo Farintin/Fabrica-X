@@ -7,10 +7,10 @@ import {
   StyleSheet,
 } from "react-native";
 import SvgIcon from "../SvgIcon";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 import { Heading } from "../../typography/Heading";
-import { View, Text } from "../../Themed";
+import { ThemedView, ThemedText } from "@/components/Themed";
 
 export default function PrizeCard({
   source: imageSource,
@@ -46,7 +46,7 @@ export default function PrizeCard({
             margin: theme.spacing.lg,
           }}
         />
-        <View
+        <ThemedView
           style={{
             alignSelf: "stretch",
           }}
@@ -74,16 +74,16 @@ export default function PrizeCard({
             <Heading style={[{ color: theme.colors.primary }]}>
               {levelText}
             </Heading>
-            <Text
+            <ThemedText
               style={[
                 theme.typography.subHeading,
                 { color: theme.colors.natural.white },
               ]}
             >
               {infoText}
-            </Text>
+            </ThemedText>
           </LinearGradient>
-        </View>
+        </ThemedView>
       </ImageBackground>
     </TouchableOpacity>
   );

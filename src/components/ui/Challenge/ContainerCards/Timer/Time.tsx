@@ -1,11 +1,11 @@
-import { Text, TextProps } from "../../../../Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedTextProps, ThemedText } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-export default function Time(props: TextProps) {
+export default function Time(props: ThemedTextProps) {
   const theme = useTheme();
 
   return (
-    <Text
+    <ThemedText
       {...props}
       style={[
         theme.typography.timerValue,

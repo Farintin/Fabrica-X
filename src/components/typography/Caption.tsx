@@ -1,7 +1,9 @@
-import { Text, TextProps } from "@/components/Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedText, ThemedTextProps } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-export function Caption(props: TextProps) {
+export function Caption(props: ThemedTextProps) {
   const theme = useTheme();
-  return <Text {...props} style={[theme.typography.miniText, props.style]} />;
+  return (
+    <ThemedText {...props} style={[theme.typography.miniText, props.style]} />
+  );
 }

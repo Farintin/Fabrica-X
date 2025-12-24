@@ -1,18 +1,18 @@
-import { View, ViewProps } from "../../../../Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import Label from "./Label";
 import Time from "./Time";
+import { ThemedView, ThemedViewProps } from "@/components/Themed";
 
 type TimeUnitProps = {
   value: string;
   label: string;
-  style?: ViewProps["style"];
+  style?: ThemedViewProps["style"];
 };
 
 export default function TimeUnit({ value, label }: TimeUnitProps) {
   const theme = useTheme();
   return (
-    <View
+    <ThemedView
       style={[
         {
           alignItems: "center",
@@ -22,6 +22,6 @@ export default function TimeUnit({ value, label }: TimeUnitProps) {
     >
       <Time>{value}</Time>
       <Label>{label}</Label>
-    </View>
+    </ThemedView>
   );
 }

@@ -1,11 +1,11 @@
-import { useTheme } from "@/hooks/useTheme";
-import { View, ViewProps } from "react-native";
+import { ThemedViewProps, ThemedView } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-export default function Highlight({ children, style }: ViewProps) {
+export default function Highlight({ children, style }: ThemedViewProps) {
   const theme = useTheme();
 
   return (
-    <View
+    <ThemedView
       style={[
         {
           alignItems: "center",
@@ -16,6 +16,6 @@ export default function Highlight({ children, style }: ViewProps) {
       ]}
     >
       {children}
-    </View>
+    </ThemedView>
   );
 }

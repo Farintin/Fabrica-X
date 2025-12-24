@@ -1,12 +1,13 @@
 // src/components/ui/Button/SegmentedTabButton.tsx
 import { IconNameType } from "@/types";
 import { TabsKey } from "@/types/tabs";
-import { Pressable, ViewProps } from "react-native";
+import { Pressable } from "react-native";
 import SvgIcon from "../SvgIcon";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import Animated from "react-native-reanimated";
+import { ThemedViewProps } from "@/components/Themed";
 
-export const ActiveTabIndicator = ({ style }: ViewProps) => {
+export const ActiveTabIndicator = ({ style }: ThemedViewProps) => {
   const theme = useTheme();
 
   return (

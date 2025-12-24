@@ -1,6 +1,6 @@
 // src/components/ui/Challenge/ContainerCards.tsx
 import Timer from "../Timer";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
 import { ContainerProps } from "@/types";
 import Article from "../Article";

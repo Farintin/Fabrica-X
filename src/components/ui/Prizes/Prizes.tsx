@@ -1,13 +1,13 @@
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import PrizeCard from "../Cards/PrizeCard";
 import { StyleSheet } from "react-native";
 import { Heading } from "../../typography/Heading";
-import { View } from "../../Themed";
+import { ThemedView } from "@/components/Themed";
 
 export default function Prizes() {
   const theme = useTheme();
   return (
-    <View style={{ gap: theme.spacing.sm }}>
+    <ThemedView style={{ gap: theme.spacing.sm }}>
       <Heading>What Can You Expect</Heading>
       <PrizeCard
         source={require("@/assets/images/1st Place Prize.png")}
@@ -15,7 +15,7 @@ export default function Prizes() {
         levelText="1st Place Prize"
         infoText="Sustainable Goodie Bag"
       />
-      <View
+      <ThemedView
         style={[
           styles.row,
           {
@@ -37,8 +37,8 @@ export default function Prizes() {
           infoText="50% OFF Café"
           style={[styles.rowItem]}
         />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

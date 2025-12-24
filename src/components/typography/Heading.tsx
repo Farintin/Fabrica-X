@@ -1,7 +1,7 @@
-import { Text, TextProps } from "@/components/Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedText, ThemedTextProps } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-type HeadingProps = TextProps & {
+type HeadingProps = ThemedTextProps & {
   align?: "left" | "center" | "right";
   spaced?: boolean;
   tone?: "primary" | "secondary" | "white";
@@ -17,7 +17,7 @@ export function Heading({
   const theme = useTheme();
 
   return (
-    <Text
+    <ThemedText
       {...props}
       style={[
         theme.typography.heading,

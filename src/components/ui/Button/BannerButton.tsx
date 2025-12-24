@@ -1,5 +1,5 @@
 import SvgIcon from "@/components/ui/SvgIcon";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { IconButtonProps } from "@/types/button";
 import Button from "./Button";
 

@@ -1,10 +1,11 @@
 // src/components/ui/Cards/LastRankPreviewCard.tsx
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { RankProps } from "@/types";
 import { LinearGradient } from "expo-linear-gradient";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Heading } from "../../typography/Heading";
 import UserRankCardAvatar from "../Avatar/UserRankCardAvatar";
+import { ThemedView, ThemedText } from "@/components/Themed";
 
 export default function LastPreviewRankCard({
   avatarUrl,
@@ -30,7 +31,7 @@ export default function LastPreviewRankCard({
         style,
       ]}
     >
-      <View
+      <ThemedView
         style={{
           alignItems: "center",
           gap: theme.spacing.xs,
@@ -45,12 +46,12 @@ export default function LastPreviewRankCard({
             },
           ]}
         />
-        <Text style={[theme.typography.desc, { color: "#3A3A3C" }]}>
+        <ThemedText style={[theme.typography.desc, { color: "#3A3A3C" }]}>
           {displayName}
-        </Text>
-      </View>
+        </ThemedText>
+      </ThemedView>
 
-      <View
+      <ThemedView
         style={[
           {
             alignItems: "center",
@@ -59,7 +60,7 @@ export default function LastPreviewRankCard({
           },
         ]}
       >
-        <Text
+        <ThemedText
           style={[
             theme.typography.h2,
             {
@@ -68,12 +69,14 @@ export default function LastPreviewRankCard({
           ]}
         >
           #{rank}
-        </Text>
+        </ThemedText>
 
-        <Text style={[theme.typography.desc, { color: "#808080" }]}>Rank</Text>
-      </View>
+        <ThemedText style={[theme.typography.desc, { color: "#808080" }]}>
+          Rank
+        </ThemedText>
+      </ThemedView>
 
-      <View
+      <ThemedView
         style={{
           alignItems: "center",
           gap: theme.spacing.sm + 4,
@@ -89,8 +92,10 @@ export default function LastPreviewRankCard({
         >
           {points}
         </Heading>
-        <Text style={[theme.typography.desc, { color: "#808080" }]}>pts</Text>
-      </View>
+        <ThemedText style={[theme.typography.desc, { color: "#808080" }]}>
+          pts
+        </ThemedText>
+      </ThemedView>
     </LinearGradient>
   );
 }

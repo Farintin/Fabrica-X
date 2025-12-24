@@ -1,20 +1,20 @@
-import { useRouter } from "expo-router";
-import { View, Text, StyleSheet, Alert, ViewProps } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import IconButton from "../Button/IconButton";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import BackButton from "../Button/BackButton";
+import { ThemedView, ThemedText, ThemedViewProps } from "@/components/Themed";
 
 export default function HeaderNav({
   title = "",
   hideNotice = false,
   style,
   ...restProps
-}: { title?: string; hideNotice?: boolean } & ViewProps) {
+}: { title?: string; hideNotice?: boolean } & ThemedViewProps) {
   const theme = useTheme();
   const color = theme.colors.textPrimary;
 
   return (
-    <View
+    <ThemedView
       style={[
         styles.root,
         {
@@ -27,20 +27,22 @@ export default function HeaderNav({
       {...restProps}
     >
       {/* Left side of the header */}
-      <View style={[styles.column]}>
+      <ThemedView style={[styles.column]}>
         {/* Back Button */}
         <BackButton iconColor={color} style={styles.gridItem} />
-      </View>
+      </ThemedView>
 
       {/* Center of the header (title) */}
-      <View style={[styles.column, styles.headerCenter]}>
+      <ThemedView style={[styles.column, styles.headerCenter]}>
         {title && (
-          <Text style={[theme.typography.title, { color }]}>{title}</Text>
+          <ThemedText style={[theme.typography.title, { color }]}>
+            {title}
+          </ThemedText>
         )}
-      </View>
+      </ThemedView>
 
       {/* Right side of the header (grid items) */}
-      <View style={[styles.column, styles.headerRight]}>
+      <ThemedView style={[styles.column, styles.headerRight]}>
         {/* Notification Button */}
         {!hideNotice && (
           <IconButton
@@ -50,8 +52,8 @@ export default function HeaderNav({
             style={styles.gridItem}
           />
         )}
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

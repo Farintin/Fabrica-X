@@ -1,4 +1,4 @@
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { PointsButtonProps } from "@/types/button";
 import OutlinedButton from "@/components/ui/Button/OutlinedButton";
 

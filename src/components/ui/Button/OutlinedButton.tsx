@@ -1,4 +1,4 @@
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { ButtonProps } from "@/types/button";
 import Button from "./Button";
 

@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, TouchableOpacity } from "react-native";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { ButtonProps } from "@/types/button";
 import { BlurView } from "expo-blur";
 import { ButtonText } from "../../typography/ButtonText";

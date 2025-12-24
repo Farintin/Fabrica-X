@@ -1,15 +1,15 @@
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/theme/useTheme";
 import { StyleSheet } from "react-native";
 import PointCard from "../Cards/PointCard";
 import { Heading } from "../../typography/Heading";
-import { View } from "../../Themed";
+import { ThemedView } from "@/components/Themed";
 
 export default function Collectables() {
   const theme = useTheme();
   return (
-    <View style={{ gap: theme.spacing.sm }}>
+    <ThemedView style={{ gap: theme.spacing.sm }}>
       <Heading>Type of Collectibles</Heading>
-      <View
+      <ThemedView
         style={[
           styles.row,
           {
@@ -29,8 +29,8 @@ export default function Collectables() {
           point={0}
           style={[styles.rowItem]}
         />
-      </View>
-    </View>
+      </ThemedView>
+    </ThemedView>
   );
 }
 

@@ -1,7 +1,9 @@
-import { Text, TextProps } from "@/components/Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedText, ThemedTextProps } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-export function Body(props: TextProps) {
+export function Body(props: ThemedTextProps) {
   const theme = useTheme();
-  return <Text {...props} style={[theme.typography.bodyText, props.style]} />;
+  return (
+    <ThemedText {...props} style={[theme.typography.bodyText, props.style]} />
+  );
 }

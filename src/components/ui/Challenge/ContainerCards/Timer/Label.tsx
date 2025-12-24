@@ -1,11 +1,11 @@
-import { Text, TextProps } from "../../../../Themed";
-import { useTheme } from "@/hooks/useTheme";
+import { ThemedTextProps, ThemedText } from "@/components/Themed";
+import { useTheme } from "@/hooks/theme/useTheme";
 
-export default function Label(props: TextProps) {
+export default function Label(props: ThemedTextProps) {
   const theme = useTheme();
 
   return (
-    <Text
+    <ThemedText
       {...props}
       style={[
         theme.typography.miniText,
