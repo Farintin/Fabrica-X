@@ -7,7 +7,7 @@ import {
   NativeSyntheticEvent,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import HeaderNav from "@/components/ui/Header/HeaderNav";
+import HomeHeader from "@/components/ui/Header/HomeHeader";
 import Challenge from "@/components/ui/Challenge";
 import SegmentedTabs from "@/components/SegmentedTabs";
 import { useTheme } from "@/hooks/theme/useTheme";
@@ -96,13 +96,12 @@ export default function Home() {
                 backgroundColor: isTabsSticky
                   ? theme.colors.background.black
                   : theme.colors.natural.transparent,
-                gap: theme.spacing.sm,
               },
             ]}
           >
             {/* Header Nav */}
             <Animated.View style={headerAnim}>
-              <HeaderNav
+              <HomeHeader
                 title={isTabsSticky ? "Fabrica X" : ""}
                 onLayout={(e) => {
                   headerNavHeight.current = e.nativeEvent.layout.height;
@@ -125,6 +124,7 @@ export default function Home() {
                   isSticky={true}
                   value={tab}
                   onChange={setTab}
+                  style={{ marginTop: theme.spacing.lg }}
                 />
               </Animated.View>
             )}

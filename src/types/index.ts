@@ -1,6 +1,6 @@
 import { StyleProp, TouchableOpacityProps, ViewStyle } from "react-native";
-import { LeaderboardRow } from "@/libs/api/leaderboardApi";
 import { ThemedViewProps } from "@/components/Themed";
+import { LeaderboardRow } from "./leaderboard";
 
 export type IconNameType =
   | "arrow-left"
