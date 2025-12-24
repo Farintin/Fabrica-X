@@ -8,7 +8,7 @@ export default function Label(props: ThemedTextProps) {
     <ThemedText
       {...props}
       style={[
-        theme.typography.miniText,
+        theme.typography.mini,
         {
           color: "rgba(245, 245, 245, .7)",
           textAlign: "center",

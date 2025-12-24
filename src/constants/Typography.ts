@@ -23,30 +23,20 @@ export const Typography: Record<string, TextStyle> = {
     fontFamily: "Poppins-SemiBold",
     lineHeight: 24,
   },
-  subHeading: {
+
+  title: {
     ...typeBase,
     fontSize: 16,
     fontFamily: "Poppins-Medium",
     lineHeight: 18,
   },
-  title: {
-    ...typeBase,
-    fontSize: 16,
-    fontFamily: "Poppins-Medium",
-    lineHeight: 20,
-  },
 
-  bodyTextLarge: {
-    ...typeBase,
-    fontSize: 16,
-    fontFamily: "Poppins-Medium",
-  },
-  bodyText: {
+  body: {
     ...typeBase,
     fontSize: 14,
     fontFamily: "Poppins-Medium",
   },
-  bodyTextSmall: {
+  bodySmall: {
     ...typeBase,
     fontSize: 12,
     fontFamily: "Poppins-Medium",
@@ -58,12 +48,7 @@ export const Typography: Record<string, TextStyle> = {
     fontFamily: "Poppins-Medium",
   },
 
-  miniTextBold: {
-    ...typeBase,
-    fontSize: 10,
-    fontFamily: "Poppins-SemiBold",
-  },
-  miniText: {
+  mini: {
     ...typeBase,
     fontSize: 10,
     fontFamily: "Poppins-Medium",

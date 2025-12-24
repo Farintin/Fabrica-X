@@ -8,7 +8,7 @@ export default function Article(props: ThemedTextProps) {
     <ThemedText
       {...props}
       style={[
-        theme.typography.miniText,
+        theme.typography.mini,
         { color: theme.colors.textPrimary, textAlign: "center" },
         props.style,
       ]}

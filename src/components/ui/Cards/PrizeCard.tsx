@@ -76,7 +76,7 @@ export default function PrizeCard({
             </Heading>
             <ThemedText
               style={[
-                theme.typography.subHeading,
+                theme.typography.title,
                 { color: theme.colors.natural.white },
               ]}
             >

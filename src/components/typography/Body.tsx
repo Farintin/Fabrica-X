@@ -3,7 +3,5 @@ import { useTheme } from "@/hooks/theme/useTheme";
 
 export function Body(props: ThemedTextProps) {
   const theme = useTheme();
-  return (
-    <ThemedText {...props} style={[theme.typography.bodyText, props.style]} />
-  );
+  return <ThemedText {...props} style={[theme.typography.body, props.style]} />;
 }
