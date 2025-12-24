@@ -2,13 +2,13 @@
 import { Alert, Pressable, StyleSheet } from "react-native";
 import { ImageBackground } from "expo-image";
 import { useTheme } from "@/hooks/theme/useTheme";
-import BannerButton from "../../Button/BannerButton";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
 } from "react-native-reanimated";
 import { ThemedView, ThemedViewProps } from "@/components/Themed";
+import { BannerButton } from "@/components/ui/Button";
 
 // Import local image using require
 const bannerImage = require("@/assets/images/Challenge-Thumbnail.png");

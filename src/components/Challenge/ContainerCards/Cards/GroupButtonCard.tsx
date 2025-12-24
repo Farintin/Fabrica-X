@@ -1,9 +1,9 @@
-import { ContainerProps } from "@/types/ui/icons";
 import { Alert } from "react-native";
-import ChallengeCard from "../../../Cards/ChallengeCards";
 import { useTheme } from "@/hooks/theme/useTheme";
-import { ChallengeWhiteButton } from "../../../Button";
 import { ThemedView } from "@/components/Themed";
+import { ContainerProps } from "@/components/layout/Container.types";
+import { ChallengeWhiteButton } from "@/components/ui/Button";
+import ChallengeCard from "@/components/ui/Cards/ChallengeCards";
 
 export default function GroupButtonCard({
   style,

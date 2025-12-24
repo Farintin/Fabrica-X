@@ -1,10 +1,10 @@
-import SvgIcon from "../../../SvgIcon";
 import { useTheme } from "@/hooks/theme/useTheme";
-import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
 import Highlight from "../Highlight";
 import Article from "../Article";
 import { Heading } from "@/components/typography/Heading";
 import { ThemedView } from "@/components/Themed";
+import { AnimatedChallengeCard } from "@/components/ui/Cards/ChallengeCards";
+import SvgIcon from "@/components/ui/SvgIcon";
 
 export default function AwardCard() {
   const theme = useTheme();
