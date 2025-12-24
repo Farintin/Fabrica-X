@@ -1,4 +1,4 @@
-import { RankProps } from "@/types";
+import { RankProps } from "@/types/ui/icons";
 import RankCard from "./RankCard";
 
 export default function HighlightRankCard({ style, ...restProps }: RankProps) {

@@ -6,10 +6,12 @@ import {
   withTiming,
 } from "react-native-reanimated";
 import { useTheme } from "@/hooks/theme/useTheme";
-import { SegmentedTabsNavProps } from "@/types/tabs";
-import { ActiveTabIndicator, TabButton } from "../ui/Button/SegmentedTabButton";
-import { ThemedView, ThemedViewProps } from "../Themed";
-
+import { ThemedViewProps, ThemedView } from "@/components/Themed";
+import {
+  ActiveTabIndicator,
+  TabButton,
+} from "@/components/ui/Button/SegmentedTabButton";
+import { SegmentedTabsNavProps } from "../SegmentedTabs.types";
 export default function SegmentedTabsNav({
   isSticky,
   value,

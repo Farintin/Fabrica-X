@@ -1,6 +1,6 @@
 // src/components/ui/Cards/LastRankPreviewCard.tsx
 import { useTheme } from "@/hooks/theme/useTheme";
-import { RankProps } from "@/types";
+import { RankProps } from "@/types/ui/icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet } from "react-native";
 import { Heading } from "../../typography/Heading";

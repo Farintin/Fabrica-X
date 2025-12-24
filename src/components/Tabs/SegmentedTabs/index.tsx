@@ -4,16 +4,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import Animated from "react-native-reanimated";
 import SegmentedTabsNav from "./SegmentedTabsNav";
-import { SegmentedTabsProps } from "@/types/tabs";
 import { useTheme } from "@/hooks/theme/useTheme";
+import { ThemedViewProps, ThemedView } from "@/components/Themed";
+import { SegmentedTabsProps } from "../SegmentedTabs.types";
 import {
-  ANIM_DURATION,
   NAV_ANIM_DELAY,
+  ANIM_DURATION,
+  SEGMENTED_NAV_ENTER,
   SEGMENTED_CONTENT_LEFT,
   SEGMENTED_CONTENT_RIGHT,
-  SEGMENTED_NAV_ENTER,
 } from "./animations";
-import { ThemedView, ThemedViewProps } from "../Themed";
 
 export default function SegmentedTabs({
   value,

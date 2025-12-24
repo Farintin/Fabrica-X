@@ -1,6 +1,6 @@
 import SvgIcon from "@/components/ui/SvgIcon";
 import { useTheme } from "@/hooks/theme/useTheme";
-import { IconButtonProps } from "@/types/button";
+import { IconButtonProps } from "@/types/ui/button";
 import Button from "./Button";
 
 export default function BannerButton({

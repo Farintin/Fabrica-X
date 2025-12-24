@@ -1,8 +1,8 @@
 import { useTheme } from "@/hooks/theme/useTheme";
-import PrizeCard from "../Cards/PrizeCard";
 import { StyleSheet } from "react-native";
-import { Heading } from "../../typography/Heading";
 import { ThemedView } from "@/components/Themed";
+import { Heading } from "@/components/typography/Heading";
+import PrizeCard from "@/components/ui/Cards/PrizeCard";
 
 export default function Prizes() {
   const theme = useTheme();

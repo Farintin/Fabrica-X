@@ -1,7 +1,7 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
 import SvgIcon from "../SvgIcon"; // Import the icon component
 import { useTheme } from "@/hooks/theme/useTheme";
-import { IconButtonProps } from "@/types/button";
+import { IconButtonProps } from "@/types/ui/button";
 
 export default function IconButton({
   iconName,

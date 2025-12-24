@@ -1,6 +1,6 @@
+import { ContainerProps } from "@/components/layout/Container.types";
 import { ThemedView } from "@/components/Themed";
 import { useTheme } from "@/hooks/theme/useTheme";
-import { ContainerProps } from "@/types";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export const AnimatedChallengeCard = ({

@@ -1,4 +1,4 @@
-import { OutlinedButtonProps } from "@/types/button";
+import { OutlinedButtonProps } from "@/types/ui/button";
 import OutlinedButton from "./OutlinedButton";
 
 export default function LeaderboardNavButton({

@@ -1,6 +1,7 @@
+// src/types/card.ts
 import { ImageBackgroundProps } from "react-native";
-import { IconNameType } from ".";
 import { ThemedViewProps } from "@/components/Themed";
+import { IconNameType } from "@/types/ui/icons";
 
 export type PrizeCardProps = ImageBackgroundProps & {
   iconName: IconNameType;

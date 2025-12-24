@@ -3,11 +3,11 @@ import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { router } from "expo-router";
 import Animated from "react-native-reanimated";
 import { useTheme } from "@/hooks/theme/useTheme";
-import OutlinedButton from "../Button/OutlinedButton";
 import { lastRankEnter, lastRankEnterDelayed } from "./animations";
-import { Heading } from "../../typography/Heading";
-import { LastPreviewRankCard } from "../Cards";
 import { ThemedViewProps, ThemedView } from "@/components/Themed";
+import { Heading } from "@/components/typography/Heading";
+import { OutlinedButton } from "@/components/ui/Button";
+import { LastPreviewRankCard } from "@/components/ui/Cards";
 
 // --- 2. LeaderboardHeader Component ---
 // This component now displays the current user's rank based on the hook data

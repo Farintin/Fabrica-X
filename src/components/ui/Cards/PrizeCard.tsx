@@ -1,4 +1,4 @@
-import { PrizeCardProps } from "@/types/card";
+import { PrizeCardProps } from "@/components/ui/Cards/Card.types";
 import { BlurView } from "expo-blur";
 import {
   TouchableOpacity,

@@ -1,4 +1,4 @@
-export type TabsKey = "leaderboard" | "prizes";
+import { TabsKey } from "@/types/navigation";
 
 export type SegmentedTabsProps = {
   value: TabsKey;

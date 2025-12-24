@@ -2,7 +2,7 @@
 import Timer from "../Timer";
 import { useTheme } from "@/hooks/theme/useTheme";
 import { AnimatedChallengeCard } from "../../../Cards/ChallengeCards";
-import { ContainerProps } from "@/types";
+import { ContainerProps } from "@/types/ui/icons";
 import Article from "../Article";
 
 export default function CountdownCard({

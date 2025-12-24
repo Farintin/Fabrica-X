@@ -1,11 +1,11 @@
 // src/components/ui/Leaderboard/LeaderboardList.tsx
 import { ScrollViewProps, FlatList, ActivityIndicator } from "react-native";
 import Animated, { FadeInLeft } from "react-native-reanimated";
-import { HighlightRankCard, RankCard } from "../Cards";
 import { useTheme } from "@/hooks/theme/useTheme";
 import { useRef } from "react";
 import { ThemedView } from "@/components/Themed";
 import { LeaderboardRow } from "@/types/leaderboard";
+import { HighlightRankCard, RankCard } from "../ui/Cards";
 
 // --- 1. LeaderboardList Component ---
 const CURRENT_USER_ID = "user-005";

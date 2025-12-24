@@ -1,8 +1,8 @@
 import { useTheme } from "@/hooks/theme/useTheme";
 import { StyleSheet } from "react-native";
-import PointCard from "../Cards/PointCard";
-import { Heading } from "../../typography/Heading";
 import { ThemedView } from "@/components/Themed";
+import { Heading } from "@/components/typography/Heading";
+import PointCard from "@/components/ui/Cards/PointCard";
 
 export default function Collectables() {
   const theme = useTheme();

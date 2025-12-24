@@ -1,5 +1,5 @@
 import { useTheme } from "@/hooks/theme/useTheme";
-import { PointsButtonProps } from "@/types/button";
+import { PointsButtonProps } from "@/types/ui/button";
 import OutlinedButton from "@/components/ui/Button/OutlinedButton";
 
 const PointsButton: React.FC<PointsButtonProps> = ({

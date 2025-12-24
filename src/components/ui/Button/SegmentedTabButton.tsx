@@ -1,6 +1,6 @@
 // src/components/ui/Button/SegmentedTabButton.tsx
-import { IconNameType } from "@/types";
-import { TabsKey } from "@/types/tabs";
+import { IconNameType } from "@/types/ui/icons";
+import { TabsKey } from "@/types/navigation";
 import { Pressable } from "react-native";
 import SvgIcon from "../SvgIcon";
 import { useTheme } from "@/hooks/theme/useTheme";

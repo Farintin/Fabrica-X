@@ -1,5 +1,6 @@
+// src/types/button.ts
 import { StyleProp, TextStyle, TouchableOpacityProps } from "react-native";
-import { IconNameType } from ".";
+import { IconNameType } from "./icons";
 
 export type ButtonProps = TouchableOpacityProps & {
   label?: string;
@@ -16,10 +17,6 @@ export type IconButtonProps = ButtonProps & {
   iconName: IconNameType;
   iconSize?: number;
   iconColor?: string;
-};
-
-export type PointsButtonProps = ButtonProps & {
-  point: number;
 };
 
 export type OutlinedButtonProps = ButtonProps & {

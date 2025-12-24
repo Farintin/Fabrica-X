@@ -1,4 +1,4 @@
-import { ContainerProps } from "@/types";
+import { ContainerProps } from "@/types/ui/icons";
 import { Alert } from "react-native";
 import ChallengeCard from "../../../Cards/ChallengeCards";
 import { useTheme } from "@/hooks/theme/useTheme";

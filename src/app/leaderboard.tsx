@@ -8,12 +8,12 @@ import { useLeaderboardApi } from "@/hooks/useLeaderboardApi";
 import { useTheme } from "@/hooks/theme/useTheme";
 
 import LeaderboardHeader from "@/components/ui/Header/LeaderboardHeader";
-import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
-import LeaderboardFilterModal from "@/components/ui/Leaderboard/LeaderboardFilterModal";
+import LeaderboardList from "@/components/Leaderboard/LeaderboardList";
+import LeaderboardFilterModal from "@/components/Leaderboard/LeaderboardFilterModal";
 import { LastPreviewRankCard } from "@/components/ui/Cards";
 import { LeaderboardNavButton } from "@/components/ui/Button";
 import SvgIcon from "@/components/ui/SvgIcon";
-import { lastRankEnter } from "@/components/ui/Leaderboard/animations";
+import { lastRankEnter } from "@/components/Leaderboard/animations";
 import { ThemedView } from "@/components/Themed";
 import { LEADERBOARDS } from "@/constants/Leaderboards";
 

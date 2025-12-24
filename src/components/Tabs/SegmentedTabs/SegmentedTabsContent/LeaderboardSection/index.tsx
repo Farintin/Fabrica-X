@@ -4,9 +4,9 @@ import { ActivityIndicator } from "react-native";
 import Button from "@/components/ui/Button/Button";
 import { useLeaderboardApi } from "@/hooks/useLeaderboardApi"; // 👈 IMPORT THE HOOK
 import { useRouter } from "expo-router";
-import LeaderboardList from "@/components/ui/Leaderboard/LeaderboardList";
-import LeaderboardTabHeader from "@/components/ui/Leaderboard/LeaderboardTabHeader";
 import { ThemedView } from "@/components/Themed";
+import LeaderboardList from "@/components/Leaderboard/LeaderboardList";
+import LeaderboardTabHeader from "@/components/Leaderboard/LeaderboardTabHeader";
 
 export default function LeaderboardSection() {
   const theme = useTheme();

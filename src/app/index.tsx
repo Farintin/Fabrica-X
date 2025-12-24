@@ -9,13 +9,13 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import HomeHeader from "@/components/ui/Header/HomeHeader";
 import Challenge from "@/components/ui/Challenge";
-import SegmentedTabs from "@/components/SegmentedTabs";
+import SegmentedTabs from "@/components/Tabs/SegmentedTabs";
 import { useTheme } from "@/hooks/theme/useTheme";
 import Animated from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import OverlayHeader from "@/components/ui/Header/OverlayHeader";
-import SegmentedTabsNav from "@/components/SegmentedTabs/SegmentedTabsNav";
-import LeaderboardTabHeader from "@/components/ui/Leaderboard/LeaderboardTabHeader";
+import SegmentedTabsNav from "@/components/Tabs/SegmentedTabs/SegmentedTabsNav";
+import LeaderboardTabHeader from "@/components/Leaderboard/LeaderboardTabHeader";
 import {
   useHeaderAnimation,
   useStickyTabsNavAnimation,

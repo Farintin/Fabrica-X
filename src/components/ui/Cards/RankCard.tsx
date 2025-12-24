@@ -2,7 +2,7 @@
 import { useTheme } from "@/hooks/theme/useTheme";
 import { Image } from "expo-image";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import { RankProps } from "@/types";
+import { RankProps } from "@/types/ui/icons";
 import { Heading } from "../../typography/Heading";
 import UserRankCardAvatar from "../Avatar/UserRankCardAvatar";
 import { ThemedView, ThemedText } from "@/components/Themed";

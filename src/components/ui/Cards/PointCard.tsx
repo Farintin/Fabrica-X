@@ -1,4 +1,4 @@
-import { PointCardProps } from "@/types/card";
+import { PointCardProps } from "@/components/ui/Cards/Card.types";
 import { useTheme } from "@/hooks/theme/useTheme";
 import PointsButton from "../Button/PointsButton";
 import { ThemedView, ThemedText } from "@/components/Themed";

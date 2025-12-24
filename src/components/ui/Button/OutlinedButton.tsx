@@ -1,5 +1,5 @@
 import { useTheme } from "@/hooks/theme/useTheme";
-import { ButtonProps } from "@/types/button";
+import { ButtonProps } from "@/types/ui/button";
 import Button from "./Button";
 
 export default function OutlinedButton({
