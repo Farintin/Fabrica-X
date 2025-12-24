@@ -1,4 +1,4 @@
-// src/components/SegmentedTabs/SegmentedTabsNav/index.tsx
+// src/components/Tabs/SegmentedTabs/SegmentedTabsNav.tsx
 import { useEffect } from "react";
 import {
   useSharedValue,

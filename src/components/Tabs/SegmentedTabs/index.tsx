@@ -1,4 +1,4 @@
-// src/components/SegmentedTabs/index.tsx
+// src/components/Tabs/SegmentedTabs/index.tsx
 import SegmentedTabsContent from "./SegmentedTabsContent";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
@@ -42,7 +42,6 @@ export default function SegmentedTabs({
           paddingBottom: bottom,
           gap: theme.spacing.sm,
           flex: 1,
-          height: "100%",
         },
         style,
       ]}
@@ -66,7 +65,6 @@ export default function SegmentedTabs({
           }
           style={{
             paddingHorizontal: theme.spacing.base,
-            // flex: 1,
           }}
         >
           <SegmentedTabsContent activeTab={value} />
