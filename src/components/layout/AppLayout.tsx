@@ -3,7 +3,7 @@ import { useTheme } from "@/hooks/theme/useTheme";
 import { Stack } from "expo-router";
 
 export const unstable_settings = {
-  initialRouteName: "index",
+  initialRouteName: "(private)",
 };
 
 export default function AppLayout() {
@@ -17,14 +17,7 @@ export default function AppLayout() {
         },
       }}
     >
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="leaderboard"
-        options={{
-          headerShown: false,
-          contentStyle: { backgroundColor: "transparent" },
-        }}
-      />
+      <Stack.Screen name="(private)" options={{ headerShown: false }} />
     </Stack>
   );
 }
