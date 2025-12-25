@@ -1,3 +1,4 @@
+// src/components/Challenge/ContainerCards/Cards/AnimatedGroupButtonCard.tsx
 import Animated, { FadeInDown, runOnJS } from "react-native-reanimated";
 import GroupButtonCard from "./GroupButtonCard";
 import { useChallengeAnimation } from "@/components/Challenge/ChallengeAnimationContext";

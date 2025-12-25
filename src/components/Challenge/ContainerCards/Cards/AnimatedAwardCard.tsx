@@ -1,3 +1,4 @@
+// src/components/Challenge/ContainerCards/Cards/AnimatedAwardCard.tsx
 import { AnimatedChallengeCardWrapper } from "@/components/ui/Cards/ChallengeCards";
 import AwardCard from "./AwardCard";
 
