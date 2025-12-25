@@ -101,14 +101,16 @@ export default function Home() {
             ]}
           >
             {/* Header Nav */}
-            <Animated.View style={headerAnim}>
-              <HomeHeader
-                title={isTabsSticky ? "Fabrica X" : ""}
-                onLayout={(e: LayoutChangeEvent) => {
-                  headerNavHeight.current = e.nativeEvent.layout.height;
-                }}
-              />
-            </Animated.View>
+            {challengeReady && (
+              <Animated.View style={headerAnim}>
+                <HomeHeader
+                  title={isTabsSticky ? "Fabrica X" : ""}
+                  onLayout={(e: LayoutChangeEvent) => {
+                    headerNavHeight.current = e.nativeEvent.layout.height;
+                  }}
+                />
+              </Animated.View>
+            )}
 
             {/* Sticky Segmented Tabs */}
             {isTabsSticky && (
