@@ -24,7 +24,7 @@ import {
 import { ThemedView } from "@/components/Themed";
 
 export default function Home() {
-  const [tab, setTab] = useState<"prizes" | "leaderboard">("prizes");
+  const [tab, setTab] = useState<"prizes" | "leaderboard">("leaderboard");
   const [isSticky, setIsSticky] = useState(false);
   const [isTabsSticky, setIsTabsSticky] = useState(false);
   const [showStickyLeaderboardHeader, setShowStickyLeaderboardHeader] =
