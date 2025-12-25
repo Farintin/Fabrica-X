@@ -17,11 +17,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import OverlayHeader from "@/components/ui/Header/OverlayHeader";
 import SegmentedTabsNav from "@/components/Tabs/SegmentedTabs/SegmentedTabsNav";
 import LeaderboardTabHeader from "@/components/Leaderboard/LeaderboardTabHeader";
-import {
-  useHeaderAnimation,
-  useStickyTabsNavAnimation,
-} from "@/hooks/animations";
+import { useStickyTabsNavAnimation } from "@/hooks/animations";
 import { ThemedView } from "@/components/Themed";
+import { HOME_HEADER_ENTER } from "@/libs/animations";
 
 export default function Home() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("leaderboard");
@@ -66,7 +64,6 @@ export default function Home() {
     }
   };
 
-  const headerAnim = useHeaderAnimation(isSticky);
   const stickyTabsNavAnim = useStickyTabsNavAnimation(isTabsSticky);
 
   useEffect(() => {
@@ -102,7 +99,7 @@ export default function Home() {
           >
             {/* Header Nav */}
             {challengeReady && (
-              <Animated.View style={headerAnim}>
+              <Animated.View entering={HOME_HEADER_ENTER}>
                 <HomeHeader
                   title={isTabsSticky ? "Fabrica X" : ""}
                   onLayout={(e: LayoutChangeEvent) => {
