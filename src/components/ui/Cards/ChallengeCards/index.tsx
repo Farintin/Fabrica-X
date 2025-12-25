@@ -3,16 +3,15 @@ import { ThemedView } from "@/components/Themed";
 import { useTheme } from "@/hooks/theme/useTheme";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
-export const AnimatedChallengeCard = ({
+export const AnimatedChallengeCardWrapper = ({
   children,
   delay = 0,
-  ...restProps
 }: ContainerProps & { delay?: number }) => (
   <Animated.View
     style={{ width: "100%" }}
     entering={FadeInDown.delay(delay).duration(800).springify().damping(18)}
   >
-    <ChallengeCard {...restProps}>{children}</ChallengeCard>
+    {children}
   </Animated.View>
 );
 

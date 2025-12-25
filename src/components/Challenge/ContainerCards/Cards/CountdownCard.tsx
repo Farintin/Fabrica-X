@@ -2,23 +2,17 @@
 import Timer from "../Timer";
 import { useTheme } from "@/hooks/theme/useTheme";
 import Article from "../Article";
-import { ContainerProps } from "@/components/layout/Container.types";
-import { AnimatedChallengeCard } from "@/components/ui/Cards/ChallengeCards";
+import ChallengeCard from "@/components/ui/Cards/ChallengeCards";
 
-export default function CountdownCard({
-  wrapperStyle,
-  ...restProps
-}: ContainerProps) {
+export default function CountdownCard() {
   const theme = useTheme();
 
   return (
-    <AnimatedChallengeCard
-      delay={1200}
+    <ChallengeCard
       wrapperStyle={{
         paddingVertical: theme.spacing.base,
         backgroundColor: "rgba(0, 0, 0, .35)",
       }}
-      {...restProps}
     >
       <Article
         style={{
@@ -29,6 +23,6 @@ export default function CountdownCard({
         ENDS IN
       </Article>
       <Timer />
-    </AnimatedChallengeCard>
+    </ChallengeCard>
   );
 }

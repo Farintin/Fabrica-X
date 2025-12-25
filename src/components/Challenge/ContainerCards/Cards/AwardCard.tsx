@@ -3,7 +3,7 @@ import Highlight from "../Highlight";
 import Article from "../Article";
 import { Heading } from "@/components/typography/Heading";
 import { ThemedView } from "@/components/Themed";
-import { AnimatedChallengeCard } from "@/components/ui/Cards/ChallengeCards";
+import ChallengeCard from "@/components/ui/Cards/ChallengeCards";
 import SvgIcon from "@/components/ui/SvgIcon";
 
 export default function AwardCard() {
@@ -12,7 +12,7 @@ export default function AwardCard() {
   const iconColor = theme.colors.primary;
 
   return (
-    <AnimatedChallengeCard delay={420}>
+    <ChallengeCard>
       <Heading align="center" spaced>
         Global Change Award @ Fabrica X
       </Heading>
@@ -47,6 +47,6 @@ export default function AwardCard() {
           <Article>17 Sep - 01 Oct</Article>
         </Highlight>
       </ThemedView>
-    </AnimatedChallengeCard>
+    </ChallengeCard>
   );
 }
