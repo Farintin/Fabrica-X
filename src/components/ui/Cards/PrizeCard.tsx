@@ -17,6 +17,7 @@ export default function PrizeCard({
   iconName,
   levelText,
   infoText,
+  grow = 1,
   style,
 }: PrizeCardProps) {
   const theme = useTheme();
@@ -27,6 +28,7 @@ export default function PrizeCard({
         {
           borderRadius: theme.radius.md,
           overflow: "hidden",
+          flexGrow: grow,
         },
         style,
       ]}

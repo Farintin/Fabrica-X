@@ -3,13 +3,14 @@ import { ImageBackgroundProps } from "react-native";
 import { ThemedViewProps } from "@/components/Themed";
 import { IconNameType } from "@/types/ui/icons";
 
-export type PrizeCardProps = ImageBackgroundProps & {
+export type PrizeItem = ImageBackgroundProps & {
   iconName: IconNameType;
   levelText: string;
   infoText: string;
+  grow?: number;
 };
 
-export type PointCardProps = ThemedViewProps & {
+export type CollectibleItem = ThemedViewProps & {
   title: string;
   desc: string;
   point: number;
