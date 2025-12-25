@@ -45,7 +45,7 @@ export default function Challenge({
         {bannerDone && (
           <>
             <Animated.View
-              entering={FadeInUp.delay(0).duration(120)}
+              entering={FadeInUp.delay(20).duration(220)}
               style={{ zIndex: 2 }}
             >
               <Image
@@ -64,7 +64,7 @@ export default function Challenge({
               />
             </Animated.View>
 
-            <Animated.View entering={FadeInUp.delay(800).duration(260)}>
+            <Animated.View entering={FadeInUp.delay(1000).duration(420)}>
               <ContainerCards style={{ marginTop: theme.spacing.xs }} />
             </Animated.View>
           </>

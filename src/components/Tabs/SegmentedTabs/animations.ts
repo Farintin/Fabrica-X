@@ -1,8 +1,8 @@
 // src/components/SegmentedTabs/animations.ts
 import { FadeInLeft, FadeInRight, FadeInUp } from "react-native-reanimated";
 
-export const ANIM_DURATION = 600;
-export const NAV_ANIM_DELAY = 1500;
+export const ANIM_DURATION = 420;
+export const NAV_ANIM_DELAY = 120;
 
 export const SEGMENTED_NAV_ENTER =
   FadeInUp.delay(NAV_ANIM_DELAY).duration(ANIM_DURATION);

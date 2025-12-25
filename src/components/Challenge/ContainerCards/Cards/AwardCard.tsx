@@ -12,7 +12,7 @@ export default function AwardCard() {
   const iconColor = theme.colors.primary;
 
   return (
-    <AnimatedChallengeCard delay={250}>
+    <AnimatedChallengeCard delay={420}>
       <Heading align="center" spaced>
         Global Change Award @ Fabrica X
       </Heading>

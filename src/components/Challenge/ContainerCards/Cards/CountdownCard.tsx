@@ -13,7 +13,7 @@ export default function CountdownCard({
 
   return (
     <AnimatedChallengeCard
-      delay={500}
+      delay={1200}
       wrapperStyle={{
         paddingVertical: theme.spacing.base,
         backgroundColor: "rgba(0, 0, 0, .35)",

@@ -27,7 +27,7 @@ export default function ContainerCards({ style }: ThemedViewProps) {
       <AwardCard />
 
       <Animated.View
-        entering={FadeInDown.delay(1000)
+        entering={FadeInDown.delay(1500)
           .duration(800)
           .springify()
           .damping(18)
