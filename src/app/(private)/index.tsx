@@ -155,11 +155,7 @@ export default function Home() {
             overScrollMode="never"
           >
             <Challenge
-              onLayout={(e: LayoutChangeEvent) => {
-                challengeY.current = e.nativeEvent.layout.y;
-                // allow challenge to mount first
-                requestAnimationFrame(() => setChallengeReady(true));
-              }}
+              onReady={() => setChallengeReady(true)}
               style={{ paddingBottom: theme.spacing.sm }}
             />
 

@@ -1,4 +1,4 @@
-// src/components/ui/Challenge/Banner/index.tsx
+// src/components/Challenge/Banner/index.tsx
 import { Alert, Pressable, StyleSheet } from "react-native";
 import { ImageBackground } from "expo-image";
 import { useTheme } from "@/hooks/theme/useTheme";
@@ -9,17 +9,13 @@ import Animated, {
 } from "react-native-reanimated";
 import { ThemedView, ThemedViewProps } from "@/components/Themed";
 import { BannerButton } from "@/components/ui/Button";
+import { BannerAction } from "./BannerAction";
 
 // Import local image using require
 const bannerImage = require("@/assets/images/Challenge-Thumbnail.png");
 
 export default function Banner({ style }: ThemedViewProps) {
   const theme = useTheme();
-  const scale = useSharedValue(1);
-
-  const pressStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-  }));
 
   return (
     <ThemedView
@@ -53,31 +49,21 @@ export default function Banner({ style }: ThemedViewProps) {
             },
           ]}
         >
-          <Animated.View style={pressStyle}>
-            <Pressable
-              onPressIn={() => (scale.value = withSpring(0.96))}
-              onPressOut={() => (scale.value = withSpring(1))}
-            >
-              <BannerButton
-                iconName="link"
-                label="register"
-                onPress={() => Alert.alert("Register")}
-              />
-            </Pressable>
-          </Animated.View>
+          <BannerAction delay={420}>
+            <BannerButton
+              iconName="link"
+              label="register"
+              onPress={() => Alert.alert("Register")}
+            />
+          </BannerAction>
 
-          <Animated.View style={pressStyle}>
-            <Pressable
-              onPressIn={() => (scale.value = withSpring(0.96))}
-              onPressOut={() => (scale.value = withSpring(1))}
-            >
-              <BannerButton
-                iconName="live"
-                label="in progress"
-                onPress={() => Alert.alert("In Progress")}
-              />
-            </Pressable>
-          </Animated.View>
+          <BannerAction delay={800}>
+            <BannerButton
+              iconName="live"
+              label="in progress"
+              onPress={() => Alert.alert("In Progress")}
+            />
+          </BannerAction>
         </ThemedView>
       </ImageBackground>
     </ThemedView>
