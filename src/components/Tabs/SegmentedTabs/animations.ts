@@ -2,7 +2,7 @@
 import { FadeInLeft, FadeInRight, FadeInUp } from "react-native-reanimated";
 
 export const ANIM_DURATION = 420;
-export const NAV_ANIM_DELAY = 80;
+export const NAV_ANIM_DELAY = 320;
 
 export const SEGMENTED_NAV_ENTER =
   FadeInUp.delay(NAV_ANIM_DELAY).duration(ANIM_DURATION);
