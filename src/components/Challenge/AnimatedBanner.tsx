@@ -1,3 +1,4 @@
+// src/components/Challenge/AnimatedBanner.tsx
 import Animated, { runOnJS } from "react-native-reanimated";
 import { BANNER_ENTER } from "./animations";
 import { ThemedViewProps } from "../Themed";
