@@ -70,11 +70,11 @@ export default function SegmentedTabs({
                 : SEGMENTED_CONTENT_RIGHT
               : undefined
           }
-          style={{
-            paddingHorizontal: theme.spacing.base,
-          }}
         >
-          <SegmentedTabsContent activeTab={value} />
+          <SegmentedTabsContent
+            activeTab={value}
+            style={{ marginHorizontal: theme.spacing.base }}
+          />
         </Animated.View>
       )}
     </ThemedView>

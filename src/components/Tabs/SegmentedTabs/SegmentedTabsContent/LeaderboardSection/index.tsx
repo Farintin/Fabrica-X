@@ -27,8 +27,7 @@ export default function LeaderboardSection() {
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
-          padding: theme.spacing.lg,
-          // backgroundColor: "blue",
+          padding: theme.spacing.wide,
         }}
       >
         <ActivityIndicator size={"small"} color={theme.colors.primary} />
@@ -37,7 +36,11 @@ export default function LeaderboardSection() {
   }
 
   return (
-    <ThemedView>
+    <ThemedView
+      style={{
+        paddingVertical: theme.spacing.sm,
+      }}
+    >
       {/* Pass required state down to the Header */}
       <LeaderboardTabHeader style={{ marginBottom: theme.spacing.sm }} />
 

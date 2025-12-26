@@ -15,16 +15,13 @@ export default function PrizesSection() {
   return (
     <ThemedView
       style={{
-        paddingVertical: theme.spacing.md,
-        gap: theme.spacing.xl,
+        gap: theme.spacing.lg,
       }}
     >
       <Animated.View entering={PRIZE_CONTENT_ENTER}>
         <Prizes />
-        {/* <Collectables /> */}
       </Animated.View>
       <Animated.View entering={COLLECTIBLE_CONTENT_ENTER}>
-        {/* <Prizes /> */}
         <Collectables />
       </Animated.View>
     </ThemedView>
