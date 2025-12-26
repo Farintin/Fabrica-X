@@ -2,19 +2,28 @@
 import { ContainerProps } from "@/components/layout/Container.types";
 import { ThemedView } from "@/components/Themed";
 import { useTheme } from "@/hooks/theme/useTheme";
+import { useHomeAnimation } from "@/screens/Home/HomeAnimationContext";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export const AnimatedChallengeCardWrapper = ({
   children,
   delay = 0,
-}: ContainerProps & { delay?: number }) => (
-  <Animated.View
-    style={{ width: "100%" }}
-    entering={FadeInDown.delay(delay).duration(800).springify().damping(18)}
-  >
-    {children}
-  </Animated.View>
-);
+}: ContainerProps & { delay?: number }) => {
+  const { animateOnce } = useHomeAnimation();
+
+  return (
+    <Animated.View
+      style={{ width: "100%" }}
+      entering={
+        animateOnce
+          ? FadeInDown.delay(delay).duration(800).springify().damping(18)
+          : undefined
+      }
+    >
+      {children}
+    </Animated.View>
+  );
+};
 
 export default function ChallengeCard({
   children,

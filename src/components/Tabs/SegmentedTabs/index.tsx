@@ -14,6 +14,7 @@ import {
   SEGMENTED_CONTENT_LEFT,
   SEGMENTED_CONTENT_RIGHT,
 } from "./animations";
+import { useHomeAnimation } from "@/screens/Home/HomeAnimationContext";
 
 export default function SegmentedTabs({
   value,
@@ -24,6 +25,7 @@ export default function SegmentedTabs({
   const theme = useTheme();
   const { bottom } = useSafeAreaInsets();
   const [navAnimated, setNavAnimated] = useState(false);
+  const { animateOnce } = useHomeAnimation();
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -47,7 +49,10 @@ export default function SegmentedTabs({
       ]}
       {...restProps}
     >
-      <Animated.View key="tabs-nav" entering={SEGMENTED_NAV_ENTER}>
+      <Animated.View
+        key="tabs-nav"
+        entering={animateOnce ? SEGMENTED_NAV_ENTER : undefined}
+      >
         <SegmentedTabsNav
           value={value}
           onChange={setHandler}
@@ -59,9 +64,11 @@ export default function SegmentedTabs({
         <Animated.View
           key={value}
           entering={
-            value === "leaderboard"
-              ? SEGMENTED_CONTENT_LEFT
-              : SEGMENTED_CONTENT_RIGHT
+            animateOnce
+              ? value === "leaderboard"
+                ? SEGMENTED_CONTENT_LEFT
+                : SEGMENTED_CONTENT_RIGHT
+              : undefined
           }
           style={{
             paddingHorizontal: theme.spacing.base,

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import AnimatedBanner from "./AnimatedBanner";
 import Animated, { FadeInUp } from "react-native-reanimated";
 import { ChallengeAnimationProvider } from "./ChallengeAnimationContext";
+import { useHomeAnimation } from "@/screens/Home/HomeAnimationContext";
 
 const brandImage = require("@/assets/images/Challenge-icon.png");
 const brandImageWidthPercent = 20;
@@ -21,6 +22,7 @@ export default function Challenge({
   const [bannerDone, setBannerDone] = useState(false);
   const [groupButtonDone, setGroupButtonDone] = useState(false);
   const theme = useTheme();
+  const { animateOnce } = useHomeAnimation();
 
   useEffect(() => {
     if (groupButtonDone) {
@@ -45,7 +47,9 @@ export default function Challenge({
         {bannerDone && (
           <>
             <Animated.View
-              entering={FadeInUp.delay(20).duration(220)}
+              entering={
+                animateOnce ? FadeInUp.delay(20).duration(220) : undefined
+              }
               style={{ zIndex: 2 }}
             >
               <Image
@@ -64,7 +68,11 @@ export default function Challenge({
               />
             </Animated.View>
 
-            <Animated.View entering={FadeInUp.delay(1000).duration(420)}>
+            <Animated.View
+              entering={
+                animateOnce ? FadeInUp.delay(1000).duration(420) : undefined
+              }
+            >
               <ContainerCards style={{ marginTop: theme.spacing.xs }} />
             </Animated.View>
           </>
