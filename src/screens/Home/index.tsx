@@ -1,5 +1,5 @@
 // src/screens/Home/index.tsx
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -24,8 +24,6 @@ export default function HomeScreen() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("leaderboard");
   const [isSticky, setIsSticky] = useState(false);
   const [isTabsSticky, setIsTabsSticky] = useState(false);
-  const [showStickyLeaderboardHeader, setShowStickyLeaderboardHeader] =
-    useState<boolean>(false);
   const [challengeReady, setChallengeReady] = useState(false);
   const [maxTabsHeight, setMaxTabsHeight] = useState<number>(0);
   const scrollRef = useRef<ScrollView | null>(null);
@@ -65,10 +63,6 @@ export default function HomeScreen() {
 
   const stickyTabsNavAnim = useStickyTabsNavAnimation(isTabsSticky);
 
-  useEffect(() => {
-    setShowStickyLeaderboardHeader(isTabsSticky && tab === "leaderboard");
-  }, [isTabsSticky, tab]);
-
   return (
     <ThemedView style={[styles.root]}>
       <LinearGradient
@@ -93,6 +87,7 @@ export default function HomeScreen() {
                 backgroundColor: isTabsSticky
                   ? theme.colors.background.black
                   : theme.colors.natural.transparent,
+                gap: theme.spacing.lg,
               },
             ]}
           >
@@ -108,33 +103,38 @@ export default function HomeScreen() {
 
             {/* Sticky Segmented Tabs */}
             {isTabsSticky && (
-              <Animated.View
-                key="sticky-tabs-nav"
-                style={[
-                  stickyTabsNavAnim,
-                  {
-                    marginHorizontal: theme.spacing.base,
-                  },
-                ]}
+              <ThemedView
+                style={{
+                  gap: theme.spacing.sm,
+                }}
               >
-                <SegmentedTabsNav
-                  isSticky={true}
-                  value={tab}
-                  onChange={setTab}
-                  style={{ marginTop: theme.spacing.lg }}
-                />
-              </Animated.View>
-            )}
+                <Animated.View
+                  key="sticky-tabs-nav"
+                  style={[
+                    stickyTabsNavAnim,
+                    {
+                      marginHorizontal: theme.spacing.base,
+                    },
+                  ]}
+                >
+                  <SegmentedTabsNav
+                    isSticky={true}
+                    value={tab}
+                    onChange={setTab}
+                  />
+                </Animated.View>
 
-            {showStickyLeaderboardHeader && (
-              <LeaderboardTabHeader
-                isSticky={true}
-                style={[
-                  {
-                    marginHorizontal: theme.spacing.base,
-                  },
-                ]}
-              />
+                {tab === "leaderboard" && (
+                  <LeaderboardTabHeader
+                    isSticky={true}
+                    style={[
+                      {
+                        marginHorizontal: theme.spacing.base,
+                      },
+                    ]}
+                  />
+                )}
+              </ThemedView>
             )}
           </OverlayHeader>
 

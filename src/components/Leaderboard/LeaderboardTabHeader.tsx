@@ -25,13 +25,12 @@ export default function LeaderboardTabHeader({
   const lastRank = data.length > 0 ? data[data.length - 1] : undefined;
 
   return (
-    <ThemedView style={[style]}>
+    <ThemedView style={[{ gap: theme.spacing.md }, style]}>
       <ThemedView
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          paddingVertical: theme.spacing.base,
         }}
       >
         <Heading>Leaderboard</Heading>

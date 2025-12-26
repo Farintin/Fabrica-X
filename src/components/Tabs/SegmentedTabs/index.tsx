@@ -42,7 +42,7 @@ export default function SegmentedTabs({
           backgroundColor: theme.colors.background.black,
           paddingTop: theme.spacing.base,
           paddingBottom: bottom,
-          gap: theme.spacing.sm,
+          gap: theme.spacing.base,
           flex: 1,
         },
         style,
