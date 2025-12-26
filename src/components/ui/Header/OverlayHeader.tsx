@@ -12,7 +12,7 @@ export default function OverlayHeader({
           position: "absolute",
           top: 0,
           width: "100%",
-          zIndex: 2,
+          zIndex: 1,
         },
         style,
       ]}

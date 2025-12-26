@@ -1,12 +1,7 @@
 // src/components/Challenge/Banner/index.tsx
-import { Alert, Pressable, StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { ImageBackground } from "expo-image";
 import { useTheme } from "@/hooks/theme/useTheme";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-} from "react-native-reanimated";
 import { ThemedView, ThemedViewProps } from "@/components/Themed";
 import { BannerButton } from "@/components/ui/Button";
 import { BannerAction } from "./BannerAction";

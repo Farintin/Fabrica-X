@@ -1,5 +1,5 @@
 // src/screens/Home/index.tsx
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -63,6 +63,10 @@ export default function HomeScreen() {
 
   const stickyTabsNavAnim = useStickyTabsNavAnimation(isTabsSticky);
 
+  useEffect(() => {
+    console.log({ challengeReady });
+  }, [challengeReady]);
+
   return (
     <ThemedView style={[styles.root]}>
       <LinearGradient
@@ -76,6 +80,41 @@ export default function HomeScreen() {
         style={[styles.gradient]}
       >
         <ThemedView style={[styles.container]}>
+          {/* SCROLLABLE content */}
+          <ScrollView
+            ref={scrollRef}
+            onScroll={onScroll}
+            onScrollEndDrag={onScrollEndDrag}
+            onMomentumScrollEnd={onMomentumScrollEnd}
+            scrollEventThrottle={16}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            alwaysBounceVertical={false}
+            overScrollMode="never"
+          >
+            <Challenge
+              onReady={() => setChallengeReady(true)}
+              style={{ paddingBottom: theme.spacing.sm }}
+            />
+
+            {/* Tabs */}
+            {challengeReady && (
+              <SegmentedTabs
+                value={tab}
+                setHandler={setTab}
+                onLayout={(e: LayoutChangeEvent) => {
+                  const { height, y } = e.nativeEvent.layout;
+                  tabsY.current = y;
+
+                  if (!isTabsSticky) {
+                    setMaxTabsHeight((prev) => (height > prev ? height : prev));
+                  }
+                  tabHeights.current[tab] = height;
+                }}
+                style={[{ minHeight: maxTabsHeight }]}
+              />
+            )}
+          </ScrollView>
           <OverlayHeader
             style={[
               {
@@ -88,6 +127,7 @@ export default function HomeScreen() {
                   ? theme.colors.background.black
                   : theme.colors.natural.transparent,
                 gap: theme.spacing.lg,
+                // zIndex: 2,
               },
             ]}
           >
@@ -137,42 +177,6 @@ export default function HomeScreen() {
               </ThemedView>
             )}
           </OverlayHeader>
-
-          {/* SCROLLABLE content */}
-          <ScrollView
-            ref={scrollRef}
-            onScroll={onScroll}
-            onScrollEndDrag={onScrollEndDrag}
-            onMomentumScrollEnd={onMomentumScrollEnd}
-            scrollEventThrottle={16}
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            alwaysBounceVertical={false}
-            overScrollMode="never"
-          >
-            <Challenge
-              onReady={() => setChallengeReady(true)}
-              style={{ paddingBottom: theme.spacing.sm }}
-            />
-
-            {/* Tabs */}
-            {challengeReady && (
-              <SegmentedTabs
-                value={tab}
-                setHandler={setTab}
-                onLayout={(e: LayoutChangeEvent) => {
-                  const { height, y } = e.nativeEvent.layout;
-                  tabsY.current = y;
-
-                  if (!isTabsSticky) {
-                    setMaxTabsHeight((prev) => (height > prev ? height : prev));
-                  }
-                  tabHeights.current[tab] = height;
-                }}
-                style={[{ minHeight: maxTabsHeight }]}
-              />
-            )}
-          </ScrollView>
         </ThemedView>
       </LinearGradient>
     </ThemedView>
