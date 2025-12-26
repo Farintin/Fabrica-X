@@ -1,6 +1,6 @@
 // src/screens/Leaderboard/index.tsx
 import { ActivityIndicator } from "react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated from "react-native-reanimated";
 
@@ -10,18 +10,15 @@ import { useTheme } from "@/hooks/theme/useTheme";
 import LeaderboardList from "@/components/Leaderboard/LeaderboardList";
 import LeaderboardFilterModal from "@/components/Leaderboard/LeaderboardFilterModal";
 import { LastPreviewRankCard } from "@/components/ui/Cards";
-import { LeaderboardNavButton } from "@/components/ui/Button";
-import SvgIcon from "@/components/ui/SvgIcon";
 import { lastRankEnter } from "@/components/Leaderboard/animations";
 import { ThemedView } from "@/components/Themed";
-import { LEADERBOARDS } from "@/constants/Leaderboards";
 import AnimatedLeaderboardHeader from "@/components/ui/Header/AnimatedLeaderboardHeader";
+import AnimatedLeaderboardControls from "@/components/Leaderboard/AnimatedLeaderboardControls";
 
 export default function LeaderboardScreen() {
   const theme = useTheme();
   const { top, bottom } = useSafeAreaInsets();
 
-  const [headerReady, setHeaderReady] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
 
   const {
@@ -39,10 +36,6 @@ export default function LeaderboardScreen() {
 
   const lastRank = data.at(-1);
 
-  useEffect(() => {
-    requestAnimationFrame(() => setHeaderReady(true));
-  }, []);
-
   return (
     <ThemedView
       style={{
@@ -54,31 +47,10 @@ export default function LeaderboardScreen() {
     >
       <AnimatedLeaderboardHeader />
 
-      {/* Controls */}
-      <ThemedView
-        style={{
-          flexDirection: "row",
-          gap: theme.spacing.md,
-          paddingHorizontal: theme.spacing.base,
-          paddingVertical: theme.spacing.xs,
-        }}
-      >
-        <LeaderboardNavButton
-          label="Filter"
-          onPress={() => setShowFilter(true)}
-          contentLeft={
-            <SvgIcon name="setting" color={theme.colors.primary} size={20} />
-          }
-        />
-
-        <LeaderboardNavButton
-          label={LEADERBOARDS.find((lb) => lb.id === leaderboardId)?.label}
-          disabled
-          style={{ flexGrow: 1 }}
-        />
-      </ThemedView>
-
-      {/* Leaderboard Selector (Figma position) */}
+      <AnimatedLeaderboardControls
+        leaderboardId={leaderboardId}
+        showFilterHandler={() => setShowFilter(true)}
+      />
 
       {/* Last Rank PreThemedView */}
       {isLoading && data.length === 0 ? (
@@ -87,8 +59,7 @@ export default function LeaderboardScreen() {
           style={{ marginTop: theme.spacing.sm }}
         />
       ) : (
-        lastRank &&
-        headerReady && (
+        lastRank && (
           <Animated.View entering={lastRankEnter}>
             <LastPreviewRankCard
               {...lastRank}
