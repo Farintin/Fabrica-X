@@ -56,7 +56,7 @@ export default function LeaderboardScreen() {
       {isLoading && data.length === 0 ? (
         <ActivityIndicator
           color={theme.colors.primary}
-          style={{ marginTop: theme.spacing.sm }}
+          style={{ margin: theme.spacing.wide }}
         />
       ) : (
         lastRank && (
