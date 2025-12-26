@@ -2,9 +2,13 @@
 import { AnimatedChallengeCardWrapper } from "@/components/ui/Cards/ChallengeCards";
 import CountdownCard from "./CountdownCard";
 
-export default function AnimatedCountdownCard() {
+export default function AnimatedCountdownCard({
+  onEntered,
+}: {
+  onEntered?: () => void;
+}) {
   return (
-    <AnimatedChallengeCardWrapper delay={1200}>
+    <AnimatedChallengeCardWrapper delay={1200} finishHanler={onEntered}>
       <CountdownCard />
     </AnimatedChallengeCardWrapper>
   );
