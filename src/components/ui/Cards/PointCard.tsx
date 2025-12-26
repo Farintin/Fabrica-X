@@ -1,14 +1,14 @@
-import { PointCardProps } from "@/components/ui/Cards/Card.types";
 import { useTheme } from "@/hooks/theme/useTheme";
 import PointsButton from "../Button/PointsButton";
 import { ThemedView, ThemedText } from "@/components/Themed";
+import { CollectibleItem } from "./Card.types";
 
 export default function PointCard({
   title,
   desc,
   point,
   style,
-}: PointCardProps) {
+}: CollectibleItem) {
   const theme = useTheme();
 
   return (

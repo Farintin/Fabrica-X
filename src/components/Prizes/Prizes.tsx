@@ -14,7 +14,7 @@ const PRIZES: PrizeItem[] = [
     iconName: "leaderboard-prize",
     levelText: "1st Place Prize",
     infoText: "Sustainable Goodie Bag",
-    grow: 2,
+    size: "large",
   },
   {
     source: require("@/assets/images/Runners Up x 4.png"),
@@ -36,11 +36,14 @@ export default function Prizes() {
     <ThemedView style={{ gap: theme.spacing.sm }}>
       <Heading>What Can You Expect</Heading>
       <ThemedView style={[styles.row, { gap: theme.spacing.sm }]}>
-        {PRIZES.map(({ grow, ...cardProps }, index) => (
+        {PRIZES.map(({ size, ...cardProps }, index) => (
           <Animated.View
             key={cardProps.levelText}
             entering={slideInFromRight(index, 0)}
-            style={[styles.rowItem]}
+            style={[
+              styles.rowItem,
+              size === "large" ? { width: "100%" } : undefined,
+            ]}
           >
             <PrizeCard {...cardProps} />
           </Animated.View>

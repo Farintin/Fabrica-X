@@ -1,4 +1,3 @@
-import { PrizeCardProps } from "@/components/ui/Cards/Card.types";
 import { BlurView } from "expo-blur";
 import {
   TouchableOpacity,
@@ -11,15 +10,15 @@ import { useTheme } from "@/hooks/theme/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 import { Heading } from "../../typography/Heading";
 import { ThemedView, ThemedText } from "@/components/Themed";
+import { PrizeItem } from "./Card.types";
 
 export default function PrizeCard({
   source: imageSource,
   iconName,
   levelText,
   infoText,
-  grow = 1,
   style,
-}: PrizeCardProps) {
+}: PrizeItem) {
   const theme = useTheme();
 
   return (
@@ -28,7 +27,6 @@ export default function PrizeCard({
         {
           borderRadius: theme.radius.md,
           overflow: "hidden",
-          flexGrow: grow,
         },
         style,
       ]}

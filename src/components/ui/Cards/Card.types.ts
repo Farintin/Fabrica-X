@@ -7,7 +7,7 @@ export type PrizeItem = ImageBackgroundProps & {
   iconName: IconNameType;
   levelText: string;
   infoText: string;
-  grow?: number;
+  size?: "large" | "small";
 };
 
 export type CollectibleItem = ThemedViewProps & {
