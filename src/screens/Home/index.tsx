@@ -8,7 +8,6 @@ import {
   LayoutChangeEvent,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import HomeHeader from "@/components/ui/Header/HomeHeader";
 import Challenge from "@/components/Challenge";
 import SegmentedTabs from "@/components/Tabs/SegmentedTabs";
 import { useTheme } from "@/hooks/theme/useTheme";
@@ -19,7 +18,7 @@ import SegmentedTabsNav from "@/components/Tabs/SegmentedTabs/SegmentedTabsNav";
 import LeaderboardTabHeader from "@/components/Leaderboard/LeaderboardTabHeader";
 import { useStickyTabsNavAnimation } from "@/hooks/animations";
 import { ThemedView } from "@/components/Themed";
-import { HOME_HEADER_ENTER } from "@/libs/animations";
+import AnimatedHomeHeader from "@/components/ui/Header/AnimatedHomeHeader";
 
 export default function HomeScreen() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("leaderboard");
@@ -99,14 +98,12 @@ export default function HomeScreen() {
           >
             {/* Header Nav */}
             {challengeReady && (
-              <Animated.View entering={HOME_HEADER_ENTER}>
-                <HomeHeader
-                  title={isTabsSticky ? "Fabrica X" : ""}
-                  onLayout={(e: LayoutChangeEvent) => {
-                    headerNavHeight.current = e.nativeEvent.layout.height;
-                  }}
-                />
-              </Animated.View>
+              <AnimatedHomeHeader
+                title={isTabsSticky ? "Fabrica X" : ""}
+                onLayout={(e: LayoutChangeEvent) => {
+                  headerNavHeight.current = e.nativeEvent.layout.height;
+                }}
+              />
             )}
 
             {/* Sticky Segmented Tabs */}

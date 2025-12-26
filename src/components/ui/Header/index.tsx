@@ -1,10 +1,8 @@
-import { StyleSheet, Alert, StyleProp, TextStyle } from "react-native";
-import IconButton from "../Button/IconButton";
+import { StyleSheet, StyleProp, TextStyle } from "react-native";
 import { useTheme } from "@/hooks/theme/useTheme";
-import BackButton from "../Button/BackButton";
 import { ThemedView, ThemedText, ThemedViewProps } from "@/components/Themed";
 
-export type Props = ThemedViewProps & {
+export type HeaderProps = ThemedViewProps & {
   title?: string;
   titleStyle?: StyleProp<TextStyle>;
   contentLeft?: any;
@@ -18,7 +16,7 @@ export default function Header({
   contentRight,
   style,
   ...restProps
-}: Props) {
+}: HeaderProps) {
   const theme = useTheme();
   const color = theme.colors.textPrimary;
 
