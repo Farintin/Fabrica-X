@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import CountdownUnit from "./CountdownUnit";
 import Separator from "./Separator";
 import { ThemedView } from "@/components/Themed";
+import { useCountdown } from "@/context/CountdownContext";
 
 type CountdownProps = {
   size?: number;
@@ -33,16 +34,12 @@ const getRemaining = (end: number) => {
   };
 };
 
-const fetchEndTime = async () => {
-  const endTime = Date.now() + 1000 * 60 * 60 * 24 * 4;
-  return endTime;
-};
-
 export default function Countdown({
   size = 34,
   start = false,
 }: CountdownProps) {
   const [time, setTime] = useState<Time>(null);
+  const { endTime, ensureEndTime } = useCountdown();
 
   useEffect(() => {
     if (!start) {
@@ -50,34 +47,31 @@ export default function Countdown({
       return;
     }
 
+    ensureEndTime(); // create it once globally
+
+    if (!endTime) return;
+
     let timer: ReturnType<typeof setTimeout>;
     let cancelled = false;
 
-    const init = async () => {
-      const endTime = await fetchEndTime();
+    const tick = () => {
+      if (cancelled) return;
 
-      const tick = () => {
-        if (cancelled) return;
+      const { days, hours, minutes, seconds } = getRemaining(endTime);
+      setTime({ days, hours, minutes, seconds });
 
-        const { days, hours, minutes, seconds } = getRemaining(endTime);
-        setTime({ days, hours, minutes, seconds });
-
-        const now = Date.now();
-        const delay = 1000 - (now % 1000);
-        timer = setTimeout(tick, delay);
-      };
-
-      // render immediately
-      tick();
+      const now = Date.now();
+      const delay = 1000 - (now % 1000);
+      timer = setTimeout(tick, delay);
     };
 
-    init();
+    tick();
 
     return () => {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [start]);
+  }, [start, endTime]);
 
   return (
     <ThemedView style={styles.row}>

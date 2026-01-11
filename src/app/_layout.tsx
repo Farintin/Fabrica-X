@@ -1,5 +1,6 @@
 // src/app/_layout.tsx
 import AppLayout from "@/components/layout/AppLayout";
+import { CountdownProvider } from "@/context/CountdownContext";
 import useSplashScreen from "@/hooks/useSplashScreen";
 import { StatusBar } from "expo-status-bar";
 
@@ -13,9 +14,9 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <CountdownProvider>
       <StatusBar style={"light"} />
       <AppLayout />
-    </>
+    </CountdownProvider>
   );
 }
