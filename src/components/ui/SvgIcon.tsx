@@ -19,6 +19,7 @@ import Crown from "@/assets/icons/Crown.svg";
 import Ranking from "@/assets/icons/Ranking.svg";
 import Menu from "@/assets/icons/Menu.svg";
 import Setting from "@/assets/icons/Setting.svg";
+import Column from "@/assets/icons/Column.svg";
 
 // Map component names to the imported SVG modules
 const IconMap = {
@@ -38,6 +39,7 @@ const IconMap = {
   ranking: Ranking,
   menu: Menu,
   setting: Setting,
+  column: Column,
 };
 
 type IconName = keyof typeof IconMap;
@@ -52,7 +54,7 @@ const SvgIcon: React.FC<SvgIconProps> = ({
   name,
   size = 24,
   color = "currentColor",
-  ...rest
+  ...restProps
 }) => {
   const IconComponent = IconMap[name];
 
@@ -69,7 +71,7 @@ const SvgIcon: React.FC<SvgIconProps> = ({
       width={size}
       height={size}
       fill={color} // The fill prop should override the SVG's internal fill
-      {...rest}
+      {...restProps}
     />
   );
 };

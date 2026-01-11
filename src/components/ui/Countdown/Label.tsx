@@ -1,22 +1,26 @@
 import { ThemedTextProps, ThemedText } from "@/components/Themed";
 import { useTheme } from "@/hooks/theme/useTheme";
 
-export default function Label(props: ThemedTextProps) {
+type LabelProps = ThemedTextProps & {
+  fontSize: number;
+};
+export default function Label({ fontSize, style, ...restProps }: LabelProps) {
   const theme = useTheme();
-
+  fontSize = Math.floor(fontSize / 2.7);
   return (
     <ThemedText
-      {...props}
       style={[
         theme.typography.mini,
         {
           color: "rgba(245, 245, 245, .7)",
           textAlign: "center",
           textTransform: "capitalize",
-          lineHeight: 10,
+          fontSize,
+          lineHeight: fontSize + Math.floor(fontSize / 32),
         },
-        props.style,
+        style,
       ]}
+      {...restProps}
     />
   );
 }

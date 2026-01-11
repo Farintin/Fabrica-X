@@ -82,8 +82,8 @@ export const Typography: Record<string, TextStyle> = {
 
   timerValue: {
     fontFamily: "Poppins-Medium",
-    fontSize: 30,
-    lineHeight: 34,
+    fontSize: 34,
+    lineHeight: 38,
     letterSpacing: -1,
   },
 

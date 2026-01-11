@@ -16,4 +16,5 @@ export type IconNameType =
   | "menu"
   | "setting"
   | "crown"
-  | "ranking";
+  | "ranking"
+  | "column";
