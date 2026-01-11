@@ -3,9 +3,11 @@ import { useTheme } from "@/hooks/theme/useTheme";
 import Article from "../Article";
 import ChallengeCard from "@/components/ui/Cards/ChallengeCards";
 import Countdown from "@/components/ui/Countdown";
+import { useHomeAnimation } from "@/screens/Home/HomeAnimationContext";
 
 export default function CountdownCard() {
   const theme = useTheme();
+  const { countdownDone } = useHomeAnimation();
 
   return (
     <ChallengeCard
@@ -25,7 +27,7 @@ export default function CountdownCard() {
       >
         ENDS IN
       </Article>
-      <Countdown endTime={Date.now() + 1000 * 60 * 60 * 24 * 4} />
+      <Countdown start={countdownDone} />
     </ChallengeCard>
   );
 }

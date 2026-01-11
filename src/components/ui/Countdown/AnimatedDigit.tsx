@@ -27,7 +27,7 @@ export default function AnimatedDigit({ value, fontSize }: Props) {
     opacity.value = withTiming(0, { duration: 160 }, () => {
       runOnJS(setDisplay)(value);
 
-      translateY.value = 12;
+      translateY.value = Math.floor(fontSize / 4);
       opacity.value = 0;
 
       translateY.value = withTiming(0, { duration: 180 });

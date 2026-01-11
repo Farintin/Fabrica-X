@@ -1,10 +1,21 @@
+// src/components/ui/Countdown/index.tsx
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import CountdownUnit from "./CountdownUnit";
 import Separator from "./Separator";
 import { ThemedView } from "@/components/Themed";
 
-type CountdownProps = { endTime: number; size?: number };
+type CountdownProps = {
+  size?: number;
+  start?: boolean; // controls when it begins
+};
+
+type Time = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+} | null;
 
 const getRemaining = (end: number) => {
   const total = Math.max(0, end - Date.now());
@@ -22,34 +33,61 @@ const getRemaining = (end: number) => {
   };
 };
 
-export default function Countdown({ endTime, size = 34 }: CountdownProps) {
-  const [time, setTime] = useState(() => getRemaining(endTime));
+const fetchEndTime = async () => {
+  const endTime = Date.now() + 1000 * 60 * 60 * 24 * 4;
+  return endTime;
+};
+
+export default function Countdown({
+  size = 34,
+  start = false,
+}: CountdownProps) {
+  const [time, setTime] = useState<Time>(null);
 
   useEffect(() => {
+    if (!start) {
+      setTime(null);
+      return;
+    }
+
     let timer: ReturnType<typeof setTimeout>;
+    let cancelled = false;
 
-    const tick = () => {
-      setTime(getRemaining(endTime));
+    const init = async () => {
+      const endTime = await fetchEndTime();
 
-      const now = Date.now();
-      const delay = 1000 - (now % 1000); // align to second
-      timer = setTimeout(tick, delay);
+      const tick = () => {
+        if (cancelled) return;
+
+        const { days, hours, minutes, seconds } = getRemaining(endTime);
+        setTime({ days, hours, minutes, seconds });
+
+        const now = Date.now();
+        const delay = 1000 - (now % 1000);
+        timer = setTimeout(tick, delay);
+      };
+
+      // render immediately
+      tick();
     };
 
-    tick();
+    init();
 
-    return () => clearTimeout(timer);
-  }, [endTime]);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [start]);
 
   return (
     <ThemedView style={styles.row}>
-      <CountdownUnit value={time.days} label="days" size={size} />
+      <CountdownUnit value={time?.days ?? null} label="days" size={size} />
       <Separator size={size} />
-      <CountdownUnit value={time.hours} label="hours" size={size} />
+      <CountdownUnit value={time?.hours ?? null} label="hours" size={size} />
       <Separator size={size} />
-      <CountdownUnit value={time.minutes} label="min" size={size} />
+      <CountdownUnit value={time?.minutes ?? null} label="min" size={size} />
       <Separator size={size} />
-      <CountdownUnit value={time.seconds} label="sec" size={size} />
+      <CountdownUnit value={time?.seconds ?? null} label="sec" size={size} />
     </ThemedView>
   );
 }

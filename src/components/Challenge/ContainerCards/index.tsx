@@ -5,11 +5,11 @@ import { ThemedViewProps } from "@/components/Themed/ThemedView";
 import AnimatedAwardCard from "./Cards/AnimatedAwardCard";
 import AnimatedCountdownCard from "./Cards/AnimatedCountdownCard";
 import AnimatedGroupButtonCard from "./Cards/AnimatedGroupButtonCard";
-import { useState } from "react";
+import { useHomeAnimation } from "@/screens/Home/HomeAnimationContext";
 
 export default function ContainerCards({ style }: ThemedViewProps) {
-  const [countdownDone, setCountdownDone] = useState(false);
   const theme = useTheme();
+  const { countdownDone } = useHomeAnimation();
 
   return (
     <ThemedView
@@ -26,7 +26,7 @@ export default function ContainerCards({ style }: ThemedViewProps) {
 
       {countdownDone && <AnimatedGroupButtonCard />}
 
-      <AnimatedCountdownCard onEntered={() => setCountdownDone(true)} />
+      <AnimatedCountdownCard />
     </ThemedView>
   );
 }

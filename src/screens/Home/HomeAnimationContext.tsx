@@ -1,8 +1,10 @@
-import { createContext, useRef, useContext } from "react";
+import { createContext, useRef, useContext, useState } from "react";
 
 type HomeAnimationContextType = {
   animateOnce: boolean;
   markAnimated: () => void;
+  countdownDone: boolean;
+  setCountdownDone: (value: boolean) => void;
 };
 
 const HomeAnimationContext = createContext<HomeAnimationContextType | null>(
@@ -14,6 +16,7 @@ export function HomeAnimationProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const [countdownDone, setCountdownDone] = useState(false);
   const animatedRef = useRef(false);
 
   const animateOnce = !animatedRef.current;
@@ -23,7 +26,9 @@ export function HomeAnimationProvider({
   };
 
   return (
-    <HomeAnimationContext.Provider value={{ animateOnce, markAnimated }}>
+    <HomeAnimationContext.Provider
+      value={{ animateOnce, markAnimated, countdownDone, setCountdownDone }}
+    >
       {children}
     </HomeAnimationContext.Provider>
   );
