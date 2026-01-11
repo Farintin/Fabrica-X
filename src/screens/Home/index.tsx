@@ -19,12 +19,12 @@ import LeaderboardTabHeader from "@/components/Leaderboard/LeaderboardTabHeader"
 import { useStickyTabsNavAnimation } from "@/hooks/animations";
 import { ThemedView } from "@/components/Themed";
 import AnimatedHomeHeader from "@/components/ui/Header/AnimatedHomeHeader";
+import { useHomeAnimation } from "./HomeAnimationContext";
 
 export default function HomeScreen() {
   const [tab, setTab] = useState<"prizes" | "leaderboard">("leaderboard");
   const [isSticky, setIsSticky] = useState(false);
   const [isTabsSticky, setIsTabsSticky] = useState(false);
-  const [challengeReady, setChallengeReady] = useState(false);
   const [maxTabsHeight, setMaxTabsHeight] = useState<number>(0);
   const scrollRef = useRef<ScrollView | null>(null);
   const challengeY = useRef(0);
@@ -33,6 +33,7 @@ export default function HomeScreen() {
   const headerNavHeight = useRef(0);
   const theme = useTheme();
   const { top } = useSafeAreaInsets();
+  const { challengeReady } = useHomeAnimation();
 
   const tabHeight = tabHeights.current[tab] ?? 0;
 
@@ -63,10 +64,6 @@ export default function HomeScreen() {
 
   const stickyTabsNavAnim = useStickyTabsNavAnimation(isTabsSticky);
 
-  useEffect(() => {
-    console.log({ challengeReady });
-  }, [challengeReady]);
-
   return (
     <ThemedView style={[styles.root]}>
       <LinearGradient
@@ -92,10 +89,7 @@ export default function HomeScreen() {
             alwaysBounceVertical={false}
             overScrollMode="never"
           >
-            <Challenge
-              onReady={() => setChallengeReady(true)}
-              style={{ paddingBottom: theme.spacing.sm }}
-            />
+            <Challenge style={{ paddingBottom: theme.spacing.sm }} />
 
             {/* Tabs */}
             {challengeReady && (

@@ -15,18 +15,17 @@ const brandImage = require("@/assets/images/Challenge-icon.png");
 const brandImageWidthPercent = 20;
 
 export default function Challenge({
-  onReady,
   style,
   ...restProps
 }: ThemedViewProps & { onReady?: () => void; style?: StyleProp<ViewStyle> }) {
   const [bannerDone, setBannerDone] = useState(false);
   const [groupButtonDone, setGroupButtonDone] = useState(false);
   const theme = useTheme();
-  const { animateOnce } = useHomeAnimation();
+  const { animateOnce, setChallengeReady } = useHomeAnimation();
 
   useEffect(() => {
     if (groupButtonDone) {
-      onReady?.();
+      setChallengeReady(true);
     }
   }, [groupButtonDone]);
 
